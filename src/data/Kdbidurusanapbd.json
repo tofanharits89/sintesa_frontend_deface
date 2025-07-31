@@ -1,0 +1,302 @@
+[
+  {
+    "id": "1.01",
+    "kdurusan": "1",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pendidikan"
+  },
+  {
+    "id": "1.02",
+    "kdurusan": "1",
+    "kdbidurusan": "02",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Kesehatan"
+  },
+  {
+    "id": "1.03",
+    "kdurusan": "1",
+    "kdbidurusan": "03",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pekerjaan Umum Dan Penataan Ruang "
+  },
+  {
+    "id": "1.04",
+    "kdurusan": "1",
+    "kdbidurusan": "04",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Perumahan Dan Kawasan Permukiman"
+  },
+  {
+    "id": "1.05",
+    "kdurusan": "1",
+    "kdbidurusan": "05",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Ketenteraman Dan Ketertiban Umum Serta Perlindungan Masyarakat"
+  },
+  {
+    "id": "1.06",
+    "kdurusan": "1",
+    "kdbidurusan": "06",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Sosial"
+  },
+  {
+    "id": "2.23",
+    "kdurusan": "2",
+    "kdbidurusan": "23",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Perpustakaan"
+  },
+  {
+    "id": "2.07",
+    "kdurusan": "2",
+    "kdbidurusan": "07",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Tenaga Kerja"
+  },
+  {
+    "id": "2.08",
+    "kdurusan": "2",
+    "kdbidurusan": "08",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pemberdayaan Perempuan Dan Perlindungan Anak"
+  },
+  {
+    "id": "2.09",
+    "kdurusan": "2",
+    "kdbidurusan": "09",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pangan"
+  },
+  {
+    "id": "2.10",
+    "kdurusan": "2",
+    "kdbidurusan": "10",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pertanahan"
+  },
+  {
+    "id": "2.11",
+    "kdurusan": "2",
+    "kdbidurusan": "11",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Lingkungan Hidup"
+  },
+  {
+    "id": "2.12",
+    "kdurusan": "2",
+    "kdbidurusan": "12",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Administrasi Kependudukan Dan Pencatatan Sipil"
+  },
+  {
+    "id": "2.13",
+    "kdurusan": "2",
+    "kdbidurusan": "13",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pemberdayaan Masyarakat Dan Desa"
+  },
+  {
+    "id": "2.14",
+    "kdurusan": "2",
+    "kdbidurusan": "14",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pengendalian Penduduk Dan Keluarga Berencana"
+  },
+  {
+    "id": "2.15",
+    "kdurusan": "2",
+    "kdbidurusan": "15",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Perhubungan"
+  },
+  {
+    "id": "2.16",
+    "kdurusan": "2",
+    "kdbidurusan": "16",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Komunikasi Dan Informatika"
+  },
+  {
+    "id": "2.17",
+    "kdurusan": "2",
+    "kdbidurusan": "17",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Koperasi, Usaha Kecil, Dan Menengah"
+  },
+  {
+    "id": "2.18",
+    "kdurusan": "2",
+    "kdbidurusan": "18",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Penanaman Modal"
+  },
+  {
+    "id": "2.19",
+    "kdurusan": "2",
+    "kdbidurusan": "19",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Kepemudaan Dan Olahraga"
+  },
+  {
+    "id": "2.20",
+    "kdurusan": "2",
+    "kdbidurusan": "20",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Statistik"
+  },
+  {
+    "id": "2.21",
+    "kdurusan": "2",
+    "kdbidurusan": "21",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Persandian"
+  },
+  {
+    "id": "2.22",
+    "kdurusan": "2",
+    "kdbidurusan": "22",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Kebudayaan"
+  },
+  {
+    "id": "2.24",
+    "kdurusan": "2",
+    "kdbidurusan": "24",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Kearsipan"
+  },
+  {
+    "id": "3.25",
+    "kdurusan": "3",
+    "kdbidurusan": "25",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Kelautan  Dan Perikanan"
+  },
+  {
+    "id": "3.26",
+    "kdurusan": "3",
+    "kdbidurusan": "26",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pariwisata"
+  },
+  {
+    "id": "3.27",
+    "kdurusan": "3",
+    "kdbidurusan": "27",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Pertanian"
+  },
+  {
+    "id": "3.28",
+    "kdurusan": "3",
+    "kdbidurusan": "28",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Kehutanan"
+  },
+  {
+    "id": "3.29",
+    "kdurusan": "3",
+    "kdbidurusan": "29",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Energi  Dan Sumber Daya Mineral"
+  },
+  {
+    "id": "3.30",
+    "kdurusan": "3",
+    "kdbidurusan": "30",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Perdagangan"
+  },
+  {
+    "id": "3.31",
+    "kdurusan": "3",
+    "kdbidurusan": "31",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Perindustrian"
+  },
+  {
+    "id": "3.32",
+    "kdurusan": "3",
+    "kdbidurusan": "32",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Transmigrasi"
+  },
+  {
+    "id": "4.01",
+    "kdurusan": "4",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Sekretariat Daerah"
+  },
+  {
+    "id": "4.02",
+    "kdurusan": "4",
+    "kdbidurusan": "02",
+    "nmbidurusan": "Sekretariat Dprd"
+  },
+  {
+    "id": "5.02",
+    "kdurusan": "5",
+    "kdbidurusan": "02",
+    "nmbidurusan": "Keuangan"
+  },
+  {
+    "id": "5.01",
+    "kdurusan": "5",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Perencanaan"
+  },
+  {
+    "id": "5.03",
+    "kdurusan": "5",
+    "kdbidurusan": "03",
+    "nmbidurusan": "Kepegawaian"
+  },
+  {
+    "id": "5.04",
+    "kdurusan": "5",
+    "kdbidurusan": "04",
+    "nmbidurusan": "Pendidikan Dan Pelatihan"
+  },
+  {
+    "id": "5.05",
+    "kdurusan": "5",
+    "kdbidurusan": "05",
+    "nmbidurusan": "Penelitian Dan Pengembangan"
+  },
+  {
+    "id": "5.06",
+    "kdurusan": "5",
+    "kdbidurusan": "06",
+    "nmbidurusan": "Pengelolaan Perbatasan"
+  },
+  {
+    "id": "5.07",
+    "kdurusan": "5",
+    "kdbidurusan": "07",
+    "nmbidurusan": "Pengelolaan Penghubung"
+  },
+  {
+    "id": "6.01",
+    "kdurusan": "6",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Inspektorat Daerah"
+  },
+  {
+    "id": "7.01",
+    "kdurusan": "7",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Kecamatan Administrasi"
+  },
+  {
+    "id": "7.02",
+    "kdurusan": "7",
+    "kdbidurusan": "02",
+    "nmbidurusan": "Kota Administrasi"
+  },
+  {
+    "id": "7.03",
+    "kdurusan": "7",
+    "kdbidurusan": "03",
+    "nmbidurusan": "Kabupaten Administrasi"
+  },
+  {
+    "id": "8.01",
+    "kdurusan": "8",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Kesatuan Bangsa Dan Politik"
+  },
+  {
+    "id": "9.01",
+    "kdurusan": "9",
+    "kdbidurusan": "01",
+    "nmbidurusan": "Kekhususan Aceh"
+  },
+  {
+    "id": "9.02",
+    "kdurusan": "9",
+    "kdbidurusan": "02",
+    "nmbidurusan": "Kekhususan Papua"
+  },
+  {
+    "id": "9.03",
+    "kdurusan": "9",
+    "kdbidurusan": "03",
+    "nmbidurusan": "Kekhususan Papua Barat"
+  },
+  {
+    "id": "X.Xx",
+    "kdurusan": "X",
+    "kdbidurusan": "Xx",
+    "nmbidurusan": "Urusan Pemerintahan Bidang Xx"
+  }
+]

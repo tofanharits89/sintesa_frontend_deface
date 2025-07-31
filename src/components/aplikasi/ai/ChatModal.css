@@ -1,0 +1,39 @@
+/* Awalnya sembunyikan semua elemen */
+.flowise-chatbot {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out; font-size: 200px;
+  font-size: 200px;
+}
+
+/* Buat elemen pertama muncul dulu */
+.flowise-chatbot:nth-child(1) {
+  animation: fadeInOut 20s infinite;
+}
+
+/* Elemen kedua muncul setelah 5 detik */
+.flowise-chatbot:nth-child(2) {
+  animation: fadeInOut 20s infinite 5s;
+}
+
+/* Elemen ketiga muncul setelah 10 detik */
+.flowise-chatbot:nth-child(3) {
+  animation: fadeInOut 20s infinite 10s;
+}
+
+/* Elemen keempat muncul setelah 15 detik */
+.flowise-chatbot:nth-child(4) {
+  animation: fadeInOut 20s infinite 15s;
+}
+
+/* Definisikan keyframes untuk mengatur kapan elemen muncul dan menghilang */
+@keyframes fadeInOut {
+  0%, 25%, 100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  30%, 80% {
+    opacity: 1;
+    visibility: visible;
+  }
+}

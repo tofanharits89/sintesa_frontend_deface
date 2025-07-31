@@ -1,0 +1,26 @@
+[
+    {
+        "kdstunting": "I1",
+        "nmstunting": "Intervensi Dukungan",
+        "kdupdate": "",
+        "updater": "",
+        "tglupdate": "0000-00-00 00:00:00",
+        "aktif": "1"
+    },
+    {
+        "kdstunting": "I2",
+        "nmstunting": "Intervensi Sensitif",
+        "kdupdate": "",
+        "updater": "",
+        "tglupdate": "0000-00-00 00:00:00",
+        "aktif": "1"
+    },
+    {
+        "kdstunting": "I3",
+        "nmstunting": "Intervensi Spesifik",
+        "kdupdate": "",
+        "updater": "",
+        "tglupdate": "0000-00-00 00:00:00",
+        "aktif": "1"
+    }
+]

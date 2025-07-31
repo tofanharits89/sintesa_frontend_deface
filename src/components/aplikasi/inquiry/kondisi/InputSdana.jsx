@@ -1,0 +1,23 @@
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
+
+function InputSdana({ sdanakondisi, status }) {
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+
+    sdanakondisi(value);
+  };
+
+  return (
+    <Form.Control
+      rows={3}
+      placeholder="misalkan 001,002,003, ...dst"
+      className="form-select-sm"
+      disabled={status !== "kondisisdana"}
+      onChange={handleInputChange}
+      required
+    />
+  );
+}
+
+export default InputSdana;

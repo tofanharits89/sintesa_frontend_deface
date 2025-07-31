@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Background for Data Monitoring and Evaluation -->
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient Background -->
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f2027; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#203a43; stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Gradient -->
+  <rect width="400" height="200" fill="url(#grad1)" />
+
+  <!-- Grid Overlay -->
+  <rect width="400" height="200" fill="url(#grid)" />
+
+  <!-- Semi-Transparent Ellipses -->
+  <ellipse cx="200" cy="100" rx="100" ry="50" fill="rgba(255,255,255,0.2)" />
+  <ellipse cx="100" cy="50" rx="40" ry="20" fill="rgba(255,255,255,0.2)" />
+  <ellipse cx="300" cy="150" rx="50" ry="25" fill="rgba(255,255,255,0.2)" />
+
+  <!-- Line Chart Representation -->
+  <polyline points="50,150 100,120 150,90 200,110 250,70 300,90 350,60" 
+            fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <circle cx="50" cy="150" r="3" fill="white"/>
+  <circle cx="100" cy="120" r="3" fill="white"/>
+  <circle cx="150" cy="90" r="3" fill="white"/>
+  <circle cx="200" cy="110" r="3" fill="white"/>
+  <circle cx="250" cy="70" r="3" fill="white"/>
+  <circle cx="300" cy="90" r="3" fill="white"/>
+  <circle cx="350" cy="60" r="3" fill="white"/>
+
+</svg>

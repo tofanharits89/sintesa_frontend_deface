@@ -1,0 +1,17 @@
+[
+  {
+    "kdsebab": "A",
+    "nmsebab": "Item tidak relevan dengan komponen/subkomponen/Rincian Output",
+    "aktif": "1"
+  },
+  {
+    "kdsebab": "B",
+    "nmsebab": "Metode pelaksanaan kegiatan dapat disubstitusi/digabung agar lebih efisien",
+    "aktif": "1"
+  },
+  {
+    "kdsebab": "C",
+    "nmsebab": "Kegiatan tidak urgen/dapat ditunda",
+    "aktif": "1"
+  }
+]

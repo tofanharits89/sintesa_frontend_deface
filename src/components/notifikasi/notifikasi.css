@@ -1,0 +1,212 @@
+/* Notification Dropdown Styles */
+.notifications-dropdown-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  max-width: 350px;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.notification-header h6 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.notification-header .btn-outline-primary {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.notification-header .btn-outline-primary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.notification-list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+}
+
+.notification-item {
+  border-bottom: 1px solid #f1f3f4;
+  transition: all 0.2s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(2px);
+}
+
+.notification-item.unread {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-left: 4px solid #1976d2;
+}
+
+.notification-item:not(.unread) {
+  background: #f8f9fa;
+  opacity: 0.8;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-content {
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+}
+
+.notification-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notification-avatar i {
+  font-size: 16px;
+}
+
+.notification-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notification-subtitle {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.notification-indicator {
+  width: 8px;
+  height: 8px;
+  background: #1976d2;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px #fff, 0 0 8px rgba(25, 118, 210, 0.4);
+  animation: pulse 2s infinite;
+}
+
+/* @keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+} */
+
+.notification-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: #999;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.notification-empty i {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.custom-list-group .list-group-item:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.custom-list-group .list-group-item:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.custom-list-group .list-group-item:hover {
+  background-color: #f8f9fb;
+  cursor: pointer;
+}
+/* YourComponent.css */
+
+.container-notif {
+  position: relative;
+  overflow: hidden; /* Hide content that overflows the container */
+  /* height: 350px; */
+}
+
+.icon-background {
+  position: absolute;
+  border-radius: 10px;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f4f0f0; /* Set background color if needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0; /* Ensure the background stays behind the content */
+}
+
+.icon-notif {
+  font-size: 50px; /* Adjust the font size as needed */
+  color: #bdbcbc; /* Set icon color if needed */
+  /* Add any additional styles for the icon */
+  z-index: 1; /* Ensure the icon stays above the background */
+}
+
+.content-notif {
+  position: relative;
+  padding: 30px;
+  z-index: 2; /* Ensure the content stays above the background */
+}

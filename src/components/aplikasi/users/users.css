@@ -1,0 +1,89 @@
+.profile-user {
+  height: 700px;
+  overflow: scroll;
+}
+.profile-tab {
+  height: 50px;
+}
+.sticky-user {
+  background-color: #ffffff;
+}
+@supports (position: sticky) {
+  .is-sticky-user {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+}
+.data-max {
+  height: 675px;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+.data-user {
+  height: 550px;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+.data-kmk {
+  height: auto;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+.data-cabut {
+  height: 250px;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+
+@supports (position: sticky) {
+  .is-sticky-userlist {
+    position: sticky !important;
+    top: 50px;
+    z-index: 1;
+  }
+}
+.rekam-user {
+  overflow: scroll;
+  margin: 5px;
+  padding: 10px;
+  color: #343a40;
+}
+.table-user th {
+  background-color: #343a40; /* Ganti dengan warna gelap yang Anda inginkan */
+  color: white; /* Warna teks untuk header tabel gelap */
+  font-size: 13px;
+}
+@supports (position: sticky) {
+  .is-sticky-datauser {
+    position: sticky !important;
+    top: 0px;
+    z-index: 1;
+  }
+}
+.verified {
+  position: relative;
+  top: -15px; /* Atur nilai ini sesuai kebutuhan Anda */
+  font-size: 1em; /* Sesuaikan ukuran ikon */
+  color: #00aaff; /* Warna ikon, bisa disesuaikan */
+}
+/* OtpModal.css */
+.otp-input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.otp-input {
+  text-align: center;
+  font-size: 1.2rem;
+  width: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.otp-input:focus {
+  transform: scale(0.9);
+}
+
+

@@ -1,0 +1,182 @@
+
+.table-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative;
+  padding: 2px;
+
+  width: 100%;
+
+}
+
+.table-card:hover {
+  /* transform: scale(1.1); */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.table-card .table {
+  border-collapse: separate;
+  border-spacing: 0;
+  
+}
+
+.table-card .table thead {
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+
+  z-index: 1; /* Ensures the header stays above the table content */
+}
+
+.table-card .table th {
+  padding: 1px;  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f6fbf6;
+}
+
+/* Spinner Styles */
+.spinner-container2 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+
+}
+
+.page-item2 {
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.page-link2 {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  transition: background 0.3s ease;
+}
+
+.page-link2:hover {
+  background: #e9ecef;
+}
+
+.page-item2.active .page-link2 {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.page-item2.disabled .page-link2 {
+  color: #6c757d;
+  pointer-events: none;
+}
+
+/* Table Styles */
+.chat-table-container {
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.chat-table {
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.chat-table td {
+  padding: 15px;
+ 
+  border-bottom: 1px solid #ddd;
+}
+
+.chat-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message-text {
+  font-size: 14px;
+  color: #333;
+}
+.chat-table th, .chat-table td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.message-text, .message-text-long {
+  font-size: 14px;
+  color: #333;
+}
+
+.message-text-long {
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px; /* Sesuaikan lebar maksimal jika diperlukan */
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.status-ok {
+
+  color: #28a745; 
+}
+
+.status-waiting {
+  
+  color: #007bff;
+  animation: blink 1s linear infinite;
+}
+
+.status-expired {
+  color: red;
+  font-weight: bold;
+}
+
+/* Blink animation for Waiting status */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+

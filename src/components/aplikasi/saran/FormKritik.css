@@ -1,0 +1,18 @@
+/* Form styling */
+
+/* Dropzone styling */
+.dropzone {
+  border: 2px dashed #cccccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Error message styling */
+.error-message {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+}

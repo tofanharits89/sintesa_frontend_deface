@@ -1,0 +1,2053 @@
+import React, { useState, useEffect, useContext } from "react";
+import {
+  Row,
+  Col,
+  Card,
+  Button,
+  Form,
+  Spinner,
+  Dropdown,
+  ButtonGroup,
+  Modal,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
+import GenerateExcel from "../CSV/generateExcell";
+import { Pesan } from "../notifikasi/Omspan";
+import MyContext from "../../../auth/Context";
+import JenisLaporanDeviasi from "./JenisLaporanDeviasi";
+import { Sql } from "../tematik/hasilQueryTematik";
+import { Simpan } from "../simpanquery/simpan";
+
+import Kddept from "../../referensi/Kddept";
+import Kdunit from "../../referensi/Kdunit";
+import Kddekon from "../../referensi/Kddekon";
+import Kdakun from "../../referensi/Kdakun";
+import Kdkanwil from "../../referensi/Kdkanwil";
+import Kdkppn from "../../referensi/Kdkppn";
+import Kdsatker from "../../referensi/Kdsatker";
+
+import Kdprogram from "../../referensi/Kdprogram";
+import Kdgiat from "../../referensi/Kdgiat";
+import Kdoutput from "../../referensi/Kdoutput";
+import KdakunDeviasi from "./KdakunDeviasi";
+import KdakunDeviasi2 from "./KdakunDeviasi2";
+
+import DeptRadio from "../../aplikasi/inquiry/radio/deptRadio";
+import InputDept from "../../aplikasi/inquiry/kondisi/InputDept";
+import InputKppn from "../../aplikasi/inquiry/kondisi/InputKppn";
+import InputSatker from "../../aplikasi/inquiry/kondisi/InputSatker";
+
+import UnitRadio from "../../aplikasi/inquiry/radio/unitRadio";
+import DekonRadio from "../../aplikasi/inquiry/radio/dekonRadio";
+
+import KanwilRadio from "../../aplikasi/inquiry/radio/kanwilRadio";
+import KppnRadio from "../../aplikasi/inquiry/radio/kppnRadio";
+import SatkerRadio from "../../aplikasi/inquiry/radio/satkerRadio";
+
+import ProgramRadio from "../../aplikasi/inquiry/radio/programRadio";
+import KegiatanRadio from "../../aplikasi/inquiry/radio/kegiatanRadio";
+import OutputRadio from "../../aplikasi/inquiry/radio/outputRadio";
+import AkunRadio from "../../aplikasi/inquiry/radio/akunRadio";
+
+import pilihanData from "./pilihanData";
+import { getSQLDeviasi } from "./SQLDeviasi";
+import Thang from "./ThangDeviasi";
+
+import GenerateCSV from "../CSV/generateCSV";
+import PembulatanDeviasi from "./PembulatanDeviasi";
+import HasilQueryDeviasi from "./hasilQueryDeviasi";
+import InputKataAkun from "../inquiry/kondisi/InputKataAkun";
+import moment from "moment";
+import InputKataOutput from "../inquiry/kondisi/InputKataOutput";
+import InputOutput from "../inquiry/kondisi/InputOutput";
+import InputKatakegiatan from "../inquiry/kondisi/InputKatakegiatan";
+import Inputkegiatan from "../inquiry/kondisi/Inputkegiatan";
+import InputKataProgram from "../inquiry/kondisi/InputKataProgram";
+import InputProgram from "../inquiry/kondisi/InputProgram";
+import InputKataSatker from "../inquiry/kondisi/InputKataSatker";
+import InputKataKppn from "../inquiry/kondisi/InputKataKppn";
+import InputKataKanwil from "../inquiry/kondisi/InputKataKanwil";
+import InputKanwil from "../inquiry/kondisi/InputKanwil";
+import InputDekon from "../inquiry/kondisi/InputDekon";
+import InputKataDept from "../inquiry/kondisi/InputKataDept";
+import InputUnit from "../inquiry/kondisi/InputUnit";
+import InputAkun from "../inquiry/kondisi/InputAkun";
+import { FaWhatsapp } from "react-icons/fa";
+import ConvertToPDF from "../PDF/sharepdf";
+import ShareDataComponent from "../PDF/Icon";
+import PilihFormat from "../PDF/PilihFormat";
+import { ConvertToExcel } from "../PDF/FormatSelector";
+import ConvertToJSON from "../PDF/JSON";
+import { ConvertToText } from "../PDF/TEXT";
+import SaveUserData from "../PDF/simpanTukangAkses";
+
+const InquiryDeviasi = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalsql, setShowModalsql] = useState(false);
+  const [showModalsimpan, setShowModalsimpan] = useState(false);
+  const {
+    role,
+    telp,
+    verified,
+    loadingExcell,
+    setloadingExcell,
+    kdkppn: kodekppn,
+    kdkanwil: kodekanwil,
+  } = useContext(MyContext);
+  const [jenlap, setJenlap] = useState("1");
+  const [thang, setThang] = useState(new Date().getFullYear());
+
+  const [kddept, setKddept] = useState(true);
+  const [unit, setUnit] = useState(false);
+  const [kddekon, setKddekon] = useState(false);
+  const [kdkanwil, setKdkanwil] = useState(false);
+  const [kdkppn, setKdkppn] = useState(false);
+  const [kdsatker, setKdsatker] = useState(false);
+  const [kdprogram, setKdprogram] = useState(false);
+  const [kdgiat, setKdgiat] = useState(false);
+  const [kdoutput, setKdoutput] = useState(false);
+  const [kdakun, setKdakun] = useState(false);
+  const [cutoff, setCutoff] = useState("1");
+  const [dept, setDept] = useState("000");
+  const [kdunit, setKdunit] = useState("XX");
+  const [dekon, setDekon] = useState("XX");
+
+  const [kabkota, setKabkota] = useState("XX");
+  const [kanwil, setKanwil] = useState("XX");
+  const [kppn, setKppn] = useState("XX");
+  const [satker, setSatker] = useState("XX");
+
+  const [program, setProgram] = useState("XX");
+  const [giat, setGiat] = useState("XX");
+  const [output, setOutput] = useState("XX");
+
+  const [akun, setAkun] = useState("XX");
+
+  const [pembulatan, setPembulatan] = useState("1");
+
+  // RADIO HANDLER
+  const [deptradio, setDeptradio] = useState("1");
+  const [unitradio, setUnitradio] = useState("1");
+  const [dekonradio, setDekonradio] = useState("1");
+
+  const [kabkotaradio, setKabkotaradio] = useState("1");
+  const [kanwilradio, setKanwilradio] = useState("1");
+  const [kppnradio, setKppnradio] = useState("1");
+  const [satkerradio, setSatkerradio] = useState("1");
+
+  const [programradio, setProgramradio] = useState("1");
+  const [kegiatanradio, setKegiatanradio] = useState("1");
+  const [outputradio, setOutputradio] = useState("1");
+
+  const [akunradio, setAkunradio] = useState("1");
+
+  // const [deptkondisi, setDeptkondisi] = useState("");
+  // const [deptkondisipilih, setDeptkondisipilih] = useState("0");
+  // const [kppnkondisi, setKppnkondisi] = useState("");
+  // const [kppnkondisipilih, setKppnkondisipilih] = useState("0");
+  // const [satkerkondisi, setSatkerkondisi] = useState("");
+  // const [satkerkondisipilih, setSatkerkondisipilih] = useState("0");
+
+  const [sql, setSql] = useState("");
+  const [from, setFrom] = useState("");
+  const [select, setSelect] = useState("");
+
+  const [export2, setExport2] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState(false);
+
+  // SHARE PDF
+
+  const [showModalPDF, setShowModalPDF] = useState(false);
+  const [selectedFormat, setSelectedFormat] = useState("pdf");
+  const handleShowPDF = () => setShowModalPDF(true);
+  const handleClosePDF = () => setShowModalPDF(false);
+  const handlePDF = () => {
+    generateSql();
+    setShowModalPDF(true);
+  };
+
+  const handleGenerateExcel = () => {
+    generateSql();
+    setloadingExcell(true);
+  };
+  const handleDataFetchComplete = (total) => {
+    if (total > 0) {
+      Pesan(`${total} data berhasil diexport`);
+    } else {
+      Pesan("Tidak Ada Data");
+    }
+    setloadingExcell(false);
+  };
+
+  const handleStatus = (status, total) => {
+    setLoadingStatus(status);
+    setExport2(status);
+
+    if (total === 0) {
+      setLoadingStatus(false);
+    }
+  };
+
+  useEffect(() => {
+    setExport2(false);
+  }, [sql]);
+  // console.log(jenlap);
+  const handleCutoffcek = () => {
+    let realisasi = `,
+    ROUND(SUM(a.pagu)/${pembulatan}, 0) AS pagu, 
+    ROUND(sum(renc1)/${pembulatan}, 0)  as renc1, 
+    ROUND(sum(real1)/${pembulatan}, 0) as real1, 
+    ROUND(sum(renc2)/${pembulatan}, 0) as renc2, 
+    ROUND(sum(real2)/${pembulatan}, 0) as real2, 
+    ROUND(sum(renc3)/${pembulatan}, 0) as renc3, 
+    ROUND(sum(real3)/${pembulatan}, 0) as real3, 
+    ROUND(sum(renc4)/${pembulatan}, 0) as renc4, 
+    ROUND(sum(real4)/${pembulatan}, 0) as real4, 
+    ROUND(sum(renc5)/${pembulatan}, 0) as renc5, 
+    ROUND(sum(real5)/${pembulatan}, 0) as real5, 
+    ROUND(sum(renc6)/${pembulatan}, 0) as renc6, 
+    ROUND(sum(real6)/${pembulatan}, 0) as real6, 
+    ROUND(sum(renc7)/${pembulatan}, 0) as renc7, 
+    ROUND(sum(real7)/${pembulatan}, 0) as real7, 
+    ROUND(sum(renc8)/${pembulatan}, 0) as renc8, 
+    ROUND(sum(real8)/${pembulatan}, 0) as real8, 
+    ROUND(sum(renc9)/${pembulatan}, 0) as renc9, 
+    ROUND(sum(real9)/${pembulatan}, 0) as real9, 
+    ROUND(sum(renc10)/${pembulatan}, 0) as renc10, 
+    ROUND(sum(real10)/${pembulatan}, 0) as real10, 
+    ROUND(sum(renc11)/${pembulatan}, 0) as renc11, 
+    ROUND(sum(real11)/${pembulatan}, 0) as real11, 
+    ROUND(sum(renc12)/${pembulatan}, 0) as renc12, 
+    ROUND(sum(real12)/${pembulatan}, 0) as real12`;
+
+    let realisasipnbp = `
+       ,
+       ROUND(SUM(rencjan)/${pembulatan}, 0) AS renc1,
+       ROUND(SUM(realjan)/${pembulatan}, 0) AS real1,
+       ROUND(SUM(rencfeb)/${pembulatan}, 0) AS renc2,
+       ROUND(SUM(realfeb)/${pembulatan}, 0) AS real2,
+       ROUND(SUM(rencmar)/${pembulatan}, 0) AS renc3,
+       ROUND(SUM(realmar)/${pembulatan}, 0) AS real3,
+       ROUND(SUM(rencapr)/${pembulatan}, 0) AS renc4,
+       ROUND(SUM(realapr)/${pembulatan}, 0) AS real4,
+       ROUND(SUM(rencmei)/${pembulatan}, 0) AS renc5,
+       ROUND(SUM(realmei)/${pembulatan}, 0) AS real5,
+       ROUND(SUM(rencjun)/${pembulatan}, 0) AS renc6,
+       ROUND(SUM(realjun)/${pembulatan}, 0) AS real6,
+       ROUND(SUM(rencjul)/${pembulatan}, 0) AS renc7,
+       ROUND(SUM(realjul)/${pembulatan}, 0) AS real7,
+       ROUND(SUM(rencags)/${pembulatan}, 0) AS renc8,
+       ROUND(SUM(realags)/${pembulatan}, 0) AS real8,
+       ROUND(SUM(rencsep)/${pembulatan}, 0) AS renc9,
+       ROUND(SUM(realsep)/${pembulatan}, 0) AS real9,
+       ROUND(SUM(rencokt)/${pembulatan}, 0) AS renc10,
+       ROUND(SUM(realokt)/${pembulatan}, 0) AS real10,
+       ROUND(SUM(rencnov)/${pembulatan}, 0) AS renc11,
+       ROUND(SUM(realnov)/${pembulatan}, 0) AS real11,
+       ROUND(SUM(rencdes)/${pembulatan}, 0) AS renc12,
+       ROUND(SUM(realdes)/${pembulatan}, 0) AS real12
+     `;
+
+    let from =
+      "monev" + thang + ".rencana_real_harian_output_" + thang + "_new a";
+
+    let frompnbp = "monev" + thang + ".pnbp_rencana_" + thang + " a";
+
+    switch (jenlap) {
+      case "1":
+        setFrom(from);
+        setSelect(realisasi);
+
+        break;
+      case "2":
+        setFrom(frompnbp);
+        setSelect(realisasipnbp);
+        break;
+
+      default:
+    }
+  };
+  // console.log(select);
+
+  // const handleKddept = (dept) => {
+  //   setDept(dept);
+
+  //   if (dept === "XXX") {
+  //     setProgram("XX");
+  //     setGiat("XX");
+  //     setKdunit("XX");
+  //     setOutput("XX");
+  //     setAkun("XX");
+  //   } else if (dept === "000") {
+  //     setProgram("XX");
+  //     setGiat("XX");
+  //     setKdunit("XX");
+  //     setOutput("XX");
+  //     setAkun("XX");
+  //   } else {
+  //     // setKdunit(kdunit);
+  //   }
+  // };
+  const closeModalsql = () => {
+    setShowModalsql(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const closeModalsimpan = () => {
+    setShowModalsimpan(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const handlegetQuerySQL = () => {
+    generateSql();
+    setShowModalsql(true);
+  };
+  const handleSimpan = () => {
+    generateSql();
+    setShowModalsimpan(true);
+  };
+  const handleJenlap = (jenlap) => {
+    setJenlap(jenlap);
+  };
+
+  const handleThang = (thang) => {
+    setThang(thang);
+  };
+
+  // const handleUnit = (kdunit) => {
+  //   setKdunit(kdunit);
+  // };
+  // const handleDekon = (dekon) => {
+  //   setDekon(dekon);
+  // };
+  // const handleKanwil = (kanwil) => {
+  //   setKanwil(kanwil);
+  // };
+  // const handleKppn = (kppn) => {
+  //   setKppn(kppn);
+  // };
+  // const handleSatker = (satker) => {
+  //   setSatker(satker);
+  // };
+
+  // const handleProgram = (program) => {
+  //   setProgram(program);
+  // };
+  // const handleGiat = (giat) => {
+  //   setGiat(giat);
+  // };
+  // const handleOutput = (output) => {
+  //   setOutput(output);
+  // };
+  // const handleAkun = (akun) => {
+  //   setAkun(akun);
+  // };
+
+  const handlePembulatan = (pembulatan) => {
+    setPembulatan(pembulatan);
+  };
+
+  // const getSwitchKddept = (kddept) => {
+  //   setKddept(kddept);
+  //   setDept("XXX");
+  // };
+  // const getSwitchUnit = (unit) => {
+  //   setUnit(unit);
+  //   setKdunit("XX");
+  // };
+  // const getSwitchDekon = (kddekon) => {
+  //   setKddekon(kddekon);
+  //   setDekon("XX");
+  // };
+
+  // const getSwitchkanwil = (kdkanwil) => {
+  //   setKanwil("XX");
+  //   setKdkanwil(kdkanwil);
+  // };
+  // const getSwitchkppn = (kdkppn) => {
+  //   setKppn("XXX");
+  //   setKdkppn(kdkppn);
+  // };
+  // const getSwitchsatker = (kdsatker) => {
+  //   setSatker("XXX");
+  //   setKdsatker(kdsatker);
+  // };
+
+  useEffect(() => {
+    if (jenlap === "2") {
+      setProgram("XX");
+      setGiat("XX");
+      setOutput("XX");
+    }
+  }, [jenlap]);
+
+  // const getSwitchprogram = (kdprogram) => {
+  //   setProgram("XX");
+  //   setKdprogram(kdprogram);
+  // };
+  // const getSwitchgiat = (kdgiat) => {
+  //   setGiat("XX");
+  //   setKdgiat(kdgiat);
+  // };
+  // const getSwitchoutput = (kdoutput) => {
+  //   setOutput("XX");
+  //   setKdoutput(kdoutput);
+  // };
+  // const getSwitchakun = (kdakun) => {
+  //   setAkun("XX");
+  //   setKdakun(kdakun);
+  // };
+
+  useEffect(() => {
+    handleCutoffcek();
+  }, [thang, pembulatan, jenlap, select]);
+  // HANDLE RADIO
+  const handleRadioDept = (deptRadio) => {
+    setDeptradio(deptRadio);
+  };
+  const handleRadioUnit = (unitRadio) => {
+    setUnitradio(unitRadio);
+  };
+  const handleRadioDekon = (dekonRadio) => {
+    setDekonradio(dekonRadio);
+  };
+  const handleRadioKabkota = (kabkotaRadio) => {
+    setKabkotaradio(kabkotaRadio);
+  };
+  const handleRadioKanwil = (kanwilRadio) => {
+    setKanwilradio(kanwilRadio);
+  };
+  const handleRadioKppn = (kppnRadio) => {
+    setKppnradio(kppnRadio);
+  };
+  const handleRadioSatker = (satkerRadio) => {
+    setSatkerradio(satkerRadio);
+  };
+  const handleRadioProgram = (programRadio) => {
+    setProgramradio(programRadio);
+  };
+  const handleRadioKegiatan = (kegiatanRadio) => {
+    setKegiatanradio(kegiatanRadio);
+  };
+  const handleRadioOutput = (outputRadio) => {
+    setOutputradio(outputRadio);
+  };
+  const handleRadioAkun = (akunRadio) => {
+    setAkunradio(akunRadio);
+  };
+
+  // KONDISI
+  // const handledeptKondisi = (deptInput) => {
+  //   setDeptkondisi(deptInput);
+  // };
+  function deptKondisiPilih(event) {
+    const isChecked = event.target.checked;
+    const value = isChecked ? 5 : 0;
+    setDeptkondisipilih(value);
+    setDept("000");
+  }
+
+  // const handlekppnKondisi = (kppnInput) => {
+  //   setKppnkondisi(kppnInput);
+  // };
+  function kppnKondisiPilih(event) {
+    const isChecked = event.target.checked;
+    const value = isChecked ? 5 : 0;
+    setKppnkondisipilih(value);
+    setKppn("000");
+  }
+  // const handlesatkerKondisi = (satkerInput) => {
+  //   setSatkerkondisi(satkerInput);
+  // };
+  function satkerKondisiPilih(event) {
+    const isChecked = event.target.checked;
+    const value = isChecked ? 5 : 0;
+    setSatkerkondisipilih(value);
+    setSatker("SEMUASATKER");
+  }
+
+  const handlegetQuery = () => {
+    setShowModal(true);
+    generateSql();
+  };
+  const handlegetExcell = () => {
+    generateSql();
+    setExport2(true);
+  };
+  const handlestatus = () => {
+    setExport2(false);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const generateSql = () => {
+    const queryParams = {
+      thang,
+      jenlap,
+      role,
+      kodekppn,
+      kodekanwil,
+      deptradio,
+      dept,
+      deptkondisipilih,
+      deptkondisi,
+      kdunit,
+      unitkondisipilih,
+      unitkondisi,
+      unitradio,
+      dekon,
+      dekonradio,
+
+      kanwil,
+      kanwilradio,
+      kppn,
+      kppnradio,
+      kppnkondisipilih,
+      kppnkondisi,
+      satker,
+      satkerradio,
+      satkerkondisipilih,
+      satkerkondisi,
+
+      program,
+      programradio,
+      giat,
+      kegiatanradio,
+      output,
+      outputradio,
+
+      akun,
+      akunradio,
+
+      select,
+      from,
+
+      opsidept,
+      opsikatadept,
+      opsiunit,
+      opsikataunit,
+      opsidekon,
+      dekonkondisi,
+
+      opsikppn,
+      opsikatakppn,
+      kanwilkondisipilih,
+      kanwilkondisi,
+      opsikanwil,
+      opsikatakanwil,
+      opsisatker,
+      opsikatasatker,
+
+      programkondisipilih,
+      programkondisi,
+      opsiprogram,
+      opsikataprogram,
+      giatkondisipilih,
+      giatkondisi,
+      opsigiat,
+      opsikatagiat,
+      outputkondisipilih,
+      outputkondisi,
+      opsioutput,
+      opsikataoutput,
+
+      akunkondisipilih,
+      akunkondisi,
+      opsiakun,
+      opsikataakun,
+
+      pembulatan,
+    };
+
+    getSQLDeviasi(queryParams);
+    const query = getSQLDeviasi(queryParams);
+    setSql(query);
+  };
+
+  // HANDLE KDDEPT
+  const [deptkondisi, setDeptkondisi] = useState("");
+  const [deptkondisipilih, setDeptkondisipilih] = useState("0");
+  const [opsikatadept, setopsiKataDept] = useState("");
+
+  const handleKddept = (dept) => {
+    setDept(dept);
+    setopsiDept("pilihdept");
+
+    if (dept === "XXX") {
+      setProgram("XX");
+      setGiat("XX");
+      setKdunit("XX");
+      setOutput("XX");
+    } else if (dept === "000") {
+      setProgram("XX");
+      setGiat("XX");
+      setKdunit("00");
+      setOutput("XX");
+    }
+  };
+  const getSwitchKddept = (kddept) => {
+    setKddept(kddept);
+    setDeptradio("1");
+    if (kddept) {
+      setDept("000");
+    } else {
+      setDept("XXX");
+      setopsiKataDept("");
+      setDeptkondisi("");
+    }
+  };
+
+  const [opsidept, setopsiDept] = useState("pilihdept");
+  const handledeptKondisi = (deptInput) => {
+    setDeptkondisi(deptInput);
+  };
+  const handledeptKondisiKata = (deptkata) => {
+    setopsiKataDept(deptkata);
+  };
+  const handleRadioChange = (event) => {
+    setopsiDept(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihdept" ? 5 : 0;
+    setDeptkondisipilih(value);
+    value === 0 ? setDeptradio("2") : setDeptradio("1");
+  };
+
+  // HANDLE KDUNIT
+  const [unitkondisi, setUnitkondisi] = useState("");
+  const [opsikataunit, setopsiKataUnit] = useState("");
+  const [unitkondisipilih, setUnitkondisipilih] = useState("0");
+  const [opsiunit, setopsiUnit] = useState("pilihunit");
+
+  const handleUnit = (kdunit) => {
+    setKdunit(kdunit);
+  };
+  const getSwitchUnit = (unit) => {
+    setUnit(unit);
+    if (unit) {
+      setKdunit("00");
+    } else {
+      setKdunit("XX");
+      setUnitkondisi("");
+      setopsiKataUnit("");
+    }
+  };
+  const handleunitKondisi = (unitInput) => {
+    setUnitkondisi(unitInput);
+  };
+  const handleunitKondisiKata = (unitkata) => {
+    setopsiKataUnit(unitkata);
+  };
+  const handleRadioChangeUnit = (event) => {
+    setopsiUnit(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihunit" ? 5 : 0;
+    setUnitkondisipilih(value);
+  };
+
+  // HANDLE KEWENANGAN
+  const [dekonkondisi, setDekonkondisi] = useState("");
+  const [dekonkondisipilih, setDekonkondisipilih] = useState("0");
+  const [opsidekon, setopsiDekon] = useState("pilihdekon");
+
+  const handleDekon = (dekon) => {
+    setDekon(dekon);
+  };
+  const getSwitchDekon = (kddekon) => {
+    setKddekon(kddekon);
+    if (kddekon) {
+      setDekon("00");
+    } else {
+      setDekon("XX");
+      setDekonkondisi("");
+    }
+  };
+
+  const handledekonKondisi = (dekonInput) => {
+    setDekonkondisi(dekonInput);
+  };
+
+  const handleRadioChangeDekon = (event) => {
+    setopsiDekon(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihdekon" ? 5 : 0;
+    setDekonkondisipilih(value);
+  };
+
+  // HANDLE KDKANWIL
+  const [kanwilkondisi, setkanwilkondisi] = useState("");
+  const [opsikatakanwil, setopsiKatakanwil] = useState("");
+
+  const handleKanwil = (kanwil) => {
+    setKanwil(kanwil);
+    if (kanwil === "XX") {
+      setKabkota("XX");
+    }
+  };
+  const getSwitchkanwil = (kdkanwil) => {
+    setKdkanwil(kdkanwil);
+    if (kdkanwil) {
+      setKanwil("00");
+    } else {
+      setkanwilkondisi("");
+      setopsiKatakanwil("");
+      setKanwil("XX");
+    }
+  };
+
+  const [kanwilkondisipilih, setkanwilkondisipilih] = useState("0");
+  const [opsikanwil, setopsikanwil] = useState("pilihkanwil");
+
+  const handlekanwilKondisi = (kanwilInput) => {
+    setkanwilkondisi(kanwilInput);
+  };
+  const handlekanwilKondisiKata = (kanwilkata) => {
+    setopsiKatakanwil(kanwilkata);
+  };
+  const handleRadioChangekanwil = (event) => {
+    setopsikanwil(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihkanwil" ? 5 : 0;
+    setkanwilkondisipilih(value);
+    value === 0 ? setKanwilradio("2") : setKanwilradio("1");
+  };
+
+  // HANDLE KDKPPN
+  const [kppnkondisi, setkppnkondisi] = useState("");
+  const [opsikatakppn, setopsiKatakppn] = useState("");
+  const handleKppn = (kppn) => {
+    setKppn(kppn);
+    if (kppn === "XX") {
+      setKabkota("XX");
+    }
+  };
+  const getSwitchkppn = (kdkppn) => {
+    setKdkppn(kdkppn);
+    if (kdkppn) {
+      setKppn("00");
+    } else {
+      setkppnkondisi("");
+      setopsiKatakppn("");
+      setKppn("XX");
+    }
+  };
+
+  const [kppnkondisipilih, setkppnkondisipilih] = useState("0");
+  const [opsikppn, setopsikppn] = useState("pilihkppn");
+
+  const handlekppnKondisi = (kppnInput) => {
+    setkppnkondisi(kppnInput);
+  };
+  const handlekppnKondisiKata = (kppnkata) => {
+    setopsiKatakppn(kppnkata);
+  };
+  const handleRadioChangekppn = (event) => {
+    setopsikppn(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihkppn" ? 5 : 0;
+    setkppnkondisipilih(value);
+    value === 0 ? setKppnradio("2") : setKppnradio("1");
+  };
+
+  // HANDLE SATKER
+  const [satkerkondisi, setsatkerkondisi] = useState("");
+  const [opsikatasatker, setopsiKatasatker] = useState("");
+
+  const handleSatker = (satker) => {
+    setSatker(satker);
+  };
+  const getSwitchsatker = (kdsatker) => {
+    setKdsatker(kdsatker);
+    if (kdsatker) {
+      setSatker("SEMUASATKER");
+    } else {
+      setsatkerkondisi("");
+      setopsiKatasatker("");
+      setSatker("XX");
+    }
+    // console.log(satker);
+  };
+
+  const [satkerkondisipilih, setsatkerkondisipilih] = useState("0");
+  const [opsisatker, setopsisatker] = useState("pilihsatker");
+
+  const handlesatkerKondisi = (satkerInput) => {
+    setsatkerkondisi(satkerInput);
+  };
+  const handlesatkerKondisiKata = (satkerkata) => {
+    setopsiKatasatker(satkerkata);
+  };
+  const handleRadioChangesatker = (event) => {
+    setopsisatker(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihsatker" ? 5 : 0;
+    setsatkerkondisipilih(value);
+    value === 0 ? setSatkerradio("2") : setSatkerradio("1");
+  };
+
+  // HANDLE PROGRAM
+
+  const [programkondisi, setprogramkondisi] = useState("");
+  const [opsikataprogram, setopsiKataprogram] = useState("");
+
+  const getSwitchprogram = (kdprogram) => {
+    setKdprogram(kdprogram);
+    if (kdprogram) {
+      setProgram("00");
+    } else {
+      setprogramkondisi("");
+      setopsiKataprogram("");
+      setProgram("XX");
+    }
+  };
+
+  const handleProgram = (program) => {
+    setProgram(program);
+  };
+
+  const [programkondisipilih, setprogramkondisipilih] = useState("0");
+  const [opsiprogram, setopsiprogram] = useState("pilihprogram");
+
+  const handleprogramKondisi = (programInput) => {
+    setprogramkondisi(programInput);
+  };
+  const handleprogramKondisiKata = (programkata) => {
+    setopsiKataprogram(programkata);
+  };
+  const handleRadioChangeprogram = (event) => {
+    setopsiprogram(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihprogram" ? 5 : 0;
+    setprogramkondisipilih(value);
+    value === 0 ? setProgramradio("2") : setProgramradio("1");
+  };
+
+  // HANDLE KDGIAT
+
+  const [giatkondisi, setgiatkondisi] = useState("");
+  const [opsikatagiat, setopsiKatagiat] = useState("");
+
+  const getSwitchgiat = (kdgiat) => {
+    setKdgiat(kdgiat);
+    if (kdgiat) {
+      setGiat("00");
+    } else {
+      setgiatkondisi("");
+      setopsiKatagiat("");
+      setGiat("XX");
+    }
+  };
+
+  const handleGiat = (giat) => {
+    setGiat(giat);
+  };
+
+  const [giatkondisipilih, setgiatkondisipilih] = useState("0");
+  const [opsigiat, setopsigiat] = useState("pilihgiat");
+
+  const handlekegiatanKondisi = (giatInput) => {
+    setgiatkondisi(giatInput);
+  };
+  const handlekegiatanKondisiKata = (giatkata) => {
+    setopsiKatagiat(giatkata);
+  };
+  const handleRadioChangekegiatan = (event) => {
+    setopsigiat(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihgiat" ? 5 : 0;
+    setgiatkondisipilih(value);
+    value === 0 ? setKegiatanradio("2") : setKegiatanradio("1");
+  };
+
+  // HANDLE OUTPUT
+
+  const [outputkondisi, setoutputkondisi] = useState("");
+  const [opsikataoutput, setopsiKataoutput] = useState("");
+
+  const handleOutput = (output) => {
+    setOutput(output);
+  };
+
+  const getSwitchoutput = (kdoutput) => {
+    setKdoutput(kdoutput);
+    if (kdoutput) {
+      setOutput("SEMUAOUTPUT");
+    } else {
+      setoutputkondisi("");
+      setopsiKataoutput("");
+      setOutput("XX");
+    }
+  };
+
+  const [outputkondisipilih, setoutputkondisipilih] = useState("0");
+  const [opsioutput, setopsioutput] = useState("pilihoutput");
+
+  const handleoutputKondisi = (outputInput) => {
+    setoutputkondisi(outputInput);
+  };
+  const handleoutputKondisiKata = (outputkata) => {
+    setopsiKataoutput(outputkata);
+  };
+  const handleRadioChangekeoutputan = (event) => {
+    setopsioutput(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihoutput" ? 5 : 0;
+    setoutputkondisipilih(value);
+    value === 0 ? setOutputradio("2") : setOutputradio("1");
+  };
+
+  // HANDLE AKUN
+
+  const [akunkondisi, setakunkondisi] = useState("");
+  const [opsikataakun, setopsiKataakun] = useState("");
+
+  const getSwitchakun = (kdakun) => {
+    setKdakun(kdakun);
+    if (kdakun) {
+      setAkun("AKUN");
+    } else {
+      setopsiakun("pilihakun");
+      setakunkondisi("");
+      setopsiKataakun("");
+      setAkun("XX");
+    }
+  };
+  const handleAkun = (akun) => {
+    setAkun(akun);
+  };
+  const [akunkondisipilih, setakunkondisipilih] = useState("0");
+  const [opsiakun, setopsiakun] = useState("pilihakun");
+
+  const handleakunKondisi = (akunInput) => {
+    setakunkondisi(akunInput);
+  };
+  const handleakunKondisiKata = (akunkata) => {
+    setopsiKataakun(akunkata);
+  };
+  const handleRadioChangeakun = (event) => {
+    setopsiakun(event.target.value);
+    const isChecked = event.target.value;
+    const value = isChecked === "pilihakun" ? 5 : 0;
+    setakunkondisipilih(value);
+    value === 0 ? setAkunradio("2") : setAkunradio("1");
+  };
+
+  return (
+    <>
+      <main id="main" className="main">
+        <div className="pagetitle">
+          <h1>Deviasi {jenlap === "1" ? "Belanja" : "PNBP"}</h1>
+          <nav>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <a href="#">DIPA</a>
+              </li>
+              {/* <li className="breadcrumb-item">Components</li> */}
+              <li className="breadcrumb-item active ">
+                {jenlap === "1"
+                  ? "Halaman III DIPA"
+                  : "Penerimaan dan Realisasi PNBP"}
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <section className="section dashboard">
+          <Row>
+            <Col lg={12}>
+              <Card bg="secondary text-white">
+                <Card.Body>
+                  <div className="bagian-query">
+                    <div className="custom-content">
+                      <Thang
+                        value={thang}
+                        jenlap={jenlap}
+                        onChange={handleThang}
+                      />
+                      <JenisLaporanDeviasi
+                        jenlap={jenlap}
+                        onChange={handleJenlap}
+                      />
+                      <PembulatanDeviasi
+                        value={pembulatan}
+                        onChange={handlePembulatan}
+                      />
+                    </div>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg={12}>
+              <Card bg="secondary text-white">
+                <Card.Body>
+                  <div className="bagian-query">
+                    <Row>
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchKddept onChange={getSwitchKddept} />
+                      </Col>{" "}
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchKdUnit onChange={getSwitchUnit} />
+                      </Col>
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchKddekon onChange={getSwitchDekon} />
+                      </Col>{" "}
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchKanwil onChange={getSwitchkanwil} />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchKppn onChange={getSwitchkppn} />
+                      </Col>
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchSatker onChange={getSwitchsatker} />
+                      </Col>
+
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchProgram
+                          onChange={getSwitchprogram}
+                          jenlap={jenlap}
+                        />
+                      </Col>
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchKegiatan
+                          onChange={getSwitchgiat}
+                          jenlap={jenlap}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      {" "}
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchOutput
+                          onChange={getSwitchoutput}
+                          jenlap={jenlap}
+                        />
+                      </Col>
+                      <Col xs={6} md={6} lg={6} xl={3}>
+                        <pilihanData.SwitchAkun
+                          onChange={getSwitchakun}
+                          jenlap={jenlap}
+                        />
+                      </Col>
+                    </Row>
+                    <Row></Row>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+          <Card className="custom-card  text-white" bg="secondary">
+            <Card.Body>
+              {kddept && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span>Kementerian</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih K/L"
+                        value="pilihdept"
+                        checked={opsidept === "pilihdept"}
+                        onChange={handleRadioChange}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kddept
+                          value={dept}
+                          onChange={handleKddept}
+                          status={opsidept}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <DeptRadio
+                        deptRadio={handleRadioDept}
+                        selectedValue={deptradio}
+                        status={opsidept}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisidept"
+                          checked={opsidept === "kondisidept"}
+                          onChange={handleRadioChange}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputDept
+                        deptkondisi={handledeptKondisi}
+                        status={opsidept}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak KL gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="katadept"
+                          checked={opsidept === "katadept"}
+                          onChange={handleRadioChange}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataDept
+                        opsikatadept={handledeptKondisiKata}
+                        status={opsidept}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {unit && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span>Eselon I</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Unit"
+                        value="pilihunit"
+                        checked={opsiunit === "pilihunit"}
+                        onChange={handleRadioChangeUnit}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdunit
+                          value={dept}
+                          kdunit={kdunit}
+                          onChange={handleUnit}
+                          status={opsiunit}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <UnitRadio
+                        unitRadio={handleRadioUnit}
+                        selectedValue={unitradio}
+                        status={opsiunit}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisiunit"
+                          checked={opsiunit === "kondisiunit"}
+                          onChange={handleRadioChangeUnit}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputUnit
+                        unitkondisi={handleunitKondisi}
+                        status={opsiunit}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak Unit gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {kddekon && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span className="middle  ">Kewenangan</span>
+                    </Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Kewenangan"
+                        value="pilihdekon"
+                        checked={opsidekon === "pilihdekon"}
+                        onChange={handleRadioChangeDekon}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kddekon
+                          value={dekon}
+                          onChange={handleDekon}
+                          status={opsidekon}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <DekonRadio
+                        dekonRadio={handleRadioDekon}
+                        selectedValue={dekonradio}
+                        status={opsidekon}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisidekon"
+                          checked={opsidekon === "kondisidekon"}
+                          onChange={handleRadioChangeDekon}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputDekon
+                        dekonkondisi={handledekonKondisi}
+                        status={opsidekon}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak Kewenangan gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                </>
+              )}
+
+              {kdkanwil && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span>Kanwil</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Kanwil"
+                        value="pilihkanwil"
+                        checked={opsikanwil === "pilihkanwil"}
+                        onChange={handleRadioChangekanwil}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdkanwil
+                          value={kanwil}
+                          onChange={handleKanwil}
+                          status={opsikanwil}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <KanwilRadio
+                        kanwilRadio={handleRadioKanwil}
+                        selectedValue={kanwilradio}
+                        status={opsikanwil}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisikanwil"
+                          checked={opsikanwil === "kondisikanwil"}
+                          onChange={handleRadioChangekanwil}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKanwil
+                        kanwilkondisi={handlekanwilKondisi}
+                        status={opsikanwil}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak kanwil gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="katakanwil"
+                          checked={opsikanwil === "katakanwil"}
+                          onChange={handleRadioChangekanwil}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataKanwil
+                        opsikatakanwil={handlekanwilKondisiKata}
+                        status={opsikanwil}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {kdkppn && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span>KPPN</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih KPPN"
+                        value="pilihkppn"
+                        checked={opsikppn === "pilihkppn"}
+                        onChange={handleRadioChangekppn}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdkppn
+                          value={kppn}
+                          onChange={handleKppn}
+                          status={opsikppn}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <KppnRadio
+                        kppnRadio={handleRadioKppn}
+                        selectedValue={kppnradio}
+                        status={opsikppn}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisikppn"
+                          checked={opsikppn === "kondisikppn"}
+                          onChange={handleRadioChangekppn}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKppn
+                        kppnkondisi={handlekppnKondisi}
+                        status={opsikppn}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak KPPN gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="katakppn"
+                          checked={opsikppn === "katakppn"}
+                          onChange={handleRadioChangekppn}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataKppn
+                        opsikatakppn={handlekppnKondisiKata}
+                        status={opsikppn}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {kdsatker && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span className="middle  ">Satker</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Satker"
+                        value="pilihsatker"
+                        checked={opsisatker === "pilihsatker"}
+                        onChange={handleRadioChangesatker}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdsatker
+                          kddept={dept}
+                          kdunit={kdunit}
+                          onChange={handleSatker}
+                          status={opsisatker}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <SatkerRadio
+                        satkerRadio={handleRadioSatker}
+                        selectedValue={satkerradio}
+                        status={opsisatker}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisisatker"
+                          checked={opsisatker === "kondisisatker"}
+                          onChange={handleRadioChangesatker}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputSatker
+                        satkerkondisi={handlesatkerKondisi}
+                        status={opsisatker}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak Satker gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="katasatker"
+                          checked={opsisatker === "katasatker"}
+                          onChange={handleRadioChangesatker}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataSatker
+                        opsikatasatker={handlesatkerKondisiKata}
+                        status={opsisatker}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+
+              {kdprogram && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span>Program</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Program"
+                        value="pilihprogram"
+                        checked={opsiprogram === "pilihprogram"}
+                        onChange={handleRadioChangeprogram}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdprogram
+                          kdprogram={program}
+                          kddept={dept}
+                          kdunit={kdunit}
+                          onChange={handleProgram}
+                          status={opsiprogram}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <ProgramRadio
+                        programRadio={handleRadioProgram}
+                        selectedValue={programradio}
+                        status={opsiprogram}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisiprogram"
+                          checked={opsiprogram === "kondisiprogram"}
+                          onChange={handleRadioChangeprogram}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputProgram
+                        programkondisi={handleprogramKondisi}
+                        status={opsiprogram}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak Program gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="kataprogram"
+                          checked={opsiprogram === "kataprogram"}
+                          onChange={handleRadioChangeprogram}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataProgram
+                        opsikataprogram={handleprogramKondisiKata}
+                        status={opsiprogram}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {kdgiat && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span>Kegiatan</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Kegiatan"
+                        value="pilihgiat"
+                        checked={opsigiat === "pilihgiat"}
+                        onChange={handleRadioChangekegiatan}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdgiat
+                          kdgiat={giat}
+                          kdprogram={program}
+                          kddept={dept}
+                          kdunit={kdunit}
+                          onChange={handleGiat}
+                          status={opsigiat}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <KegiatanRadio
+                        kegiatanRadio={handleRadioKegiatan}
+                        selectedValue={kegiatanradio}
+                        status={opsigiat}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisigiat"
+                          checked={opsigiat === "kondisigiat"}
+                          onChange={handleRadioChangekegiatan}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <Inputkegiatan
+                        kegiatankondisi={handlekegiatanKondisi}
+                        status={opsigiat}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak kegiatan gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="katagiat"
+                          checked={opsigiat === "katagiat"}
+                          onChange={handleRadioChangekegiatan}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKatakegiatan
+                        opsikatakegiatan={handlekegiatanKondisiKata}
+                        status={opsigiat}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+              {kdoutput && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span className="middle  ">Output</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Output"
+                        value="pilihoutput"
+                        checked={opsioutput === "pilihoutput"}
+                        onChange={handleRadioChangekeoutputan}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdoutput
+                          kdoutput={output}
+                          kdgiat={giat}
+                          kdprogram={program}
+                          kddept={dept}
+                          kdunit={kdunit}
+                          onChange={handleOutput}
+                          status={opsioutput}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <OutputRadio
+                        outputRadio={handleRadioOutput}
+                        selectedValue={outputradio}
+                        status={opsioutput}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisioutput"
+                          checked={opsioutput === "kondisioutput"}
+                          onChange={handleRadioChangekeoutputan}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputOutput
+                        outputkondisi={handleoutputKondisi}
+                        status={opsioutput}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak Output gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="kataoutput"
+                          checked={opsioutput === "kataoutput"}
+                          onChange={handleRadioChangekeoutputan}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataOutput
+                        opsikataoutput={handleoutputKondisiKata}
+                        status={opsioutput}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+
+              {kdakun && (
+                <>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}>
+                      <span className="middle  ">Detail Akun</span>
+                    </Col>
+                    <Col xs={2} sm={2} md={2}>
+                      <Form.Check
+                        inline
+                        type="radio"
+                        label="Pilih Akun"
+                        value="pilihakun"
+                        checked={opsiakun === "pilihakun"}
+                        onChange={handleRadioChangeakun}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <span>
+                        <Kdakun
+                          onChange={handleAkun}
+                          status={opsiakun}
+                          jenlap={jenlap}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <AkunRadio
+                        akunRadio={handleRadioAkun}
+                        selectedValue={akunradio}
+                        status={opsiakun}
+                      />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Kondisi"
+                          value="kondisiakun"
+                          checked={opsiakun === "kondisiakun"}
+                          onChange={handleRadioChangeakun}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputAkun
+                        akunkondisi={handleakunKondisi}
+                        status={opsiakun}
+                      />
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      *) banyak Akun gunakan koma, exclude gunakan tanda !
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={2} sm={2} md={2}></Col>
+
+                    <Col xs={2} sm={2} md={2}>
+                      <span>
+                        <Form.Check
+                          inline
+                          type="radio"
+                          label="Mengandung Kata"
+                          value="kataakun"
+                          checked={opsiakun === "kataakun"}
+                          onChange={handleRadioChangeakun}
+                        />
+                      </span>
+                    </Col>
+                    <Col xs={4} sm={4} md={4}>
+                      <InputKataAkun
+                        opsikataakun={handleakunKondisiKata}
+                        status={opsiakun}
+                      />
+                    </Col>
+                  </Row>
+                </>
+              )}
+
+              <>
+                <hr />
+                <div className="button-query">
+                  <Row>
+                    <Col lg={12}>
+                      <Button
+                        variant="success"
+                        size="sm"
+                        className="button  me-2"
+                        onClick={handlegetQuery}
+                        disabled={loadingStatus || loadingExcell}
+                      >
+                        {loadingStatus || loadingExcell ? "Tayang" : "Tayang"}
+                      </Button>
+                      <Dropdown as={ButtonGroup}>
+                        <Button variant="primary" className="button-download ">
+                          {loadingStatus ||
+                            (loadingExcell && (
+                              <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                className="me-2"
+                                role="status"
+                                aria-hidden="true"
+                              />
+                            ))}
+                          {loadingStatus || loadingExcell
+                            ? "Loading..."
+                            : "Download"}
+                        </Button>
+
+                        <Dropdown.Toggle
+                          variant="primary"
+                          className="button-download-split me-2 dropup"
+                          disabled={loadingStatus || loadingExcell}
+                        />
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item
+                            onClick={() => {
+                              setLoadingStatus(true);
+                              generateSql();
+                              setExport2(true);
+                            }}
+                          >
+                            <i className="bi bi-file-earmark-font text-danger fw-bold"></i>{" "}
+                            CSV
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => {
+                              handleGenerateExcel();
+                            }}
+                          >
+                            <i className="bi bi-file-earmark-excel text-success fw-bold"></i>{" "}
+                            EXCELL
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {role === "0" || role === "X" ? (
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          className="button  me-2"
+                          onClick={handlegetQuerySQL}
+                        >
+                          SQL
+                        </Button>
+                      ) : null}{" "}
+                      <Button
+                        variant="info"
+                        size="sm"
+                        className="button me-2 fw-normal text-dark"
+                        onClick={handlePDF}
+                      >
+                        <FaWhatsapp
+                          style={{ fontSize: "20px" }}
+                          className="me-1 text-white fw-bold"
+                        />
+                      </Button>
+                      <Button
+                        variant="warning"
+                        size="sm"
+                        className="button  me-2"
+                        onClick={handleSimpan}
+                      >
+                        Simpan
+                      </Button>
+                    </Col>
+                  </Row>
+                </div>
+              </>
+            </Card.Body>
+          </Card>
+        </section>
+      </main>
+      {showModal && (
+        <HasilQueryDeviasi
+          query={sql}
+          jenlap={jenlap}
+          thang={thang}
+          cutoff={cutoff}
+          id="result"
+          showModal={showModal}
+          closeModal={closeModal}
+        />
+      )}
+      {export2 && (
+        <GenerateCSV
+          query3={sql}
+          status={handleStatus}
+          namafile={`v3_CSV_DEVIASI_${moment().format("DDMMYY-HHmmss")}`}
+        />
+      )}
+      {loadingExcell && (
+        <GenerateExcel
+          query3={sql}
+          onDataFetchComplete={handleDataFetchComplete}
+          namafile={`v3_EXCELL_DEVIASI_JENIS_${jenlap}_${moment().format(
+            "DDMMYY-HHmmss"
+          )}.xlsx`}
+        />
+      )}
+      {showModalsql && (
+        <Sql
+          query2={sql}
+          showModalsql={showModalsql}
+          closeModalsql={closeModalsql}
+        />
+      )}
+      {showModalsimpan && (
+        <Simpan
+          query2={sql}
+          thang={thang}
+          jenis="Deviasi"
+          showModalsimpan={showModalsimpan}
+          closeModalsimpan={closeModalsimpan}
+        />
+      )}{" "}
+      <Modal
+        show={showModalPDF}
+        onHide={handleClosePDF}
+        animation={false}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header>
+          <Modal.Title className="d-flex justify-content-start align-items-center w-100">
+            <div className="d-flex flex-column align-items-start">
+              <ShareDataComponent fileType={selectedFormat} />
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="mb-0 d-flex justify-content-center align-items-center flex-column">
+            <PilihFormat
+              selectedFormat={selectedFormat}
+              setSelectedFormat={setSelectedFormat}
+            />
+          </div>{" "}
+          <div className="file-preview mt-0">
+            {selectedFormat === "pdf" && (
+              <div className="text-center">
+                <ConvertToPDF sql={sql} />
+              </div>
+            )}
+            {selectedFormat === "excel" && (
+              <div className="text-center">
+                <ConvertToExcel sql={sql} />
+              </div>
+            )}
+            {selectedFormat === "json" && (
+              <div className="text-center">
+                <ConvertToJSON sql={sql} />
+              </div>
+            )}
+            {selectedFormat === "text" && (
+              <div className="text-center">
+                <ConvertToText sql={sql} />
+              </div>
+            )}
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer className="d-flex justify-content-between">
+          {verified === "TRUE" && (
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>file akan dikirim ke nomor WhatsApp {telp}</Tooltip>
+              }
+            >
+              <Button variant="light" size="sm">
+                <FaWhatsapp style={{ fontSize: "25px", color: "green" }} />
+              </Button>
+            </OverlayTrigger>
+          )}
+          <Button variant="danger" size="sm" onClick={handleClosePDF}>
+            Tutup
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <SaveUserData userData={telp} menu="deviasi" />
+    </>
+  );
+};
+
+export default InquiryDeviasi;

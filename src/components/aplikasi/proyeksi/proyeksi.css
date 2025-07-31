@@ -1,0 +1,21 @@
+.headertkd {
+  text-align: center;
+  background-color: rgb(13, 14, 14);
+  color: #fff;
+  padding: 6px 0;
+}
+.even-row {
+  background-color: #f2f2f2;
+}
+
+.odd-row {
+  background-color: #ffffff;
+}
+
+/* .row:hover {
+  background-color: #e0e0e0;
+}
+
+.row-header:hover {
+  background-color: transparent;
+} */

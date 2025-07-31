@@ -1,0 +1,42 @@
+[
+  {
+    "kdurusan": "1",
+    "nmurusan": "Urusan Wajib Yang Berkaitan Dengan Pelayanan Dasar"
+  },
+  {
+    "kdurusan": "2",
+    "nmurusan": "Urusan Wajib Yang Tidak Berkaitan Dengan Pelayanan Dasar"
+  },
+  {
+    "kdurusan": "3",
+    "nmurusan": "Urusan Pilihan"
+  },
+  {
+    "kdurusan": "4",
+    "nmurusan": "Urusan Pendukung Unsur Pemerintahan"
+  },
+  {
+    "kdurusan": "5",
+    "nmurusan": "Unsur Penunjang Urusan Pemerintahan"
+  },
+  {
+    "kdurusan": "6",
+    "nmurusan": "Unsur Pengawasan Urusan Pemerintahan"
+  },
+  {
+    "kdurusan": "7",
+    "nmurusan": "Unsur Kewilayahan"
+  },
+  {
+    "kdurusan": "8",
+    "nmurusan": "Unsur Pemerintahan Umum"
+  },
+  {
+    "kdurusan": "9",
+    "nmurusan": "Unsur Kekhususan"
+  },
+  {
+    "kdurusan": "X",
+    "nmurusan": ""
+  }
+]

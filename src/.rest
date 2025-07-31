@@ -1,0 +1,30 @@
+###
+POST http://10.216.208.63/apitkd/api/auth/login
+content-type: application/json
+
+{
+   "username": "dpa_api",
+    "password": "AksesDpa122023",
+    "thang": "2023"
+}
+
+###
+POST https://localhost:8443/send-message/ 
+content-type: application/json
+
+{
+  "message": "#apakabar"
+}
+###
+GET http://10.216.208.135:5500/api/tarikTkd
+content-type: application/json
+
+
+###
+POST https://localhost:4321/bgn/login
+content-type: application/json
+
+{
+  "passkey": "170845",
+  "username":"katro"
+}

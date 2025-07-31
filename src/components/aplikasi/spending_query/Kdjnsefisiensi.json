@@ -1,0 +1,10 @@
+[
+    {
+        "jenis_efisiensi": "0",
+        "nama_jenis_efisiensi": "Volume/Harga Satuan"
+    },
+    {
+        "jenis_efisiensi": "1",
+        "nama_jenis_efisiensi": "Persentase"
+    }
+]

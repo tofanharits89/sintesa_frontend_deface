@@ -1,0 +1,166 @@
+@supports (position: sticky) {
+  .is-sticky-spending {
+    position: sticky;
+    top: 60px;
+    z-index: 1;
+    transition: all 0.3s ease;
+    background-color: rgb(249, 249, 244);
+    padding-top: 10px;
+  }
+}
+
+.sticky-animation {
+  transition: all 0.3s ease;
+  background-color: rgb(82, 2, 2); /* Change to your desired background color */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add box-shadow for effect */
+}
+.example-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#myGrid {
+  flex: 1 1 0px;
+  width: 100%;
+}
+
+/* Add this style to darken the background */
+.dark-overlay {
+  overflow: hidden;
+}
+
+.dark-overlay::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Adjust the alpha value for darkness */
+  z-index: 1000; /* Make sure the overlay is above other content */
+}
+
+.table-spending {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: scroll;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.table-spending td {
+  border: 0px solid #dddddd;
+  padding: 3px;
+  text-align: left;
+  font-weight: bold;
+  color: dark;
+  font-size: 17px;
+}
+
+.table-spending th {
+  border: 1px solid #dddddd;
+  text-align: left;
+
+  background-color: #f2f2f2;
+}
+
+/* RekamAlokasi.css */
+
+.highlighted-row {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.highlighted {
+  background-color: yellow; /* Warna latar belakang yang diinginkan */
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.border-bottom {
+  text-decoration: dotted;
+  background: aquamarine;
+}
+.ag-cell,
+.ag-header-cell-label,
+.ag-header-cell-value {
+  text-align: left;
+  background-clip: content-box;
+  /* padding: "12px"; */
+}
+.btn-adm {
+  color: white;
+  border: none;
+}
+
+.btn-adm-success {
+  background-color: green;
+}
+
+.btn-adm-danger {
+  background-color: red;
+}
+
+.btn-adm-default {
+  background-color: gray;
+}
+
+.btn-adm-dual {
+  background: linear-gradient(
+    to right,
+    rgb(23, 43, 2) 50%,
+    rgb(231, 99, 16) 50%
+  );
+}
+.row-flash {
+  animation: flashHighlight 5s ease-in-out;
+}
+
+@keyframes flashHighlight {
+  from {
+    background-color: #dfffd0;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+.custom-checkbox3 input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+.custom-checkbox4 input[type="checkbox"]:checked {
+  outline: 2px solid #0d6efd; /* atau warna lain */
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25); /* highlight biru */
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+.custom-checkbox3 input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 8px;
+  border: solid #007bff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

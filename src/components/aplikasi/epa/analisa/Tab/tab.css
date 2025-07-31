@@ -1,0 +1,25 @@
+/* Styling khusus untuk tab */
+.custom-tabs .nav-link {
+  color: #6c757d; /* Warna default */
+  font-weight: normal;
+  transition:
+    color 0.3s,
+    background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-tabs .nav-link.active {
+  color: #007bff !important; /* Warna saat aktif */
+  background-color: #e9ecef !important;
+  border-radius: 5px;
+}
+
+.custom-tabs .nav-link:hover {
+  color: #0056b3;
+}
+
+.custom-tabs .nav-link svg {
+  font-size: 1.2rem;
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="200" fill="#ff007f" />
+  <polygon points="200,10 250,190 150,190" fill="rgba(255,255,255,0.3)" />
+  <polygon points="50,50 100,150 0,150" fill="rgba(255,255,255,0.3)" />
+</svg>

@@ -1,0 +1,14 @@
+/* CSS untuk fade-in */
+.fade-inx {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards; /* durasi 0.5 detik */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

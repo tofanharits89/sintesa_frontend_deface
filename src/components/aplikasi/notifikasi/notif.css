@@ -1,0 +1,83 @@
+/* custom-swal.css */
+.swal2-popup {
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.swal2-title {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.swal2-html-container {
+  text-align: center;
+}
+
+.swal2-content {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.swal2-confirm {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.swal2-confirm:hover {
+  background-color: #0056b3;
+}
+
+.swal2-icon {
+  font-size: 17px;
+  margin-top: 30px;
+  color: #007bff;
+}
+.custom-toast {
+  background-color: red; /* Atur latar belakang merah di sini */
+  color: rgb(235, 13, 13); /* Atur warna teks sesuai kebutuhan */
+  /* Gaya tambahan yang mungkin Anda inginkan */
+  padding: 10px;
+  border-radius: 5px;
+}
+.toast-container {
+  word-wrap: break-word; /* Wrap text when it overflows the container */
+  margin-right: 20px;
+  overflow: hidden;
+}
+/* Font dan warna teks */
+.custom-toast-font {
+  font-size: 18px;
+  font-weight: 500;
+  color: #4b05ee;
+}
+
+/* Toast dengan background cerah dan teks putih */
+.custom-toast-primary-light {
+  background: #4a90e2; /* biru cerah modern */
+  border-left: 5px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+
+/* Untuk success, warning, error */
+.custom-toast-success {
+  background: #28a745;
+  border-left-color: #ffffff;
+}
+
+.custom-toast-warning {
+  background: #ffc107;
+  border-left-color: #ffffff;
+  color: #212529; /* teks hitam agar kontras pada kuning */
+}
+
+.custom-toast-error {
+  background: #dc3545;
+  border-left-color: #ffffff;
+}

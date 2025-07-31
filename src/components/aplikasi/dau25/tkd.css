@@ -1,0 +1,109 @@
+/* RekamKMKModal.css */
+.cabut_penundaan,
+.cabut_penundaan2 {
+  transform: scale(1); /* Tanpa zoom saat tidak aktif */
+  opacity: 1;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+.modal-title {
+  color: #333; /* Warna teks judul modal */
+}
+.cabut_penundaan.non-active,
+.cabut_penundaan2.non-active {
+  transform: scale(0.8); /* Zoom out saat tidak aktif */
+  opacity: 0;
+}
+.sp2d.non-active {
+  transform: scale(0.8); /* Zoom out saat tidak aktif */
+  opacity: 0;
+  background-color: black;
+}
+.sp2d.active {
+  transform: scale(1); /* Zoom out saat tidak aktif */
+  opacity: 1;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  background-color: #333;
+}
+
+#overflow-wrapper {
+  overflow: scroll;
+  max-height: 300px; /* clip the content */
+}
+
+.fixhead {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.fixhead td,
+.fixhead th {
+  font-weight: normal !important;
+  padding: 5px;
+  margin: 0;
+}
+
+.fixhead th {
+  position: sticky;
+  top: 0;
+  background-color: #333;
+  color: white;
+}
+
+.fixhead thead tr:nth-child(2) th {
+  top: 34px;
+}
+
+select.form-control.cairjan option[disabled] {
+  color: #646262; /* Ubah warna teks untuk opsi yang dinonaktifkan */
+  background-color: #f5f5f5; /* Ganti latar belakang opsi yang dinonaktifkan */
+  cursor: not-allowed; /* Ubah kursor untuk menunjukkan tidak dapat digunakan */
+}
+
+.text-header {
+  font-weight: bold;
+}
+.tab-dau {
+  font-size: 15px;
+  margin: 20px;
+}
+.tabel-dau {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+.tabel-dau thead header {
+  padding: 5px; /* Sesuaikan padding dengan kebutuhan Anda */
+}
+
+.tabel-dau thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #252525;
+  border-bottom: 1px solid #ddd;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: normal !important;
+}
+
+.tabel-dau th,
+.tabel-dau td {
+  padding: 2px;
+  border: 1px solid #ddd;
+}
+
+.tabel-dau tbody {
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .tabel-dau thead {
+    font-size: 0.8em;
+  }
+  .tabel-dau th,
+  .tabel-dau td {
+    padding: 5px;
+  }
+}

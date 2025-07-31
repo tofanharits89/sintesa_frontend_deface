@@ -1,0 +1,8 @@
+.same-width {
+    width: 100%;
+    /* Memastikan inputan memiliki lebar yang seragam */
+    min-width: 250px;
+    /* Atur lebar minimum agar tidak terlalu kecil */
+    max-width: 100%;
+    /* Menyesuaikan ukuran dengan container */
+}

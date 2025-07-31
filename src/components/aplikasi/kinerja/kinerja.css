@@ -1,0 +1,346 @@
+/* Latar belakang utama */
+.img-card-all {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.img-card-all::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.title-kinerja {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-kinerja-utama {
+  overflow: scroll;
+
+  /* margin-left: -10px;
+  margin-right: -10px; */
+  /* background-color: #f1f4f6; */
+  border: 3px dotted rgb(126, 63, 243);
+}
+.card-kinerja {
+  height: 425px;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  /* margin-left: -10px;
+  margin-right: -10px; */
+  /* background-color: #f1f4f6; */
+  border: 1px dotted rgb(126, 63, 243);
+  border-radius: 5px;
+}
+.card-kinerja::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.card-kinerja-ikpa {
+  height: 375px;
+  /* overflow: scroll; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  /* margin-left: -10px;
+  margin-right: -10px; */
+  /* background-color: #f1f4f6; */
+  border: 1px dotted rgb(126, 63, 243);
+  border-radius: 5px;
+}
+.card-tren-kanan {
+  height: 375px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-bottom: 7px;
+  /* margin-left: -10px;
+  margin-right: -10px; */
+  /* background-color: #f1f4f6; */
+  border: 1px dotted rgb(126, 63, 243);
+  border-radius: 5px;
+}
+.isu-card {
+  /* background-color: #b656e2; */
+  /* overflow-y: scroll; */
+  color: #0f0101;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Untuk mengatur konten di tengah secara vertikal */
+  justify-content: center;
+  font-weight: bold;
+  height: 220px;
+  text-align: center;
+  padding: 20px;
+  /* border: 1px dotted rgb(126, 63, 243);
+  border-radius: 15px; */
+}
+.isu-card-detail {
+  /* background-color: #b656e2; */
+  /* overflow-y: scroll; */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Untuk mengatur konten di tengah secara vertikal */
+  justify-content: center;
+  font-weight: normal;
+  height: 300px;
+  text-align: justify;
+  padding: 20px;
+  /* border: 1px dotted rgb(126, 63, 243); */
+  /* border-radius: 15px; */
+}
+.card-output {
+  height: 690px !important;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  /* margin-left: -10px;
+  margin-right: -10px; */
+  /* background-color: #f1f2f6; */
+  border: 1px dotted rgb(126, 63, 243);
+}
+.card-temuan {
+  height: 400px;
+  /* overflow: scroll; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  background-color: #f1f2f6;
+  border: 1px dotted rgb(126, 63, 243);
+  /* margin-left: -10px;
+  margin-right: -10px; */
+  padding: auto;
+}
+.header-kinerja-kanan {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  /* background-color: rgb(242, 108, 87); */
+  background-color: #ff7b00;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  /* overflow: scroll; */
+}
+.header-kinerja {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  /* background-color: rgb(242, 108, 87); */
+  background-color: #ffc100;
+  color: #1f1f1f;
+  padding: 10px;
+  border-radius: 5px;
+  /* overflow: scroll; */
+}
+.header-kinerja-tes {
+  margin-top: 7px;
+  padding: 10px;
+  text-align: justify;
+  font-size: 18px;
+  /* font-weight: bold; */
+  /* background-color: rgb(242, 108, 87); */
+  background-color: #ffffff;
+  color: #303030;
+  /* padding: 10px; */
+  border-radius: 5px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.header-kinerja-detail {
+  text-align: justify;
+  font-size: 15px;
+  font-weight: normal;
+  background-color: rgb(136, 73, 178);
+  padding: 1px;
+  border-radius: 5px;
+}
+.header-kinerja-baris {
+  text-align: justify;
+  font-size: 13px;
+
+  border-radius: 5px;
+  background: #faf5f9;
+  padding: 1px;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 5px;
+  color: #0f0101;
+}
+.head-kinerja-table,
+th,
+td {
+  text-align: center;
+  vertical-align: top;
+  font-size: 13px;
+}
+.temuan {
+  text-align: justify;
+  vertical-align: top;
+  font-size: 13px;
+  border: 0;
+}
+.table-kinerja,
+td {
+  text-align: center;
+}
+.edit-kinerja {
+  bottom: 0;
+}
+.edit-kinerja-fill {
+  font-size: 25px;
+  display: flex;
+}
+.container-tabel {
+  width: 100%; /* Pastikan div container memiliki lebar penuh */
+}
+
+.custom-table {
+  border-collapse: separate;
+  border-spacing: 0 1px; /* Ubah nilai 5px sesuai dengan kebutuhan jarak antar baris */
+  width: 100%; /* Tabel akan selalu memenuhi lebar div yang mengelilinginya */
+}
+
+/* Gaya untuk baris ganjil */
+.custom-table tbody tr:nth-child(odd) {
+  background-color: #f1fbff; /* Warna latar belakang untuk baris ganjil */
+}
+
+/* Gaya untuk baris genap */
+.custom-table tbody tr:nth-child(even) {
+  background-color: #d4f3fd; /* Warna latar belakang untuk baris genap */
+}
+
+/* Gaya untuk header */
+.custom-table thead {
+  background-color: #4fbafb; /* Warna latar belakang untuk header */
+  color: #ffffff;
+}
+
+.custom-table th,
+.custom-table td {
+  word-wrap: break-word !important; /* Biarkan teks mematahkan kata untuk menghindari melebihi lebar tabel */
+  padding: 5px;
+  text-align: center;
+  max-width: 150px;
+}
+.custom-table .isu-temuan ol {
+  word-wrap: break-word; /* Biarkan teks mematahkan kata untuk menghindari melebihi lebar tabel */
+  padding: 5px;
+  text-align: left;
+}
+
+/* Dan seterusnya, sesuaikan lebar kolom berdasarkan indeksnya */
+
+.tabel-sdana {
+  color: #ffffff;
+  border-collapse: separate;
+  border-spacing: 0 3px; /* Ubah nilai 5px sesuai dengan kebutuhan jarak antar baris */
+  width: 100%;
+}
+
+/* Gaya untuk baris ganjil */
+.tabel-sdana tbody tr:nth-child(odd) {
+  background-color: #dba6a6; /* Warna latar belakang untuk baris ganjil */
+}
+
+/* Gaya untuk baris genap */
+.tabel-sdana tbody tr:nth-child(even) {
+  background-color: #a3a3f3; /* Warna latar belakang untuk baris genap */
+}
+
+/* Gaya untuk header */
+.tabel-sdana thead {
+  background-color: #0a77e4; /* Warna latar belakang untuk header */
+}
+
+.tabel-sdana th,
+.tabel-sdana td {
+  padding: 2px; /* Atur padding untuk sel tabel jika diperlukan */
+}
+
+.logokl {
+  display: flex;
+  justify-content: center; /* Memposisikan konten secara horizontal di tengah */
+  align-items: center; /* Memposisikan konten secara vertikal di tengah */
+  height: 100vh; /* Sesuaikan tinggi container */
+  text-align: center;
+  height: 400px;
+}
+
+.logokl img {
+  width: 100px; /* Ukuran gambar kecil */
+  height: 100px; /* Ukuran gambar kecil */
+  text-align: center;
+
+  display: block;
+  /* border: 1px solid white; */
+  /* background-color: rgb(242, 235, 245);
+  border: 1px solid #f3c2c2; */
+}
+.pilihanatas {
+  border: 1px solid rgb(50, 13, 233);
+  border-radius: 5px;
+}
+.pilihanataskl {
+  border: 1px dotted rgb(50, 13, 233);
+  border-radius: 5px;
+}
+
+/* .sticky-headerx {
+  background-color: aliceblue;
+} */
+@supports (position: sticky) {
+  .is-stickyx {
+    position: sticky;
+    top: 60px;
+    z-index: 1;
+    background-color: aliceblue; /* Tambahkan warna latar belakang saat posisi sticky */
+  }
+}
+
+/* Contoh CSS */
+#content-to-export {
+  border: 1px solid #ccc;
+  font-size: 15px;
+  border-collapse: separate;
+  border-spacing: 0 3px; /* Ubah nilai 5px sesuai dengan kebutuhan jarak antar baris */
+}
+
+h1 {
+  color: #333;
+  font-size: 15px;
+}
+
+p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.pie-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start; /* Sesuaikan jika perlu */
+  width: 100%;
+}

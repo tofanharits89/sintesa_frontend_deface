@@ -1,0 +1,130 @@
+.nadine-form-section {
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+  min-height: 10vh;
+  padding: 5rem 6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ddd;
+  border-radius: 10px;
+  transition: background-image 2s ease-in-out; /* Pastikan background-image punya transisi */
+}
+
+
+
+/* Styling untuk hasil pencarian */
+.nadine-result-section {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+}
+
+/* Form input styling */
+.nadine-input {
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid #027cf6;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.nadine-input:focus {
+  border-color: #0d6efd;
+  outline: none;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+}
+
+/* Tombol styling */
+.nadine-button {
+  background: #0d6efd;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nadine-button:hover {
+  background: #084298;
+  transform: translateY(-2px);
+}
+
+/* Pesan kecil di kiri atas */
+.nadine-message {
+  position: absolute;
+  top: 10px; /* Jarak dari atas */
+  left: 15px; /* Jarak dari kiri */
+  font-size: 0.875rem; /* Ukuran teks kecil */
+  color: #eff3f5; /* Warna teks abu-abu */
+  background-color: #0d1cf1; /* Latar belakang ringan */
+  padding: 5px 10px; /* Spasi di dalam */
+  border-radius: 4px; /* Sudut membulat */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan ringan */
+}
+
+.nadine-form-section {
+  padding: 1rem;
+}
+
+.nadine-message-left,
+.nadine-message-right {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.nadine-message-left {
+  text-align: left;
+   color: #eff3f5; /* Warna teks abu-abu */
+ background-color: #198754; 
+   padding: 3px 10px; /* Spasi di dalam */
+  border-radius: 4px; /* Sudut membulat */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan ringan */
+}
+
+.nadine-message-right {
+  text-align: right;
+   text-align: left;
+   color: #f1eaea; /* Warna teks abu-abu */
+  background-color: #198754; /* Latar belakang ringan */
+   padding: 3px 10px; /* Spasi di dalam */
+  border-radius: 4px; /* Sudut membulat */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan ringan */
+   animation: slideDown 0.5s ease-in-out; /* Terapkan animasi */
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0; /* Transparan */
+    transform: translateY(-20px); /* Bergerak dari atas */
+  }
+  to {
+    opacity: 0.5; /* Tampak penuh */
+    transform: translateY(0); /* Posisi normal */
+  }
+}
+.custom-spinner {
+  animation: rotateColors 1.5s infinite;
+}
+
+@keyframes rotateColors {
+  0% {
+    border-top-color: #ff6b6b; /* Merah */
+  }
+  25% {
+    border-top-color: #feca57; /* Kuning */
+  }
+  50% {
+    border-top-color: #1dd1a1; /* Hijau */
+  }
+  75% {
+    border-top-color: #54a0ff; /* Biru */
+  }
+  100% {
+    border-top-color: #ff6b6b; /* Kembali ke merah */
+  }
+}
+
+
+

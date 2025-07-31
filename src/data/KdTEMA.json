@@ -1,0 +1,66 @@
+[
+  {
+    "kdtema": "000",
+    "nmtema": "Bukan Tematik",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "001",
+    "nmtema": "Anggaran Infrastruktur",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "002",
+    "nmtema": "Kerjasama Selatan-Selatan dan Triangular (KSST)",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "003",
+    "nmtema": "Anggaran Responsif Gender",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "004",
+    "nmtema": "Mitigasi perubahan Iklim",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "005",
+    "nmtema": "Anggaran Pendidikan",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "006",
+    "nmtema": "Anggaran Kesehatan",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  },
+  {
+    "kdtema": "007",
+    "nmtema": "Adaptasi perubahan iklim",
+    "kdupdate": "",
+    "updater": "",
+    "tglupdate": "0000-00-00 00:00:00",
+    "aktif": "1"
+  }
+]

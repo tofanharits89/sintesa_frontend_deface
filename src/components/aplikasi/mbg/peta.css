@@ -1,0 +1,512 @@
+.leaflet-tooltip-custom {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 5px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  font-family: "'Figtree', sans-serif";
+}
+.leaflet-container {
+  background-color: rgb(253, 251, 251) !important;
+}
+
+.summary-text {
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  height: 100%;
+  font-family: "'Figtree', sans-serif";
+}
+.badge-round {
+  font-size: 10px; /* Sesuaikan ukuran font sesuai kebutuhan */
+  width: auto; /* Lebar badge */
+}
+.badge-persen {
+  margin-left: 10px;
+  font-size: 10px; /* Sesuaikan ukuran font sesuai kebutuhan */
+  width: auto; /* Lebar badge */
+}
+.card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: scale(1.05); /* Membesar sedikit */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan saat hover */
+}
+
+.summary-text h6 {
+  font-size: 1.1em;
+
+  color: #1e90ff;
+  /* animation: fadeIn 0.8s ease-in; */
+}
+
+.summary-text h4 {
+  font-size: 1.2em;
+  color: #1785f4;
+  margin: 10px;
+  /* animation: fadeIn 0.8s ease-in; */
+}
+.summary-text h5 {
+  align-items: center; /* Menyelaraskan isi vertikal */
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.summary-text p {
+  font-size: 1.2em;
+  color: #362222;
+  opacity: 1;
+  animation: fadeIn 0.8s ease-in;
+  margin: 10px;
+  text-align: start;
+  min-height: 2rem; /* Menjaga tinggi kontainer tetap */
+  font-weight: bold;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.custom-spinner-container {
+  display: flex;
+  justify-content: center; /* Menyusun secara horizontal */
+  align-items: center; /* Menyusun secara vertikal */
+  height: 100%; /* Atur tinggi kontainer agar spinner bisa berada di tengah */
+  margin-bottom: 10px;
+}
+
+.custom-spinner {
+  width: 20px; /* Ukuran lebar spinner */
+  height: 20px; /* Ukuran tinggi spinner */
+  border: 4px solid #f3f3f3; /* Warna border luar */
+  border-top: 4px solid #3498db; /* Warna top spinner */
+  border-radius: 80%; /* Bentuk bulat */
+  animation: spin 1s linear infinite; /* Animasi berputar */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.jumlah-label-wrapper {
+  display: inline-block;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7); /* Latar belakang transparan */
+  border-radius: 4px; /* Sudut halus */
+  padding: 5px 10px; /* Padding agar teks tidak terlalu rapat */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Bayangan halus */
+}
+.jumlah-label {
+  background-color: rgba(27, 83, 237, 0.8); /* contoh warna */
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeInMarker 0.9s ease-out forwards;
+  font-family: "Figtree";
+}
+.jumlah-label-penerima {
+  background-color: rgba(2, 102, 49, 0.8); /* contoh warna */
+  color: white;
+  border-radius: 5px;
+  width: 70px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeInMarker 0.9s ease-out forwards;
+  font-family: "Figtree";
+}
+
+@keyframes fadeInMarker {
+  from {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Arahkan tooltip ke atas atau bawah marker */
+.jumlah-label-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Tooltip muncul di bawah marker */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent; /* Menunjuk ke bawah */
+}
+
+.leaflet-prov-tooltip {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #333;
+  font-weight: 500;
+  font-family: "'Figtree', sans-serif";
+}
+.kabkot-marker-label {
+  background: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.card-provinsi {
+  height: 1600px;
+  /* background-image: url("/background/mbg.png");
+
+  background-position: center top 0px;
+
+  background-repeat: no-repeat; */
+
+  /* background-size: 1600px; */
+
+  background-color: #fff;
+  border: none;
+  overflow-y: auto;
+
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.card-provinsi .list-group-item {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border: none;
+  font-size: 0.8rem;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+}
+
+.card-provinsi .list-group-item:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.sidebar-provinsi-active {
+  font-weight: bold;
+  background-color: rgba(255, 0, 0, 0.2) !important;
+}
+/* JumlahSppg.css */
+.jumlah-sppg-container {
+  /* background: linear-gradient(to right, #f8f9fa, #e9ecef); */
+  border-radius: 1rem;
+}
+
+.summary-label {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.summary-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #0d6efd;
+}
+.legend-box {
+  background: white;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  width: 200px;
+  font-family: "Figtree", sans-serif;
+}
+
+.legend-box i {
+  width: 18px;
+  height: 12px;
+  margin-right: 8px;
+  opacity: 0.7;
+  display: inline-block;
+}
+.leaflet-tooltip-own {
+  background-color: #ddd;
+  color: #333;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+  line-height: 1.4;
+  font-weight: 500;
+  font-family: "Figtree", sans-serif;
+}
+
+.leaflet-tooltip-own strong {
+  color: #2c3e50;
+}
+.kabkota-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.6); /* transparan hitam */
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, -50%); /* supaya lebih presisi */
+  font-family: "Figtree", sans-serif;
+}
+
+.kabkota-label:hover {
+  background: rgba(0, 0, 0, 0.8); /* lebih gelap saat hover */
+}
+
+.jumlah-label-kab {
+  background-color: rgba(1, 94, 106, 0.8); /* contoh warna */
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeInMarker 0.9s ease-out forwards;
+  font-family: "Figtree", sans-serif;
+}
+
+/* Styling untuk konten popup */
+.popup-content {
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  font-family: "Figtree", sans-serif;
+}
+
+/* Styling untuk nama kabupaten/kota */
+.popup-content h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #0056b3; /* Ganti dengan warna yang sesuai */
+  margin-bottom: 10px;
+  font-family: "Figtree", sans-serif;
+}
+
+/* Styling untuk jumlah */
+.popup-content p {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+  font-weight: bold;
+  font-family: "Figtree", sans-serif;
+}
+
+.leaflet-tooltip-provinsi {
+  font-family: "Figtree", sans-serif;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  border-radius: 4px;
+  color: #333;
+  font-weight: 500;
+}
+.tab-nav-custom .nav-link {
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-nav-custom .nav-link.active {
+  background-color: #35f74c;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+.spinner-overlay-mbg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 1s ease-in-out infinite;
+}
+
+.tab-custom .nav-link.active {
+  background-color: #0d6efd;
+  color: white !important;
+}
+
+.tab-custom .nav-link:hover:not(.active) {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+}
+
+.card-custom {
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+.alert-info-custom {
+  background-color: #e9f5ff;
+  border: 1px solid #b6e0fe;
+  color: #055160;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Tinggi konten minimum */
+.tab-content-wrapper {
+  /* background-color: #f8f9fa;  */
+  min-height: 220px;
+  border: 1px solid #dee2e6;
+  padding: 10px;
+}
+.tab-custom .nav {
+  justify-content: center !important;
+}
+
+.tab-custom .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* memastikan isi di tengah */
+  gap: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  color: #0d6efd;
+  border-radius: 8px;
+  min-width: 160px; /* supaya tab-nya seragam */
+  text-align: center;
+}
+.wave-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e2e2e2 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: wave 1.6s linear infinite;
+  border-radius: 6px;
+  height: 0.8em;
+  width: 100px;
+}
+
+@keyframes wave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  position: relative;
+  display: inline-block;
+  color: #ff1493; /* Warna solid untuk teks */
+  font-weight: normal;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.shimmer-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(249, 249, 247, 0.3) 45%,
+    rgba(225, 229, 223, 0.8) 60%,
+    rgba(251, 249, 249, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer-swipe 1.5s infinite linear;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes shimmer-swipe {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+.leaflet-source-box select {
+  z-index: 1001;
+  position: relative;
+  font-family: "'Figtree', sans-serif";
+}

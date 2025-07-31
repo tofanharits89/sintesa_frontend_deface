@@ -1,0 +1,397 @@
+[
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "01",
+    "nmsfungsi": "LEMBAGA EKSEKUTIF DAN LEGISLATIF, MASALAH KEUANGAN DAN FISKAL, SERTA URUSAN LUAR NEGERI"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "02",
+    "nmsfungsi": "BANTUAN LUAR NEGERI"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PELAYANAN UMUM"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "04",
+    "nmsfungsi": "PENELITIAN DASAR DAN PENGEMBANGAN IPTEK"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "05",
+    "nmsfungsi": "PINJAMAN PEMERINTAH"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "06",
+    "nmsfungsi": "PEMBANGUNAN DAERAH"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "07",
+    "nmsfungsi": "LITBANG PELAYANANAN UMUM"
+  },
+  {
+    "kdfungsi": "01",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PELAYANAN UMUM LAINNYA"
+  },
+  {
+    "kdfungsi": "02",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PERTAHANAN NEGARA"
+  },
+  {
+    "kdfungsi": "02",
+    "kdsfungsi": "02",
+    "nmsfungsi": "DUKUNGAN PERTAHANAN"
+  },
+  {
+    "kdfungsi": "02",
+    "kdsfungsi": "03",
+    "nmsfungsi": "BANTUAN MILITER LUAR NEGERI"
+  },
+  {
+    "kdfungsi": "02",
+    "kdsfungsi": "04",
+    "nmsfungsi": "LITBANG PERTAHANAN"
+  },
+  {
+    "kdfungsi": "02",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PERTAHANAN LAINNYA"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "01",
+    "nmsfungsi": "KEPOLISIAN"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "02",
+    "nmsfungsi": "PENANGGULANGAN BENCANA"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PEMBINAAN HUKUM"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "04",
+    "nmsfungsi": "PERADILAN"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "05",
+    "nmsfungsi": "LEMBAGA PEMASYARAKATAN"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "06",
+    "nmsfungsi": "LITBANG KETERTIBAN DAN KEAMANAN"
+  },
+  {
+    "kdfungsi": "03",
+    "kdsfungsi": "90",
+    "nmsfungsi": "KETERTIBAN DAN KEAMANAN LAINNYA"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PERDAGANGAN, PENGEMBANGAN USAHA, KOPERASI DAN UKM"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "02",
+    "nmsfungsi": "TENAGA KERJA"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PERTANIAN, KEHUTANAN, PERIKANAN DAN KELAUTAN"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "04",
+    "nmsfungsi": "PENGAIRAN"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "05",
+    "nmsfungsi": "BAHAN BAKAR DAN ENERGI"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "06",
+    "nmsfungsi": "PERTAMBANGAN"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "07",
+    "nmsfungsi": "INDUSTRI DAN KONSTRUKSI"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "08",
+    "nmsfungsi": "TRANSPORTASI"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "09",
+    "nmsfungsi": "TELEKOMUNIKASI"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "10",
+    "nmsfungsi": "LITBANG EKONOMI"
+  },
+  {
+    "kdfungsi": "04",
+    "kdsfungsi": "90",
+    "nmsfungsi": "EKONOMI LAINNYA"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "01",
+    "nmsfungsi": "MANAJEMEN LIMBAH"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "02",
+    "nmsfungsi": "MANAJEMEN AIR LIMBAH"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PENANGGULANGAN POLUSI"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "04",
+    "nmsfungsi": "KONSERVASI SUMBERDAYA ALAM"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "05",
+    "nmsfungsi": "TATA RUANG DAN PERTANAHAN"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "06",
+    "nmsfungsi": "LITBANG LINGKUNGAN HIDUP"
+  },
+  {
+    "kdfungsi": "05",
+    "kdsfungsi": "90",
+    "nmsfungsi": "LINGKUNGAN HIDUP LAINNYA"
+  },
+  {
+    "kdfungsi": "06",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PEMBANGUNAN PERUMAHAN"
+  },
+  {
+    "kdfungsi": "06",
+    "kdsfungsi": "02",
+    "nmsfungsi": "PEMBERDAYAAN KOMUNITAS PERMUKIMAN"
+  },
+  {
+    "kdfungsi": "06",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PENYEDIAAN AIR MINUM"
+  },
+  {
+    "kdfungsi": "06",
+    "kdsfungsi": "04",
+    "nmsfungsi": "PENERANGAN JALAN"
+  },
+  {
+    "kdfungsi": "06",
+    "kdsfungsi": "05",
+    "nmsfungsi": "LITBANG PERUMAHAN DAN FASILITAS UMUM"
+  },
+  {
+    "kdfungsi": "06",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PERUMAHAN DAN FASILITAS UMUM LAINNYA"
+  },
+  {
+    "kdfungsi": "07",
+    "kdsfungsi": "01",
+    "nmsfungsi": "OBAT DAN PERBEKALAN KESEHATAN"
+  },
+  {
+    "kdfungsi": "07",
+    "kdsfungsi": "02",
+    "nmsfungsi": "PELAYANAN KESEHATAN PERORANGAN"
+  },
+  {
+    "kdfungsi": "07",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PELAYANAN KESEHATAN MASYARAKAT"
+  },
+  {
+    "kdfungsi": "07",
+    "kdsfungsi": "04",
+    "nmsfungsi": "KEPENDUDUKAN DAN KELUARGA BERENCANA"
+  },
+  {
+    "kdfungsi": "07",
+    "kdsfungsi": "05",
+    "nmsfungsi": "LITBANG KESEHATAN"
+  },
+  {
+    "kdfungsi": "07",
+    "kdsfungsi": "90",
+    "nmsfungsi": "KESEHATAN LAINNYA"
+  },
+  {
+    "kdfungsi": "08",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PENGEMBANGAN PARIWISATA"
+  },
+  {
+    "kdfungsi": "08",
+    "kdsfungsi": "02",
+    "nmsfungsi": "PEMBINAAN KEPEMUDAAN DAN OLAH RAGA"
+  },
+  {
+    "kdfungsi": "08",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PEMBINAAN PENERBITAN DAN PENYIARAN"
+  },
+  {
+    "kdfungsi": "08",
+    "kdsfungsi": "04",
+    "nmsfungsi": "LITBANG PARIWISATA"
+  },
+  {
+    "kdfungsi": "08",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PARIWISATA LAINNYA"
+  },
+  {
+    "kdfungsi": "09",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PENINGKATAN KEHIDUPAN BERAGAMA"
+  },
+  {
+    "kdfungsi": "09",
+    "kdsfungsi": "02",
+    "nmsfungsi": "KERUKUNAN HIDUP BERAGAMA"
+  },
+  {
+    "kdfungsi": "09",
+    "kdsfungsi": "03",
+    "nmsfungsi": "LITBANG AGAMA"
+  },
+  {
+    "kdfungsi": "09",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PELAYANAN KEAGAMAAN LAINNYA"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PENDIDIKAN ANAK USIA DINI"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "02",
+    "nmsfungsi": "PENDIDIKAN DASAR DAN MENENGAH"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PENDIDIKAN MENENGAH"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "04",
+    "nmsfungsi": "PENDIDIKAN NON-FORMAL DAN INFORMAL"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "05",
+    "nmsfungsi": "PENDIDIKAN KEDINASAN"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "06",
+    "nmsfungsi": "PENDIDIKAN TINGGI"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "07",
+    "nmsfungsi": "PELAYANAN BANTUAN TERHADAP PENDIDIKAN"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "08",
+    "nmsfungsi": "PENDIDIKAN KEAGAMAAN"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "09",
+    "nmsfungsi": "LITBANG PENDIDIKAN"
+  },
+  {
+    "kdfungsi": "10",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PENDIDIKAN DAN KEBUDAYAAN LAINNYA"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "01",
+    "nmsfungsi": "PERLINDUNGAN DAN PELAYANAN SOSIAL ORANG SAKIT DAN CACAT"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "02",
+    "nmsfungsi": "PERLINDUNGAN DAN PELAYANAN SOSIAL LANSIA"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "03",
+    "nmsfungsi": "PERLINDUNGAN DAN PELAYANAN SOSIAL KELUARGA PAHLAWAN, PERINTIS KEMERDEKAAN"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "04",
+    "nmsfungsi": "PERLINDUNGAN DAN PELAYANAN SOSIAL ANAK-ANAK DAN KELUARGA"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "05",
+    "nmsfungsi": "PEMBERDAYAAN PEREMPUAN"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "06",
+    "nmsfungsi": "PENYULUHAN DAN BIMBINGAN SOSIAL"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "07",
+    "nmsfungsi": "BANTUAN PERUMAHAN"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "08",
+    "nmsfungsi": "BANTUAN DAN JAMINAN SOSIAL"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "09",
+    "nmsfungsi": "LITBANG PERLINDUNGAN SOSIAL"
+  },
+  {
+    "kdfungsi": "11",
+    "kdsfungsi": "90",
+    "nmsfungsi": "PERLINDUNGAN SOSIAL LAINNYA"
+  }
+]

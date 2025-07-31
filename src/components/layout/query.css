@@ -1,0 +1,57 @@
+.bagian-query{
+    margin: 10px;
+}
+
+.button-query{
+    align-content: center;
+    text-align: center;
+  
+}
+@media (max-width: 768px) {
+.button-query{
+    align-content: center;
+    margin-bottom: 90px;
+    text-align: center;
+}
+}
+.custom-card {
+  border: 2px solid #e7dcf9;
+  border-radius: 10px;
+  padding: 10px;
+}
+.custom-content {
+  display: flex;
+  flex-direction: column;
+}
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start; /* Mengubah menjadi flex-start */
+  gap: 2px; /* Memberikan jarak antar kolom */
+}
+.custom-col {
+  flex-basis: calc(30% - 2px); /* Agar setiap kolom memiliki lebar setengah dari kontainer */
+}
+@media (max-width: 768px) {
+.foot{
+   font-size: 14px;
+
+}
+}
+.error-detail {
+  margin-top: 20px;text-align: center;
+}
+
+.detail {
+  margin-top: 10px;
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.detail.show {
+  opacity: 1;
+}
+
+
+
+

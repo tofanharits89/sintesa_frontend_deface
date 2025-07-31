@@ -1,0 +1,36 @@
+.table-dark-custom thead {
+    background-color: #198754;
+    color: white;
+}
+
+.table-rounded {
+    border-collapse: collapse;
+}
+
+.table-rounded thead th {
+    background-color: #016936;
+    color: white;
+    border-bottom: 2px solid #ddd;
+}
+
+.table-rounded td,
+.table-rounded th {
+    padding: 12px;
+    border: 1px solid #5c636a;
+}
+
+/* Gaya emas untuk semua input dan select di area filter */
+.filter-gray select,
+.filter-gray input {
+    border: 2px solid #5c636a !important;
+    border-radius: 6px;
+    box-shadow: none;
+}
+
+.filter-gray select:focus,
+.filter-gray input:focus {
+    border-color: #5c636a !important;
+    box-shadow: 0 0 0 0.15rem rgba(211, 211, 211, 0.3);
+    /* abu-abu terang */
+
+}

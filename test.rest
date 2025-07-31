@@ -1,0 +1,29 @@
+### Chat Completions
+POST https://api.openai.com/v1/chat/completions
+Authorization: Bearer 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
+Content-Type: application/json
+
+{
+  "model": "gpt-4.1",
+
+  "messages": [
+    { "role": "system", "content": "Kamu adalah teman curhat saya." },
+    { "role": "user", "content": "Halo, apa kabar? kenapa hari ini mood saya jelek banget? apa karena ada ppid yang banyak?" }
+  ],
+  "temperature": 0.7,
+  "max_tokens": 100
+}
+
+### Image Generation
+
+POST https://api.openai.com/v1/images/generations
+Authorization: Bearer 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
+Content-Type: application/json
+
+{
+  "model": "dall-e-3",
+  "prompt": "Ilustrasi hangat: buatkan saya gambar seorang anak membawa bendera indonesia di pinggir laut",
+  "n": 1,
+  "size": "1024x1024"
+}
+

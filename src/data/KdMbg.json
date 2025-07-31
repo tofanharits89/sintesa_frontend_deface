@@ -1,0 +1,26 @@
+[
+    {
+        "kdmbg": "UTAMA",
+        "nmmbg": "Intervensi Utama",
+        "kdupdate": "",
+        "updater": "",
+        "tglupdate": "0000-00-00 00:00:00",
+        "aktif": "1"
+    },
+    {
+        "kdmbg": "PENDUKUNG",
+        "nmmbg": "Intervensi Pendukung",
+        "kdupdate": "",
+        "updater": "",
+        "tglupdate": "0000-00-00 00:00:00",
+        "aktif": "1"
+    },
+    {
+        "kdmbg": "DUKMAN",
+        "nmmbg": "Intervensi Dukman",
+        "kdupdate": "",
+        "updater": "",
+        "tglupdate": "0000-00-00 00:00:00",
+        "aktif": "1"
+    }
+]

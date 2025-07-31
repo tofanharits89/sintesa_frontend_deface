@@ -1,0 +1,12 @@
+/* Style Textarea */
+.custom-textarea {
+  width: 100%;
+  border-radius: 5px;
+  resize: none; /* Nonaktifkan resize manual */
+}
+
+/* Style Date Input */
+.custom-date {
+  width: 100%;
+  border-radius: 5px;
+}

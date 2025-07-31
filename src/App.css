@@ -1,0 +1,494 @@
+/* di file src/index.css atau App.css */
+
+/* body {
+  background-color: #ffffff;
+  color: #333333;
+} */
+
+/* body {
+  background: linear-gradient(to bottom, #ff0000 50%, #ffffff 50%);
+  background-size: 100% 100%;
+  height: 100vh;
+  color: #333333;
+  position: relative;
+  z-index: -1;
+} */
+body {
+  font-family: "Figtree", sans-serif;
+}
+
+/* Dark mode */
+.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+/* Buat aturan CSS untuk mode gelap */
+.dark-mode .pagetitle h1 {
+  background-color: #333; /* Ganti dengan warna latar belakang yang sesuai untuk mode gelap */
+  color: #fff; /* Ganti dengan warna teks yang sesuai untuk mode gelap */
+  /* Atur properti CSS lainnya sesuai kebutuhan */
+}
+
+.dark-mode .pagetitle a {
+  color: #ccc; /* Ganti dengan warna tautan yang sesuai untuk mode gelap */
+}
+.dark-mode .nav-item li {
+  color: #ccc; /* Ganti dengan warna tautan yang sesuai untuk mode gelap */
+}
+.dark-mode .loading-spinner {
+  color: #0b0b0b;
+}
+
+/* Jika perlu menyesuaikan warna pada mode gelap untuk breadcrumb atau elemen lain */
+.dark-mode .breadcrumb-item a {
+  color: #ccc; /* Ganti dengan warna yang sesuai untuk mode gelap */
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 0.6s ease-in forwards;
+}
+.section {
+  margin-bottom: 35px;
+  /* font-family: "Roboto", sans-serif; */
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.table-scroll {
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  height: 450px;
+}
+
+.valign-center {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.sub {
+  vertical-align: top;
+}
+
+.table-wrap {
+  position: relative;
+}
+
+.divscroll {
+  display: flex;
+  background: #58595a;
+  color: #fff;
+  position: sticky !important;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.table-scroll thead th {
+  background: #58595a;
+  color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: normal;
+  border: #58595a;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  border: 0px;
+}
+
+.table-scroll td {
+  background: #fff;
+  font-size: 10px;
+}
+
+.text-kanan {
+  text-align: right;
+  font-size: 12px !important;
+  font-weight: normal;
+  min-width: 90px;
+}
+
+.text-tengah {
+  text-align: center;
+  font-size: 12px !important;
+  font-weight: normal;
+  min-width: 90px;
+}
+
+.table-scroll tfoot,
+.table-scroll tfoot th tr,
+.table-scroll tfoot td {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0;
+  background: #58595a;
+  color: #f2ecec !important;
+  height: 30px;
+  font-size: 14px;
+}
+
+.table-scroll thead tr:nth-child(2) th {
+  top: 30px;
+}
+
+.table-scroll tr:first-child th:first-child {
+  border-top-left-radius: 0.25rem !important;
+}
+
+.table-scroll tr:first-child th:last-child {
+  border-top-right-radius: 0.25rem !important;
+}
+
+.horizontal-scroll-container {
+  width: 10%;
+  overflow-x: auto;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a09f9f;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar.horizontal {
+  height: 4px;
+}
+
+::-webkit-scrollbar-track.horizontal {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb.horizontal {
+  background: red;
+  border-radius: 6px;
+}
+
+.loading-option {
+  margin-top: 200px;
+  justify-content: center;
+  align-items: center;
+  height: 465px;
+}
+
+.table-scroll2 {
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  height: 850px;
+}
+
+.table-scroll2 thead th {
+  background: #58595a;
+  color: #fff;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  font-size: 13px;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  border: 0px;
+}
+
+.table-scroll2 td {
+  background: #fff;
+  font-size: 10px;
+}
+
+.table-scroll2 tfoot,
+.table-scroll2 tfoot th tr,
+.table-scroll2 tfoot td {
+  position: sticky;
+  position: -webkit-sticky;
+  bottom: 0;
+  background: #58595a;
+  color: #f2ecec !important;
+  height: 30px;
+  font-size: 14px;
+}
+
+.table-scroll2 thead tr:nth-child(2) th {
+  top: 30px;
+}
+
+.table-scroll2 tr:first-child th:first-child {
+  border-top-left-radius: 0.25rem !important;
+}
+
+.table-scroll2 tr:first-child th:last-child {
+  border-top-right-radius: 0.25rem !important;
+}
+
+.disabled {
+  background-color: #f0f0f0;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+.disabled-switch .switch-input:disabled ~ .switch-label::before {
+  background-color: #dc3545 !important;
+}
+
+.disabled-switch .switch-input:disabled ~ .switch-label::after {
+  background-color: #141414 !important;
+}
+.custom-text {
+  position: relative;
+  transition: top 0.3s ease;
+  font-size: smaller;
+}
+
+.custom-text:hover {
+  top: -10px;
+  font-size: smaller;
+  color: #2175f3;
+  margin: 5px;
+  text-decoration: underline;
+} /* Transisi hasil pencarian */
+
+.modal-content-nonaktif {
+  height: 370px;
+}
+
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.log-user {
+  margin: 5px;
+  font-size: 15px;
+  font-style: italic;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+}
+/* CSS Anda yang ada di file 'team.css' atau file CSS yang relevan */
+.engine-card.highlighted {
+  border: 2px solid #007bff; /* Warna garis pinggir kartu yang menyoroti */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0; /* Warna latar belakang kartu yang menyoroti */
+  transition: all 0.3s ease; /* Animasi transisi ketika menyoroti */
+}
+
+.option-margin {
+  margin-bottom: 25px; /* Sesuaikan nilai ini dengan jumlah jarak yang diinginkan */
+}
+.custom-file-input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  margin: 0;
+  opacity: 0;
+}
+
+/* Loading container */
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust transparency */
+  z-index: -1; /* Behind the spinner */
+}
+
+/* Spinner */
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Spinner color and transparency */
+  border-top: 4px solid #fff; /* Adjust spinner color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; /* Spin animation */
+  z-index: 1; /* Above the backdrop */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.form-select-sm {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.sleeping-cat-container {
+  position: relative;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Warna backdrop dengan opacity 0.5 */
+  z-index: 999; /* Menempatkan backdrop di atas kucing */
+}
+
+.asleep {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.asleep img {
+  max-width: 900px;
+  border-radius: 10px;
+  opacity: 0.7;
+}
+.awake {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeInOut 2s linear forwards;
+  opacity: 0.9;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0; /* Mulai dengan gambar tidak terlihat */
+  }
+  50% {
+    opacity: 1; /* Tahan gambar terlihat selama setengah durasi */
+  }
+  100% {
+    opacity: 0; /* Hilangkan gambar saat animasi selesai */
+  }
+}
+
+.fade-in-out {
+  animation: fadeInOut 1s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* modalAnimation.css */
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.modal-body-animation-enter {
+  animation: zoomIn 0.6s forwards;
+  z-index: 1;
+}
+
+.modal-body-animation-exit {
+  animation: zoomOut 0.6s forwards;
+  z-index: 1;
+}
+
+.mixed-text {
+  display: inline-block;
+  /* font-weight: normal; */
+  font-size: 30px;
+  position: relative;
+  color: red; /* Default color for fallback */
+  background: linear-gradient(to bottom, red 70%, rgb(209, 205, 205) 30%);
+
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.5px black; /* Menambahkan border hitam */
+}
+
+.icon-class {
+  font-size: 30px; /* Sesuaikan ukuran ikon sesuai kebutuhan */
+}
+
+.flag {
+  width: 40px; /* Sesuaikan ukuran bendera sesuai kebutuhan */
+  margin-left: 5px; /* Menambah jarak antara teks/ikon dan bendera */
+  animation: wave 1s infinite; /* Menambahkan animasi berkibar */
+  margin-bottom: -5px;
+}
+.error-message {
+  white-space: pre-wrap; /* Menjaga spasi dan baris baru */
+  font-size: 13px !important;
+  line-height: 0.5;
+}
+/* @keyframes wave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+} */

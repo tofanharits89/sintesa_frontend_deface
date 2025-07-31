@@ -1,0 +1,61 @@
+/* .table-upaya {
+    height: 300px;
+} */
+
+.modalBodyCustom {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    height: 73vh;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.scrollTable {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.upayaTextarea {
+    resize: vertical;
+    background-color: #f1f3f5;
+    border-color: #ced4da;
+    border-radius: 5px;
+    height: 320px;
+}
+
+.custom-tab .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+    background-color: #ffffff;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.custom-tab .nav-link {
+    color: #343a40 !important;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-tab .nav-link:hover {
+    background-color: #f1f3f5;
+    color: #212529 !important;
+}
+
+.custom-tab .nav-link.active {
+    background-color: #e9ecef;
+    color: #000 !important;
+    font-weight: bold;
+    border-bottom: 2px solid #198754;
+    border-radius: 4px 4px 0 0;
+}
+
+.textJustify {
+    text-align: justify;
+}

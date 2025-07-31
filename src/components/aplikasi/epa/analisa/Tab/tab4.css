@@ -1,0 +1,11 @@
+/* Style untuk input persentase */
+.custom-percent {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Style untuk select approval */
+.custom-select {
+  width: 100%;
+  border-radius: 5px;
+}

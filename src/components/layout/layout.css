@@ -1,0 +1,105 @@
+/* Styles for loading container 
+.loading-container {
+  position: relative;
+}
+
+
+.loading-spinner {
+  position: absolute;
+  margin-top: 200px;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+}
+
+
+.modal-body {
+  opacity: 0;
+  transform: translateY(-7%);
+  animation: slide-down 0.9s forwards;
+  padding-top: 1px; 
+  margin: 5px;
+  background: linear-gradient(135deg, #f7f7f5, #fbf9f9);
+  background-repeat: repeat; 
+  opacity: 0.8; 
+  height: 560px;
+  border-radius: 8px; 
+}
+
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-7%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+*/
+.loading-container {
+  position: relative;
+}
+.data-max-setting {
+  height: 900px;
+}
+
+.loading-spinner {
+  position: absolute;
+  margin-top: 200px;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+}
+.custom-modal-filter {
+  width: 100%; /* Mengatur lebar menjadi 300px */
+  height: auto;
+  /* margin: 0 auto;  */
+}
+
+.current-time {
+  text-align: center;
+  font-size: 14px;
+  color: rgb(31, 10, 52);
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+.current-time,
+p {
+  margin: 3px;
+}
+  .right-modal .modal-dialog {
+            position: fixed;
+             left:1%;
+         
+            transform: translateY(-80%);}
+              .right-modal .modal-body {
+          overflow: scroll;
+           height: 525px;
+           }
+
+           /* CSS untuk latar belakang dan animasi */
+.response-container {
+  background-color: #f0f8ff; /* Warna latar belakang */
+  padding: 5px;
+  border-radius: 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  transition: opacity 0.5s ease-in-out; /* Transisi untuk animasi */
+  opacity: 0;
+  animation: fadeIn 0.5s forwards; /* Animasi fade-in */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

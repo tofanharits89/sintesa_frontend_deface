@@ -1,0 +1,13 @@
+[
+  { "kdbansos": "01", "nmbansos": "BPNT" },
+  { "kdbansos": "02", "nmbansos": "BPUM" },
+  { "kdbansos": "03", "nmbansos": "KUOTAINTERNET" },
+  { "kdbansos": "04", "nmbansos": "PKH" },
+  { "kdbansos": "05", "nmbansos": "POS_BST" },
+  { "kdbansos": "06", "nmbansos": "POS_SEMBAKO" },
+  { "kdbansos": "07", "nmbansos": "PRAKERJA" },
+  { "kdbansos": "08", "nmbansos": "BSTSEMBAKO1" },
+  { "kdbansos": "09", "nmbansos": "BSTSEMBAKO2" },
+  { "kdbansos": "10", "nmbansos": "BSTSEMBAKO3" },
+  { "kdbansos": "11", "nmbansos": "UKT" }
+]

@@ -1,0 +1,162 @@
+/* .container-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.column-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: white;
+}
+.content-profile{
+  position: relative;
+  margin-top: 70px;
+}
+*/
+.card-profile {
+  position: relative;
+  height: 320px;
+  padding: 15px;
+  border: 1px solid #63acf5;
+  /* overflow: scroll; */
+  max-width: 100%;
+  margin-bottom: 15px;
+}
+.button {
+  width: 170px;
+  padding: 10px;
+  margin: 5px;
+}
+.button-download {
+  width: 140px;
+  font-size: 14px;
+}
+.button-download-split {
+  width: 30px;
+  padding: 8px;
+}
+/*
+  @media (min-width: 768px) and (max-width: 1191px) {
+  .isi-card{
+  height: 320px;
+  padding: 10px;
+  border: 1px solid #63acf5;
+  background-color: rgb(249, 247, 245);
+  max-width: 100%;
+  margin-bottom: 15px;
+  
+}
+  }
+  */
+/* CSS */
+.image-container {
+  max-width: 100%; /* Maksimum lebar gambar adalah lebar parent element */
+  max-height: 100%; /* Maksimum tinggi gambar adalah tinggi parent element */
+  overflow: hidden; /* Jika gambar melebihi parent element, potong gambar */
+  text-align: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.image-container img {
+  height: 120px !important;
+  width: 120px !important;
+  display: block; /* Hapus ruang tambahan di sekitar gambar */
+}
+
+.text-logo {
+  font-size: 16px;
+  text-align: center;
+}
+
+.jumlahdipa2 {
+  font-size: 20px;
+  background-color: rgb(30, 147, 236);
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  width: 100%;
+
+  text-align: center;
+  align-content: center;
+  justify-content: space-around;
+  border: 1px dotted #63acf5;
+}
+
+.item-dipa {
+  font-weight: bold;
+  border-radius: 5px;
+
+  width: 100%;
+  text-align: center;
+  justify-content: baseline;
+  border: 1px dotted #63acf5;
+}
+.ikpa {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.garis-dipa {
+  margin: 12px;
+  border: none;
+  border-top: 2px solid blueviolet;
+} /*
+.pie{
+  display: flex;
+  height: 275px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+.chart-label {
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  padding: 1px;
+  color: rgb(13, 1, 1);
+  border-radius: 2px;
+  font-size: 11px;
+}
+.chart-label-kiri {
+  position: absolute;
+  top: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-color: #9c2c07;
+  color: white;
+  border-radius: 2px;
+  font-size: 12px;
+}
+.sidebar{
+  background: #c2c4c5;
+}/*
+.null{
+  text-align: center;
+  font-size: 15px;
+  color: red;
+}
+.jarak{
+ margin: 10px;
+ border: 1px dotted #fa1616;
+}
+*/
+.batas-bawah {
+  margin-bottom: 80px;
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/*
+.img {
+  background-image: url('https://www.pngitem.com/pimgs/m/25-258790_free-png-png-tentang-png-images-transparent-indonesia.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed;  
+}*/

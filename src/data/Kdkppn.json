@@ -1,0 +1,743 @@
+
+[
+  {
+    "kdkppn": "001",
+    "nmkppn": "BANDA ACEH"
+  },
+  {
+    "kdkppn": "002",
+    "nmkppn": "L A N G S A"
+  },
+  {
+    "kdkppn": "003",
+    "nmkppn": "MEULABOH"
+  },
+  {
+    "kdkppn": "004",
+    "nmkppn": "M E D A N   I"
+  },
+  {
+    "kdkppn": "005",
+    "nmkppn": "PEMATANG SIANTAR"
+  },
+  {
+    "kdkppn": "006",
+    "nmkppn": "PADANG SIDEMPUAN"
+  },
+  {
+    "kdkppn": "007",
+    "nmkppn": "GUNUNG SITOLI"
+  },
+  {
+    "kdkppn": "008",
+    "nmkppn": "PEKANBARU"
+  },
+  {
+    "kdkppn": "009",
+    "nmkppn": "TANJUNG PINANG"
+  },
+  {
+    "kdkppn": "010",
+    "nmkppn": "P A D A N G"
+  },
+  {
+    "kdkppn": "011",
+    "nmkppn": "BUKITTINGGI"
+  },
+  {
+    "kdkppn": "012",
+    "nmkppn": "J A M B I"
+  },
+  {
+    "kdkppn": "013",
+    "nmkppn": "SUNGAI PENUH"
+  },
+  {
+    "kdkppn": "014",
+    "nmkppn": "PALEMBANG"
+  },
+  {
+    "kdkppn": "015",
+    "nmkppn": "PANGKAL PINANG"
+  },
+  {
+    "kdkppn": "016",
+    "nmkppn": "B E N G K U L U"
+  },
+  {
+    "kdkppn": "017",
+    "nmkppn": "BANDAR LAMPUNG"
+  },
+  {
+    "kdkppn": "018",
+    "nmkppn": "JAKARTA I"
+  },
+  {
+    "kdkppn": "019",
+    "nmkppn": "JAKARTA II"
+  },
+  {
+    "kdkppn": "020",
+    "nmkppn": "S E R A N G"
+  },
+  {
+    "kdkppn": "021",
+    "nmkppn": "PURWAKARTA"
+  },
+  {
+    "kdkppn": "022",
+    "nmkppn": "BANDUNG  I"
+  },
+  {
+    "kdkppn": "023",
+    "nmkppn": "B O G O R"
+  },
+  {
+    "kdkppn": "024",
+    "nmkppn": "C I R E B O N"
+  },
+  {
+    "kdkppn": "025",
+    "nmkppn": "TASIKMALAYA"
+  },
+  {
+    "kdkppn": "026",
+    "nmkppn": "SEMARANG I"
+  },
+  {
+    "kdkppn": "027",
+    "nmkppn": "PURWOREJO"
+  },
+  {
+    "kdkppn": "028",
+    "nmkppn": "SURAKARTA"
+  },
+  {
+    "kdkppn": "029",
+    "nmkppn": "PURWOKERTO"
+  },
+  {
+    "kdkppn": "030",
+    "nmkppn": "YOGYAKARTA"
+  },
+  {
+    "kdkppn": "031",
+    "nmkppn": "SURABAYA I"
+  },
+  {
+    "kdkppn": "032",
+    "nmkppn": "M A L A N G"
+  },
+  {
+    "kdkppn": "033",
+    "nmkppn": "M A D I U N"
+  },
+  {
+    "kdkppn": "034",
+    "nmkppn": "K E D I R I"
+  },
+  {
+    "kdkppn": "035",
+    "nmkppn": "BONDOWOSO"
+  },
+  {
+    "kdkppn": "036",
+    "nmkppn": "PAMEKASAN"
+  },
+  {
+    "kdkppn": "037",
+    "nmkppn": "D E N P A S A R"
+  },
+  {
+    "kdkppn": "038",
+    "nmkppn": "M A T A R A M"
+  },
+  {
+    "kdkppn": "039",
+    "nmkppn": "K U P A N G"
+  },
+  {
+    "kdkppn": "040",
+    "nmkppn": "E N D E"
+  },
+  {
+    "kdkppn": "041",
+    "nmkppn": "WAINGAPU"
+  },
+  {
+    "kdkppn": "042",
+    "nmkppn": "PONTIANAK"
+  },
+  {
+    "kdkppn": "043",
+    "nmkppn": "PALANGKARAYA"
+  },
+  {
+    "kdkppn": "044",
+    "nmkppn": "S A M P I T"
+  },
+  {
+    "kdkppn": "045",
+    "nmkppn": "BANJARMASIN"
+  },
+  {
+    "kdkppn": "046",
+    "nmkppn": "SAMARINDA"
+  },
+  {
+    "kdkppn": "047",
+    "nmkppn": "BALIKPAPAN"
+  },
+  {
+    "kdkppn": "048",
+    "nmkppn": "T A R A K A N"
+  },
+  {
+    "kdkppn": "049",
+    "nmkppn": "M A N A D O"
+  },
+  {
+    "kdkppn": "050",
+    "nmkppn": "GORONTALO"
+  },
+  {
+    "kdkppn": "051",
+    "nmkppn": "P A L U"
+  },
+  {
+    "kdkppn": "052",
+    "nmkppn": "P O S O"
+  },
+  {
+    "kdkppn": "053",
+    "nmkppn": "L U W U K"
+  },
+  {
+    "kdkppn": "054",
+    "nmkppn": "MAKASSAR I"
+  },
+  {
+    "kdkppn": "055",
+    "nmkppn": "WATAMPONE"
+  },
+  {
+    "kdkppn": "056",
+    "nmkppn": "BANTAENG"
+  },
+  {
+    "kdkppn": "057",
+    "nmkppn": "PARE - PARE"
+  },
+  {
+    "kdkppn": "058",
+    "nmkppn": "P A L O P O"
+  },
+  {
+    "kdkppn": "059",
+    "nmkppn": "M A J E N E"
+  },
+  {
+    "kdkppn": "060",
+    "nmkppn": "K E N D A R I"
+  },
+  {
+    "kdkppn": "061",
+    "nmkppn": "A M B O N"
+  },
+  {
+    "kdkppn": "062",
+    "nmkppn": "T E R N A T E"
+  },
+  {
+    "kdkppn": "063",
+    "nmkppn": "JAYAPURA"
+  },
+  {
+    "kdkppn": "064",
+    "nmkppn": "B I A K"
+  },
+  {
+    "kdkppn": "065",
+    "nmkppn": "MANOKWARI"
+  },
+  {
+    "kdkppn": "066",
+    "nmkppn": "S O R O N G"
+  },
+  {
+    "kdkppn": "067",
+    "nmkppn": "FAK - FAK"
+  },
+  {
+    "kdkppn": "068",
+    "nmkppn": "MERAUKE"
+  },
+  {
+    "kdkppn": "071",
+    "nmkppn": "B I M A"
+  },
+  {
+    "kdkppn": "072",
+    "nmkppn": "PEKALONGAN"
+  },
+  {
+    "kdkppn": "073",
+    "nmkppn": "BOJONEGORO"
+  },
+  {
+    "kdkppn": "074",
+    "nmkppn": "TAPAKTUAN"
+  },
+  {
+    "kdkppn": "075",
+    "nmkppn": "RANTAU PRAPAT"
+  },
+  {
+    "kdkppn": "076",
+    "nmkppn": "TANJUNG BALAI ASAHAN"
+  },
+  {
+    "kdkppn": "078",
+    "nmkppn": "MUARA BUNGO"
+  },
+  {
+    "kdkppn": "079",
+    "nmkppn": "S I N T A N G"
+  },
+  {
+    "kdkppn": "080",
+    "nmkppn": "B U N T O K"
+  },
+  {
+    "kdkppn": "081",
+    "nmkppn": "KOTABARU"
+  },
+  {
+    "kdkppn": "082",
+    "nmkppn": "TOLI - TOLI"
+  },
+  {
+    "kdkppn": "083",
+    "nmkppn": "T A H U N A"
+  },
+  {
+    "kdkppn": "084",
+    "nmkppn": "T U A L"
+  },
+  {
+    "kdkppn": "085",
+    "nmkppn": "N A B I R E"
+  },
+  {
+    "kdkppn": "086",
+    "nmkppn": "KARAWANG"
+  },
+  {
+    "kdkppn": "087",
+    "nmkppn": "SUMEDANG"
+  },
+  {
+    "kdkppn": "088",
+    "nmkppn": "JAKARTA III"
+  },
+  {
+    "kdkppn": "089",
+    "nmkppn": "LHOKSEUMAWE"
+  },
+  {
+    "kdkppn": "090",
+    "nmkppn": "S O L O K"
+  },
+  {
+    "kdkppn": "091",
+    "nmkppn": "LUBUK SIKAPING"
+  },
+  {
+    "kdkppn": "092",
+    "nmkppn": "R E N G A T"
+  },
+  {
+    "kdkppn": "093",
+    "nmkppn": "SINGKAWANG"
+  },
+  {
+    "kdkppn": "094",
+    "nmkppn": "KETAPANG"
+  },
+  {
+    "kdkppn": "096",
+    "nmkppn": "G A R U T"
+  },
+  {
+    "kdkppn": "097",
+    "nmkppn": "P A T I"
+  },
+  {
+    "kdkppn": "098",
+    "nmkppn": "MOJOKERTO"
+  },
+  {
+    "kdkppn": "099",
+    "nmkppn": "PACITAN"
+  },
+  {
+    "kdkppn": "100",
+    "nmkppn": "BANYUWANGI"
+  },
+  {
+    "kdkppn": "101",
+    "nmkppn": "SUMBAWA BESAR"
+  },
+  {
+    "kdkppn": "102",
+    "nmkppn": "PANGKALAN BUN"
+  },
+  {
+    "kdkppn": "103",
+    "nmkppn": "B A U - B A U"
+  },
+  {
+    "kdkppn": "104",
+    "nmkppn": "SAUMLAKI"
+  },
+  {
+    "kdkppn": "105",
+    "nmkppn": "KUTACANE"
+  },
+  {
+    "kdkppn": "106",
+    "nmkppn": "SIBOLGA"
+  },
+  {
+    "kdkppn": "107",
+    "nmkppn": "TANJUNG PANDAN"
+  },
+  {
+    "kdkppn": "109",
+    "nmkppn": "BATURAJA"
+  },
+  {
+    "kdkppn": "110",
+    "nmkppn": "BARABAI"
+  },
+  {
+    "kdkppn": "111",
+    "nmkppn": "R U T E N G"
+  },
+  {
+    "kdkppn": "113",
+    "nmkppn": "W A M E N A"
+  },
+  {
+    "kdkppn": "115",
+    "nmkppn": "MAGELANG"
+  },
+  {
+    "kdkppn": "116",
+    "nmkppn": "KOTABUMI"
+  },
+  {
+    "kdkppn": "117",
+    "nmkppn": "PUTUSSIBAU"
+  },
+  {
+    "kdkppn": "118",
+    "nmkppn": "T E G A L"
+  },
+  {
+    "kdkppn": "120",
+    "nmkppn": "D U M A I"
+  },
+  {
+    "kdkppn": "121",
+    "nmkppn": "M A N N A"
+  },
+  {
+    "kdkppn": "122",
+    "nmkppn": "TAKENGON"
+  },
+  {
+    "kdkppn": "124",
+    "nmkppn": "TEBING TINGGI"
+  },
+  {
+    "kdkppn": "125",
+    "nmkppn": "BALIGE"
+  },
+  {
+    "kdkppn": "126",
+    "nmkppn": "METRO LAMPUNG"
+  },
+  {
+    "kdkppn": "128",
+    "nmkppn": "SUKABUMI"
+  },
+  {
+    "kdkppn": "129",
+    "nmkppn": "K U D U S"
+  },
+  {
+    "kdkppn": "130",
+    "nmkppn": "CILACAP"
+  },
+  {
+    "kdkppn": "131",
+    "nmkppn": "J E M B E R"
+  },
+  {
+    "kdkppn": "132",
+    "nmkppn": "SINGARAJA"
+  },
+  {
+    "kdkppn": "133",
+    "nmkppn": "JAKARTA IV"
+  },
+  {
+    "kdkppn": "137",
+    "nmkppn": "B A T A M"
+  },
+  {
+    "kdkppn": "138",
+    "nmkppn": "S E R U I"
+  },
+  {
+    "kdkppn": "139",
+    "nmkppn": "JAKARTA V"
+  },
+  {
+    "kdkppn": "070",
+    "nmkppn": "LUBUK LINGGAU"
+  },
+  {
+    "kdkppn": "077",
+    "nmkppn": "SIJUNJUNG"
+  },
+  {
+    "kdkppn": "119",
+    "nmkppn": "SIDIKALANG"
+  },
+  {
+    "kdkppn": "127",
+    "nmkppn": "TANGERANG"
+  },
+  {
+    "kdkppn": "140",
+    "nmkppn": "KHUSUS PINJAMAN DAN HIBAH"
+  },
+  {
+    "kdkppn": "141",
+    "nmkppn": "T I M I K A"
+  },
+  {
+    "kdkppn": "142",
+    "nmkppn": "P A I N A N"
+  },
+  {
+    "kdkppn": "143",
+    "nmkppn": "KUALA TUNGKAL"
+  },
+  {
+    "kdkppn": "144",
+    "nmkppn": "L A H A T"
+  },
+  {
+    "kdkppn": "145",
+    "nmkppn": "L I W A"
+  },
+  {
+    "kdkppn": "146",
+    "nmkppn": "C U R U P"
+  },
+  {
+    "kdkppn": "147",
+    "nmkppn": "KUNINGAN"
+  },
+  {
+    "kdkppn": "148",
+    "nmkppn": "K L A T E N"
+  },
+  {
+    "kdkppn": "149",
+    "nmkppn": "WONOSARI"
+  },
+  {
+    "kdkppn": "150",
+    "nmkppn": "B L I T A R"
+  },
+  {
+    "kdkppn": "151",
+    "nmkppn": "T A N J U N G"
+  },
+  {
+    "kdkppn": "152",
+    "nmkppn": "NUNUKAN"
+  },
+  {
+    "kdkppn": "153",
+    "nmkppn": "TANJUNG REDEP"
+  },
+  {
+    "kdkppn": "154",
+    "nmkppn": "AMLAPURA"
+  },
+  {
+    "kdkppn": "155",
+    "nmkppn": "BENTENG"
+  },
+  {
+    "kdkppn": "156",
+    "nmkppn": "K O L A K A"
+  },
+  {
+    "kdkppn": "157",
+    "nmkppn": "R A H A"
+  },
+  {
+    "kdkppn": "158",
+    "nmkppn": "KOTAMOBAGU"
+  },
+  {
+    "kdkppn": "159",
+    "nmkppn": "B A N G K O"
+  },
+  {
+    "kdkppn": "160",
+    "nmkppn": "S E K A Y U"
+  },
+  {
+    "kdkppn": "161",
+    "nmkppn": "RANGKASBITUNG"
+  },
+  {
+    "kdkppn": "162",
+    "nmkppn": "S R A G E N"
+  },
+  {
+    "kdkppn": "163",
+    "nmkppn": "PURWODADI"
+  },
+  {
+    "kdkppn": "164",
+    "nmkppn": "BANJARNEGARA"
+  },
+  {
+    "kdkppn": "165",
+    "nmkppn": "SIDOARJO"
+  },
+  {
+    "kdkppn": "166",
+    "nmkppn": "T U B A N"
+  },
+  {
+    "kdkppn": "167",
+    "nmkppn": "SANGGAU"
+  },
+  {
+    "kdkppn": "168",
+    "nmkppn": "PELAIHARI"
+  },
+  {
+    "kdkppn": "169",
+    "nmkppn": "S E L O N G"
+  },
+  {
+    "kdkppn": "170",
+    "nmkppn": "M A K A L E"
+  },
+  {
+    "kdkppn": "171",
+    "nmkppn": "B E K A S I"
+  },
+  {
+    "kdkppn": "172",
+    "nmkppn": "ATAMBUA"
+  },
+  {
+    "kdkppn": "173",
+    "nmkppn": "M A S O H I"
+  },
+  {
+    "kdkppn": "112",
+    "nmkppn": "TOBELO"
+  },
+  {
+    "kdkppn": "174",
+    "nmkppn": "LARANTUKA"
+  },
+  {
+    "kdkppn": "999",
+    "nmkppn": "DIREKTORAT PENGELOLAAN KAS NEGARA"
+  },
+  {
+    "kdkppn": "175",
+    "nmkppn": "JAKARTA VI"
+  },
+  {
+    "kdkppn": "136",
+    "nmkppn": "MAKASSAR II"
+  },
+  {
+    "kdkppn": "135",
+    "nmkppn": "SURABAYA II"
+  },
+  {
+    "kdkppn": "123",
+    "nmkppn": "M E D A N   II"
+  },
+  {
+    "kdkppn": "095",
+    "nmkppn": "BANDUNG  II"
+  },
+  {
+    "kdkppn": "134",
+    "nmkppn": "SEMARANG II"
+  },
+  {
+    "kdkppn": "178",
+    "nmkppn": "MAMUJU"
+  },
+  {
+    "kdkppn": "176",
+    "nmkppn": "W A T E S"
+  },
+  {
+    "kdkppn": "177",
+    "nmkppn": "SINJAI"
+  },
+  {
+    "kdkppn": "179",
+    "nmkppn": "BITUNG"
+  },
+  {
+    "kdkppn": "180",
+    "nmkppn": "MARISA"
+  },
+  {
+    "kdkppn": "181",
+    "nmkppn": "MUKOMUKO"
+  },
+  {
+    "kdkppn": "901",
+    "nmkppn": "PENERIMAAN NEGARA (Dit. PKN)"
+  },
+  {
+    "kdkppn": "666",
+    "nmkppn": "TRIAL REVISI"
+  },
+  {
+    "kdkppn": "182",
+    "nmkppn": "JAKARTA VII"
+  },
+  {
+    "kdkppn": "183",
+    "nmkppn": "KHUSUS PENERIMAAN"
+  },
+  {
+    "kdkppn": "184",
+    "nmkppn": "KHUSUS INVESTASI"
+  },
+  {
+    "kdkppn": "185",
+    "nmkppn": "TANJUNG SELOR"
+  }
+]

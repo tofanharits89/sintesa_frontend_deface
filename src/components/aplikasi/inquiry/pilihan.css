@@ -1,0 +1,40 @@
+.file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.file-icon.pdf {
+  background-color: rgba(255, 0, 0, 0.1); /* Merah transparan */
+  color: red;
+}
+
+.file-icon.excel {
+  background-color: rgba(0, 128, 0, 0.1); /* Hijau transparan */
+  color: green;
+}
+
+.file-icon.image {
+  background-color: rgba(0, 0, 255, 0.1); /* Biru transparan */
+  color: blue;
+}
+
+.file-icon.json {
+  background-color: rgba(255, 165, 0, 0.1); /* Oranye transparan */
+  color: orange;
+}
+
+.file-icon.text {
+  background-color: rgba(128, 128, 128, 0.1); /* Abu-abu transparan */
+  color: gray;
+}
+
+.file-icon.animate {
+  transform: scale(1.2);
+}
+

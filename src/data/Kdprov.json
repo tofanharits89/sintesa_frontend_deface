@@ -1,0 +1,192 @@
+[
+  {
+    "kdprov": "01",
+    "nmprov": "Provinsi Aceh",
+    "kdkanwil": "01"
+  },
+  {
+    "kdprov": "02",
+    "nmprov": "Provinsi Sumatera Utara",
+    "kdkanwil": "02"
+  },
+  {
+    "kdprov": "03",
+    "nmprov": "Provinsi Sumatera Barat",
+    "kdkanwil": "03"
+  },
+  {
+    "kdprov": "04",
+    "nmprov": "Provinsi Riau",
+    "kdkanwil": "04"
+  },
+  {
+    "kdprov": "05",
+    "nmprov": "Provinsi Jambi",
+    "kdkanwil": "05"
+  },
+  {
+    "kdprov": "06",
+    "nmprov": "Provinsi Sumatera Selatan",
+    "kdkanwil": "06"
+  },
+  {
+    "kdprov": "07",
+    "nmprov": "Provinsi Bengkulu",
+    "kdkanwil": "08"
+  },
+  {
+    "kdprov": "08",
+    "nmprov": "Provinsi Lampung",
+    "kdkanwil": "07"
+  },
+  {
+    "kdprov": "09",
+    "nmprov": "Provinsi DKI Jakarta",
+    "kdkanwil": "11"
+  },
+  {
+    "kdprov": "10",
+    "nmprov": "Provinsi Jawa Barat",
+    "kdkanwil": "12"
+  },
+  {
+    "kdprov": "11",
+    "nmprov": "Provinsi Jawa Tengah",
+    "kdkanwil": "13"
+  },
+  {
+    "kdprov": "12",
+    "nmprov": "Provinsi DI Yogyakarta",
+    "kdkanwil": "14"
+  },
+  {
+    "kdprov": "13",
+    "nmprov": "Provinsi Jawa Timur",
+    "kdkanwil": "15"
+  },
+  {
+    "kdprov": "14",
+    "nmprov": "Provinsi Kalimantan Barat",
+    "kdkanwil": "16"
+  },
+  {
+    "kdprov": "15",
+    "nmprov": "Provinsi Kalimantan Tengah",
+    "kdkanwil": "17"
+  },
+  {
+    "kdprov": "16",
+    "nmprov": "Provinsi Kalimantan Selatan",
+    "kdkanwil": "18"
+  },
+  {
+    "kdprov": "17",
+    "nmprov": "Provinsi Kalimantan Timur",
+    "kdkanwil": "19"
+  },
+  {
+    "kdprov": "18",
+    "nmprov": "Provinsi Sulawesi Utara",
+    "kdkanwil": "27"
+  },
+  {
+    "kdprov": "19",
+    "nmprov": "Provinsi Sulawesi Tengah",
+    "kdkanwil": "24"
+  },
+  {
+    "kdprov": "20",
+    "nmprov": "Provinsi Sulawesi Selatan",
+    "kdkanwil": "23"
+  },
+  {
+    "kdprov": "21",
+    "nmprov": "Provinsi Sulawesi Tenggara",
+    "kdkanwil": "25"
+  },
+  {
+    "kdprov": "22",
+    "nmprov": "Provinsi Bali",
+    "kdkanwil": "20"
+  },
+  {
+    "kdprov": "23",
+    "nmprov": "Provinsi Nusa Tenggara Barat",
+    "kdkanwil": "21"
+  },
+  {
+    "kdprov": "24",
+    "nmprov": "Provinsi Nusa Tenggara Timur",
+    "kdkanwil": "22"
+  },
+  {
+    "kdprov": "25",
+    "nmprov": "Provinsi Maluku",
+    "kdkanwil": "29"
+  },
+  {
+    "kdprov": "26",
+    "nmprov": "Provinsi Papua",
+    "kdkanwil": "30"
+  },
+  {
+    "kdprov": "27",
+    "nmprov": "Provinsi Maluku Utara",
+    "kdkanwil": "28"
+  },
+  {
+    "kdprov": "28",
+    "nmprov": "Provinsi Banten",
+    "kdkanwil": "10"
+  },
+  {
+    "kdprov": "29",
+    "nmprov": "Provinsi Bangka Belitung",
+    "kdkanwil": "09"
+  },
+  {
+    "kdprov": "30",
+    "nmprov": "Provinsi Gorontalo",
+    "kdkanwil": "26"
+  },
+  {
+    "kdprov": "31",
+    "nmprov": "Provinsi Kepulauan Riau",
+    "kdkanwil": "31"
+  },
+  {
+    "kdprov": "32",
+    "nmprov": "Provinsi Papua Barat",
+    "kdkanwil": "33"
+  },
+  {
+    "kdprov": "33",
+    "nmprov": "Provinsi Sulawesi Barat",
+    "kdkanwil": "32"
+  },
+  {
+    "kdprov": "34",
+    "nmprov": "Provinsi Kalimantan Utara",
+    "kdkanwil": "34"
+  },
+  {
+    "kdprov": "35",
+    "nmprov": "Provinsi Papua Selatan",
+    "kdkanwil": "30"
+  },
+  {
+    "kdprov": "36",
+    "nmprov": "Provinsi Papua Tengah",
+    "kdkanwil": "30"
+  },
+  {
+    "kdprov": "37",
+    "nmprov": "Provinsi Papua Pegunungan",
+    "kdkanwil": "30"
+  },
+  {
+    "kdprov": "38",
+    "nmprov": "Provinsi Papua Barat Daya",
+    "kdkanwil": "33"
+  }
+]
