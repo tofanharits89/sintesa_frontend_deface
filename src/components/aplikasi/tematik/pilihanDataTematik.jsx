@@ -660,7 +660,7 @@ export const SwitchSdana = ({ jenlap, onChange }) => {
         label="Sumber Dana"
         checked={switchSdana}
         onChange={handleSwitchSdana}
-        // disabled={jenlap === "6"}
+        // disabled={['14'].includes(jenlap)}
       />
     </>
   );

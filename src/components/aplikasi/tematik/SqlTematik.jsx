@@ -1,3 +1,5 @@
+import { es } from "date-fns/locale";
+
 export const getSQLTematik = (queryParams) => {
   const {
     tema,
@@ -112,6 +114,8 @@ export const getSQLTematik = (queryParams) => {
     ikn,
     pangan,
     swasembada,
+    programstrategis,
+    programstrategisradio,
   } = queryParams;
 
   // KONDISI AWAL
@@ -121,6 +125,9 @@ export const getSQLTematik = (queryParams) => {
   let whereConditions = [];
   let groupByClause = "";
   let defaultSelect = ` sum(a.pagu)/${pembulatan} as pagu,sum(a.blokir)/${pembulatan} as blokir `;
+
+  let directJenlapTable = ['14']; // untuk mengatur jenis laporan dengan tabel ter-summary (tanpa join)
+
   // console.log(thang);
   // LIMITASI USER ROLE
 
@@ -134,13 +141,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (deptradio === "2") {
-      kolom.push("b.nmdept");
-      query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.kddept=b.kddept`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("b.nmdept");
+        query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.kddept=b.kddept`;
+      } else {
+        kolom.push("a.nmdept");
+      }
     }
     if (deptradio === "3") {
-      kolom.pop("a.kddept");
-      kolom.push("b.nmdept");
-      query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.kddept=b.kddept`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kddept");
+        kolom.push("b.nmdept");
+        query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.kddept=b.kddept`;
+      } else {
+        kolom.pop("a.nmdept");
+        kolom.push("a.nmdept");
+      }
     }
     if (deptradio === "4") {
       kolom = [];
@@ -185,13 +201,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (unitradio === "2" && kdunit !== "XX") {
-      kolom.push("c.nmunit");
-      query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.kddept=c.kddept and a.kdunit=c.kdunit`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("c.nmunit");
+        query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.kddept=c.kddept and a.kdunit=c.kdunit`;
+      } else {
+        kolom.push("a.nmunit");
+      }
     }
     if (unitradio === "3" && kdunit !== "XX") {
-      kolom.pop("a.kdunit");
-      kolom.push("c.nmunit");
-      query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.kddept=c.kddept and a.kdunit=c.kdunit`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdunit");
+        kolom.push("c.nmunit");
+        query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.kddept=c.kddept and a.kdunit=c.kdunit`;
+      } else {
+        kolom.pop("a.nmunit");
+        kolom.push("a.nmunit");
+      }
     }
 
     const nilaiawalunit = unitkondisi.split(",");
@@ -231,13 +256,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (dekonradio === "2" && dekon !== "XX") {
-      kolom.push("cc.nmdekon");
-      query += ` LEFT JOIN dbref.t_dekon_${thang} cc ON  a.kddekon=cc.kddekon`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("cc.nmdekon");
+        query += ` LEFT JOIN dbref.t_dekon_${thang} cc ON  a.kddekon=cc.kddekon`;
+      } else {
+        kolom.push("a.nmdekon");
+      }
     }
     if (dekonradio === "3" && dekon !== "XX") {
-      kolom.pop("a.kddekon");
-      kolom.push("cc.nmdekon");
-      query += ` LEFT JOIN dbref.t_dekon_${thang} cc ON  a.kddekon=cc.kddekon`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kddekon");
+        kolom.push("cc.nmdekon");
+        query += ` LEFT JOIN dbref.t_dekon_${thang} cc ON  a.kddekon=cc.kddekon`;
+      } else {
+        kolom.pop("a.nmdekon");
+        kolom.push("a.nmdekon");
+      }
     }
 
     const nilaiawaldekon = dekonkondisi.split(",");
@@ -274,13 +308,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (provradio === "2" && prov !== "XX") {
-      kolom.push("e.nmlokasi");
-      query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.kdlokasi=e.kdlokasi`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("e.nmlokasi");
+        query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.kdlokasi=e.kdlokasi`;
+      } else {
+        kolom.push("a.nmlokasi");
+      }
     }
     if (provradio === "3" && prov !== "XX") {
-      kolom.pop("a.kdlokasi");
-      kolom.push("e.nmlokasi");
-      query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.kdlokasi=e.kdlokasi`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdlokasi");
+        kolom.push("e.nmlokasi");
+        query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.kdlokasi=e.kdlokasi`;
+      } else {
+        kolom.pop("a.nmlokasi");
+        kolom.push("a.nmlokasi");
+      }
     }
     if (provradio === "4") {
       kolom = [];
@@ -324,13 +367,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (kabkotaradio === "2" && kabkota !== "XX") {
-      kolom.push("f.nmkabkota");
-      query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.kdlokasi=f.kdlokasi and a.kdkabkota=f.kdkabkota`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("f.nmkabkota");
+        query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.kdlokasi=f.kdlokasi and a.kdkabkota=f.kdkabkota`;
+      } else {
+        kolom.push("a.nmkabkota");
+      }
     }
     if (kabkotaradio === "3" && kabkota !== "XX") {
-      kolom.pop("a.kdkabkota");
-      kolom.push("f.nmkabkota");
-      query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.kdlokasi=f.kdlokasi and a.kdkabkota=f.kdkabkota`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdkabkota");
+        kolom.push("f.nmkabkota");
+        query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.kdlokasi=f.kdlokasi and a.kdkabkota=f.kdkabkota`;
+      } else {  
+        kolom.pop("a.nmkabkota");
+        kolom.push("a.nmkabkota");
+      }
     }
 
     const nilaiawalkdkabkota = kdkabkotakondisi.split(",");
@@ -367,13 +419,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (kanwilradio === "2" && kanwil !== "XX") {
-      kolom.push("g.nmkanwil");
-      query += ` LEFT JOIN dbref.t_kanwil_2014 g ON a.kdkanwil=g.kdkanwil`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("g.nmkanwil");
+        query += ` LEFT JOIN dbref.t_kanwil_2014 g ON a.kdkanwil=g.kdkanwil`;
+      } else {
+        kolom.push("a.nmkanwil");
+      }
     }
     if (kanwilradio === "3" && kanwil !== "XX") {
-      kolom.pop("a.kdkanwil");
-      kolom.push("g.nmkanwil");
-      query += ` LEFT JOIN dbref.t_kanwil_2014 g ON a.kdkanwil=g.kdkanwil`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdkanwil");
+        kolom.push("g.nmkanwil");
+        query += ` LEFT JOIN dbref.t_kanwil_2014 g ON a.kdkanwil=g.kdkanwil`;
+      } else {  
+        kolom.pop("a.nmkanwil");
+        kolom.push("a.nmkanwil");
+      }
     }
     if (kanwilradio === "4") {
       kolom = [];
@@ -416,13 +477,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (kppnradio === "2" && kppn !== "XX") {
-      kolom.push("h.nmkppn");
-      query += ` LEFT JOIN dbref.t_kppn_${thang} h ON a.kdkppn=h.kdkppn`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("h.nmkppn");
+        query += ` LEFT JOIN dbref.t_kppn_${thang} h ON a.kdkppn=h.kdkppn`;
+      } else {
+        kolom.push("a.nmkppn");
+      }
     }
     if (kppnradio === "3" && kppn !== "XX") {
-      kolom.pop("a.kdkppn");
-      kolom.push("h.nmkppn");
-      query += ` LEFT JOIN dbref.t_kppn_${thang} h ON a.kdkppn=h.kdkppn`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdkppn");
+        kolom.push("h.nmkppn");
+        query += ` LEFT JOIN dbref.t_kppn_${thang} h ON a.kdkppn=h.kdkppn`;
+      } else {
+        kolom.pop("a.nmkppn");
+        kolom.push("a.nmkppn");
+      }
     }
     if (kppnradio === "4") {
       kolom = [];
@@ -466,13 +536,19 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (satkerradio === "2" && satker !== "XX") {
-      kolom.push("i.nmsatker");
-      query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.kdsatker=i.kdsatker`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("i.nmsatker");
+        query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.kdsatker=i.kdsatker`;
+      } else {  
+        kolom.push("a.nmsatker");
+      }
     }
     if (satkerradio === "3" && satker !== "XX") {
-      kolom.pop("a.kdsatker");
-      kolom.push("i.nmsatker");
-      query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.kdsatker=i.kdsatker`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdsatker");
+        kolom.push("i.nmsatker");
+        query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.kdsatker=i.kdsatker`;
+      }
     }
     if (satkerradio === "4") {
       kolom = [];
@@ -516,13 +592,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (fungsiradio === "2" && fungsi !== "XX") {
-      kolom.push("j.nmfungsi");
-      query += ` LEFT JOIN dbref.t_fungsi_2014 j ON a.kdfungsi=j.kdfungsi`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("j.nmfungsi");
+        query += ` LEFT JOIN dbref.t_fungsi_2014 j ON a.kdfungsi=j.kdfungsi`;
+      } else {
+        kolom.push("a.nmfungsi");
+      }
     }
     if (fungsiradio === "3" && fungsi !== "XX") {
-      kolom.pop("a.kdfungsi");
-      kolom.push("j.nmfungsi");
-      query += ` LEFT JOIN dbref.t_fungsi_2014 j ON a.kdfungsi=j.kdfungsi`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdfungsi");
+        kolom.push("j.nmfungsi");
+        query += ` LEFT JOIN dbref.t_fungsi_2014 j ON a.kdfungsi=j.kdfungsi`;
+      } else {
+        kolom.pop("a.nmfungsi");
+        kolom.push("a.nmfungsi");
+      }
     }
     if (fungsiradio === "4") {
       kolom = [];
@@ -566,13 +651,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (subfungsiradio === "2" && sfungsi !== "XX") {
-      kolom.push("k.nmsfung");
-      query += ` LEFT JOIN dbref.t_sfung k on a.kdfungsi=k.kdfungsi and a.kdsfung=k.kdsfung`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("k.nmsfung");
+        query += ` LEFT JOIN dbref.t_sfung k on a.kdfungsi=k.kdfungsi and a.kdsfung=k.kdsfung`;
+      } else {
+        kolom.push("a.nmsfung");
+      }
     }
     if (subfungsiradio === "3" && sfungsi !== "XX") {
-      kolom.pop("a.kdsfung");
-      kolom.push("k.nmsfung");
-      query += ` LEFT JOIN dbref.t_sfung k on a.kdfungsi=k.kdfungsi and a.kdsfung=k.kdsfung`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdsfung");
+        kolom.push("k.nmsfung");
+        query += ` LEFT JOIN dbref.t_sfung k on a.kdfungsi=k.kdfungsi and a.kdsfung=k.kdsfung`;
+      } else {
+        kolom.pop("a.nmsfung");
+        kolom.push("a.nmsfung");
+      }
     }
     if (subfungsiradio === "4") {
       kolom = [];
@@ -618,13 +712,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (programradio === "2" && program !== "XX") {
-      kolom.push("l.nmprogram");
-      query += ` LEFT JOIN dbref.t_program_${thang} l on a.kddept = l.kddept and a.kdunit = l.kdunit and a.kdprogram =l.kdprogram`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("l.nmprogram");
+        query += ` LEFT JOIN dbref.t_program_${thang} l on a.kddept = l.kddept and a.kdunit = l.kdunit and a.kdprogram =l.kdprogram`;
+      } else {
+        kolom.push("a.nmprogram");
+      }
     }
     if (programradio === "3" && program !== "XX") {
-      kolom.pop("a.kdprogram");
-      kolom.push("l.nmprogram");
-      query += ` LEFT JOIN dbref.t_program_${thang} l on a.kddept = l.kddept and a.kdunit = l.kdunit and a.kdprogram =l.kdprogram`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdprogram");
+        kolom.push("l.nmprogram");
+        query += ` LEFT JOIN dbref.t_program_${thang} l on a.kddept = l.kddept and a.kdunit = l.kdunit and a.kdprogram =l.kdprogram`;
+      } else {
+        kolom.pop("a.nmprogram");
+        kolom.push("a.nmprogram");
+      }
     }
     if (programradio === "4") {
       kolom = [];
@@ -632,7 +735,7 @@ export const getSQLTematik = (queryParams) => {
     }
     //console.log(program);
     const nilaiawalprogram = programkondisi.split(",");
-    const formatprogram = nilaiawalprogram.map((str) => `'${str}'`);
+    const formatprogram = nilaiawalsubfungsi.map((str) => `'${str}'`);
     const hasilFormatprogram = formatprogram.join(",");
 
     if (opsiprogram === "pilihprogram") {
@@ -668,13 +771,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (kegiatanradio === "2" && giat !== "XX") {
-      kolom.push("m.nmgiat");
-      query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.kdgiat =m.kdgiat`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("m.nmgiat");
+        query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.kdgiat =m.kdgiat`;
+      } else {
+        kolom.push("a.nmgiat");
+      }
     }
     if (kegiatanradio === "3" && giat !== "XX") {
-      kolom.pop("a.kdgiat");
-      kolom.push("m.nmgiat");
-      query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.kdgiat =m.kdgiat`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdgiat");
+        kolom.push("m.nmgiat");
+        query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.kdgiat =m.kdgiat`;
+      } else {
+        kolom.pop("a.nmgiat");
+        kolom.push("a.nmgiat");
+      }
     }
     if (kegiatanradio === "4") {
       kolom = [];
@@ -718,13 +830,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (outputradio === "2" && output !== "XX") {
-      kolom.push("n.nmoutput");
-      query += ` LEFT JOIN dbref.t_output_${thang} n on  a.kdoutput = n.kdoutput and a.kdgiat=n.kdgiat`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("n.nmoutput");
+        query += ` LEFT JOIN dbref.t_output_${thang} n on  a.kdoutput = n.kdoutput and a.kdgiat=n.kdgiat`;
+      } else {
+        kolom.push("a.nmoutput");
+      }
     }
     if (outputradio === "3" && output !== "XX") {
-      kolom.pop("a.kdoutput");
-      kolom.push("n.nmoutput");
-      query += ` LEFT JOIN dbref.t_output_${thang} n on  a.kdoutput = n.kdoutput and a.kdgiat=n.kdgiat`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdoutput");
+        kolom.push("n.nmoutput");
+        query += ` LEFT JOIN dbref.t_output_${thang} n on  a.kdoutput = n.kdoutput and a.kdgiat=n.kdgiat`;
+      } else {
+        kolom.pop("a.nmoutput");
+        kolom.push("a.nmoutput");
+      }
     }
     if (outputradio === "4") {
       kolom = [];
@@ -732,7 +853,7 @@ export const getSQLTematik = (queryParams) => {
     }
     // console.log(opsioutput);
     const nilaiawaloutput = outputkondisi.split(",");
-    const formatoutput = nilaiawaloutput.map((str) => `'${str}'`);
+    const formatoutput = nilaiawalsubfungsi.map((str) => `'${str}'`);
     const hasilFormatoutput = formatoutput.join(",");
 
     if (opsioutput === "pilihoutput") {
@@ -768,13 +889,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (soutputradio === "2" && soutput !== "XX") {
-      kolom.push("aa.ursoutput");
-      query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.kdsatker=aa.kdsatker AND a.kddept=aa.kddept AND a.kdunit=aa.kdunit AND a.kdprogram=aa.kdprogram AND a.kdgiat=aa.kdgiat AND a.kdoutput=aa.kdoutput AND a.kdsoutput=aa.kdsoutput`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("aa.ursoutput");
+        query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.kdsatker=aa.kdsatker AND a.kddept=aa.kddept AND a.kdunit=aa.kdunit AND a.kdprogram=aa.kdprogram AND a.kdgiat=aa.kdgiat AND a.kdoutput=aa.kdoutput AND a.kdsoutput=aa.kdsoutput`;
+      } else {
+        kolom.push("a.ursoutput");
+      }
     }
     if (soutputradio === "3" && soutput !== "XX") {
-      kolom.pop("a.kdsoutput");
-      kolom.push("aa.ursoutput");
-      query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.kdsatker=aa.kdsatker AND a.kddept=aa.kddept AND a.kdunit=aa.kdunit AND a.kdprogram=aa.kdprogram AND a.kdgiat=aa.kdgiat AND a.kdoutput=aa.kdoutput AND a.kdsoutput=aa.kdsoutput`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdsoutput");
+        kolom.push("aa.ursoutput");
+        query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.kdsatker=aa.kdsatker AND a.kddept=aa.kddept AND a.kdunit=aa.kdunit AND a.kdprogram=aa.kdprogram AND a.kdgiat=aa.kdgiat AND a.kdoutput=aa.kdoutput AND a.kdsoutput=aa.kdsoutput`;
+      } else {
+        kolom.pop("a.ursoutput");
+        kolom.push("a.ursoutput");
+      }
     }
     if (soutputradio === "4") {
       kolom = [];
@@ -824,28 +954,55 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (akunradio === "2" && akun === "AKUN") {
-      kolom.push(" p.nmakun");
-      query += ` LEFT JOIN dbref.t_akun_${thang} p on a.kdakun=p.kdakun`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push(" p.nmakun");
+        query += ` LEFT JOIN dbref.t_akun_${thang} p on a.kdakun=p.kdakun`;
+      } else {
+        kolom.push("a.nmakun");
+      }
     } else if (akunradio === "2" && akun === "BKPK") {
-      kolom.push("  o.nmbkpk");
-      query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.kdakun,4)=o.kdbkpk`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("  o.nmbkpk");
+        query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.kdakun,4)=o.kdbkpk`;
+      } else {
+        kolom.push("a.nmbkpk");
+      }
     } else if (akunradio === "2" && akun === "JENBEL") {
-      kolom.push("  q.nmgbkpk");
-      query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.kdakun,2)=q.kdgbkpk`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("  q.nmgbkpk");
+        query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.kdakun,2)=q.kdgbkpk`;
+      } else {
+        kolom.push("a.nmgbkpk");
+      }
     }
 
     if (akunradio === "3" && akun === "AKUN") {
-      kolom.pop("a.kdakun");
-      kolom.push(" p.nmakun");
-      query += ` LEFT JOIN dbref.t_akun_${thang} p on a.kdakun=p.kdakun`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdakun");
+        kolom.push(" p.nmakun");
+        query += ` LEFT JOIN dbref.t_akun_${thang} p on a.kdakun=p.kdakun`;
+      } else {
+        kolom.pop("a.nmakun");
+        kolom.push("a.nmakun");
+      }
     } else if (akunradio === "3" && akun === "BKPK") {
-      kolom.pop("LEFT(a.kdakun,4)");
-      kolom.push("  o.nmbkpk");
-      query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.kdakun,4)=o.kdbkpk`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("LEFT(a.kdakun,4)");
+        kolom.push("  o.nmbkpk");
+        query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.kdakun,4)=o.kdbkpk`;
+      } else {
+        kolom.pop("a.nmbkpk");
+        kolom.push("a.nmbkpk");
+      }
     } else if (akunradio === "3" && akun === "JENBEL") {
-      kolom.pop("LEFT(a.kdakun,2)");
-      kolom.push("  q.nmgbkpk");
-      query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.kdakun,2)=q.kdgbkpk`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("LEFT(a.kdakun,2)");
+        kolom.push("  q.nmgbkpk");
+        query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.kdakun,2)=q.kdgbkpk`;
+      } else {
+        kolom.pop("a.nmgbkpk");
+        kolom.push("a.nmgbkpk");
+      }
     }
     if (akunradio === "4") {
       kolom = [];
@@ -922,13 +1079,22 @@ export const getSQLTematik = (queryParams) => {
     }
 
     if (sdanaradio === "2" && sdana !== "XX") {
-      kolom.push("d.nmsdana2");
-      query += ` LEFT JOIN dbref.t_sdana_${thang} d on  a.kdsdana = d.kdsdana`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.push("d.nmsdana2");
+        query += ` LEFT JOIN dbref.t_sdana_${thang} d on  a.kdsdana = d.kdsdana`;
+      } else {
+        kolom.push("a.nmsdana2");
+      }
     }
     if (sdanaradio === "3" && sdana !== "XX") {
-      kolom.pop("a.kdsdana");
-      kolom.push("d.nmsdana2");
-      query += ` LEFT JOIN dbref.t_sdana_${thang} d on  a.kdsdana = d.kdsdana`;
+      if(!directJenlapTable.includes(jenlap)) {
+        kolom.pop("a.kdsdana");
+        kolom.push("d.nmsdana2");
+        query += ` LEFT JOIN dbref.t_sdana_${thang} d on  a.kdsdana = d.kdsdana`;
+      } else {
+        kolom.pop("a.kdsdana");
+        kolom.push("a.nmsdana2");
+      }
     }
     if (sdanaradio === "4") {
       kolom = [];
@@ -1263,6 +1429,26 @@ export const getSQLTematik = (queryParams) => {
       whereConditions.push(
         swasembada && swasembada === "00" ? ` a.swasembada <> 'NULL'` : ` `
       );
+    } else if (jenlap === "14") {      
+      if (programstrategis !== "XX") {
+        kolom.push(" a.kdprogis");
+        group.push(" a.kdprogis");
+      }
+      if (programstrategisradio === "2") {
+        kolom.push("a.nmprogis");
+      }
+      if (programstrategisradio === "3") {
+        kolom.pop(" a.kdprogis");
+        kolom.push("a.nmprogis");
+      }
+
+      if (programstrategis !== "00") {
+        whereConditions.push(
+          programstrategis && programstrategis !== "00"
+            ? `a.kdprogis = '${programstrategis}'`
+            : ` `
+        );
+      }
     }
 
     // MULAI generate QUERY SQL
@@ -1317,7 +1503,7 @@ export const getSQLTematik = (queryParams) => {
     )}${select} FROM ${from} ${query} ${finalWhereClause}  ${groupByClause}`;
   }
 
-  // PEMANGGIAN FUNGSI SQL SECARA MENYELURUH
+  // PEMANGGILAN FUNGSI SQL SECARA MENYELURUH
 
   let kolom = [];
   let group = [];

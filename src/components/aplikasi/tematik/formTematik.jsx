@@ -60,6 +60,7 @@ import PpRadio from "../../aplikasi/inquiry/radio/ppRadio";
 import PxRadio from "../inquiry/radio/pxRadio";
 import KpRadio from "../../aplikasi/inquiry/radio/KpRadio";
 import MpRadio from "../inquiry/radio/MpRadio";
+import ProgramStrategisRadio from "../inquiry/radio/programStrategisRadio"
 // import pilihanData from "../../aplikasi/rkakl/pilihanDataRkakl";
 // import pilihanData from "./pilihanData";
 import pilihanDataTematik from "./pilihanDataTematik";
@@ -105,6 +106,7 @@ import Prioritas from "./ref_pn_prioritas";
 import KegPrioritas from "./ref_keg_prioritas";
 import ProyekPrioritas from "./ref_px";
 import JenisMP from "../../referensi/JenisMP";
+import JenisProgramStrategis from "../../referensi/JenisProgramStrategis";
 import TemaRadio from "../inquiry/radio/TemaRadio";
 import JenisTEMA from "../../referensi/JenisTEMA";
 import moment from "moment";
@@ -162,6 +164,7 @@ const Tematik = () => {
   const [banper, setBanper] = useState("00");
   const [mbg, setMbg] = useState("00");
   const [swasembada, setSwasembada] = useState("00");
+  const [programstrategis, setProgramStrategis] = useState("00");
 
   const [kddept, setKddept] = useState(true);
   const [unit, setUnit] = useState(false);
@@ -230,6 +233,7 @@ const Tematik = () => {
   const [inflasiradio, setInflasiradio] = useState("1");
   const [stuntingradio, setStuntingradio] = useState("1");
   const [mbgradio, setMbgradio] = useState("1");
+  const [programstrategisradio, setProgramStrategisradio] = useState("1");
 
   const [cekapbd, setCekapbd] = useState(false);
 
@@ -366,6 +370,8 @@ const Tematik = () => {
 
     let from = "monev" + thang + ".a_pagu_real_bkpk_dja_" + thang + " a";
 
+    let from_progis = "monev" + thang + ".smry_program_strategis_" + thang + " a";
+
     let from_stun =
       "monev" + thang + ".a_pagu_real_bkpk_dja_" + thang + "_stunting a";
 
@@ -436,6 +442,11 @@ const Tematik = () => {
         setSelect(pagu + realisasi + blokir);
         setSwasembada("00");
         break;
+      case "14":
+        setFrom(from_progis);
+        setSelect(pagu + realisasi + blokir);
+        setProgramStrategis("00");
+        break;
       default:
     }
   };
@@ -490,6 +501,9 @@ const Tematik = () => {
   };
   const handleMp = (kdmp) => {
     setMp(kdmp);
+  };
+  const handleProgis = (kdprogis) => {
+    setProgramStrategis(kdprogis);
   };
   const handleTema = (kdtema) => {
     setTema(kdtema);
@@ -581,6 +595,9 @@ const Tematik = () => {
   };
   const handleRadioMp = (mpRadio) => {
     setMpradio(mpRadio);
+  };
+  const handleRadioProgis = (progisRadio) => {
+    setProgramStrategisradio(progisRadio);
   };
   const handleRadioTema = (temaRadio) => {
     setTemaradio(temaRadio);
@@ -742,6 +759,8 @@ const Tematik = () => {
       pangan,
       banper,
       swasembada,
+      programstrategis,
+      programstrategisradio,
     };
 
     getSQLTematik(queryParams);
@@ -1753,6 +1772,36 @@ const Tematik = () => {
                   </Card>
                 </Col>
               </Row>{" "} */}
+                  </>
+                )}
+                {jenlap === "14" && (
+                  <>
+                    <Row>
+                      <Col lg={12}>
+                        <Card bg="secondary text-white" className="custom-card">
+                          <Card.Body>
+                            <Row>
+                              <Col xs={2} sm={2} md={2} className="my-2">
+                                <span className="fade-in ">
+                                  {" "}
+                                  Jenis Program Strategis
+                                </span>
+                              </Col>
+
+                              <Col xs={4} sm={4} md={4} className="my-2">
+                                <JenisProgramStrategis value={programstrategis} onChange={handleProgis} />
+                              </Col>
+                              <Col xs={6} sm={6} md={6} className="my-2">
+                                <ProgramStrategisRadio
+                                  progisRadio={handleRadioProgis}
+                                  selectedValue={programstrategisradio}
+                                />
+                              </Col>
+                            </Row>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    </Row>
                   </>
                 )}
                 <Row>
@@ -3006,7 +3055,7 @@ const Tematik = () => {
                               value="pilihakun"
                               checked={opsiakun === "pilihakun"}
                               onChange={handleRadioChangeakun}
-                              // jenlap={jenlap}
+                            // jenlap={jenlap}
                             />
                           </Col>
                           <Col xs={4} sm={4} md={4}>

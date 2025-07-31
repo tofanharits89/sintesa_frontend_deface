@@ -15,6 +15,7 @@ const JenisLaporanTematik = ({ jenlap, onChange }) => {
     { value: "11", label: "Bantuan Pemerintah" },
     { value: "12", label: "Makanan Bergizi Gratis" },
     { value: "13", label: "Swasembada Pangan" },
+    { value: "14", label: "Program Strategis" },
   ];
 
   const [selectedValue, setSelectedValue] = useState("1");

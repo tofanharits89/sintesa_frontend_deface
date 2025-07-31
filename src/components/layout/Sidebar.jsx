@@ -216,6 +216,69 @@ export default function Sidebar({ darkMode }) {
                   ) : null}
                 </ul>
               </li>
+              {role === "X" ? (
+                <>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link collapsed "
+                      data-bs-target="#belwil-nav"
+                      data-bs-toggle="collapse"
+                      to="#"
+                    >
+                      <i className="bi bi-globe"></i>
+
+                      <span>Data Kewilayahan</span>
+
+                      <i className="bi bi-chevron-down ms-auto"></i>
+                    </Link>
+                    <ul
+                      id="belwil-nav"
+                      className="nav-content collapse "
+                      data-bs-parent="#sidebar-nav"
+                    >
+                      {/* <li>
+                        <Link
+                          to="v3/landing/belwil"
+                          onClick={() => handleSubmenuClick("dashboard-belwil")}
+                          className={` ${darkMode ? "text-white" : ""} ${activeSubmenu === "dashboard-belwil" ? "active" : ""
+                            }`}
+                          as={Link}
+                        >
+                          <i className="bi bi-circle"></i>
+                          <span className="submenu">Dashboard Kewilayahan</span>
+                        </Link>
+                      </li> */}
+                      <li>
+                        <Link
+                          as={Link}
+                          to="v3/belwil/update-data/"
+                          onClick={() => handleSubmenuClick("update-belwil")}
+                          className={` ${darkMode ? "text-white" : ""} ${activeSubmenu === "update-belwil" ? "active" : ""
+                            }`}
+                        >
+                          <i className="bi bi-circle"></i>
+                          <span className="submenu"> Belanja Kewilayahan</span>
+                        </Link>
+                      </li>
+                      {role !== "3" && (
+                        <>
+                          <li>
+                            <Link
+                              to="v3/data/form/bansos"
+                              onClick={() => handleSubmenuClick("data-bansos")}
+                              className={`${darkMode ? "text-white" : ""} ${activeSubmenu === "data-bansos" ? "active" : ""
+                                }`}
+                            >
+                              <i className="bi bi-circle"></i>
+                              <span className="submenu">Bansos</span>
+                            </Link>
+                          </li>
+                        </>
+                      )}
+                    </ul>
+                  </li>
+                </>
+              ) : null}
               {username !== "djsef" && (
                 <>
               {role === "X" || role === "0" || role === "1" ? (

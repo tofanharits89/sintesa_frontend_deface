@@ -83,6 +83,7 @@ import TabDashboard from "./components/aplikasi/mbg/TabDashboard";
 import SocketProvider from "./auth/Socket";
 import MyContext from "./auth/Context";
 import LandingLogout from "./components/aplikasi/Landing_logout";
+import BelanjaWilayah from "./components/aplikasi/belanja_kewilayahan/formWilayah";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -170,6 +171,14 @@ export default function App() {
                     </MbgOnlyRoute>
                   }
                   path="v3/data/form/bansos_dash"
+                />
+                <Route
+                  element={
+                    <HanyaAdmin>
+                      <BelanjaWilayah />
+                    </HanyaAdmin>
+                  }
+                  path="v3/belwil/update-data/"
                 />
                 <Route
                   element={
