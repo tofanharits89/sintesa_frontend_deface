@@ -45,7 +45,8 @@ const ThangJenlap = ({ jenlap, onChange }) => {
                 (jenlap === "8" && tahun.value > "2024") ||
                 (jenlap === "10" && tahun.value > "2024") ||
                 (jenlap === "12" && tahun.value < "2025") ||
-                (jenlap === "13" && tahun.value < "2025")
+                (jenlap === "13" && tahun.value < "2025") ||
+                (jenlap === "14" && tahun.value < "2025")
               }
             />
             {tahun.label}
