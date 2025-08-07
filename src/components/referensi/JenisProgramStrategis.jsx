@@ -8,8 +8,10 @@ import Encrypt from "../../auth/Random";
 const JenisProgramStrategis = (props) => {
   const [data, setData] = useState([]);
   const { axiosJWT, token, username } = useContext(MyContext);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchProgramStrategisOptions = async () => {
+      setIsLoading(true);
       try {        
         const query = `SELECT DISTINCT kdprogis, nmprogis FROM dbref.t_progis_2025`;
         const encryptedQuery = Encrypt(query);
@@ -43,19 +45,27 @@ const JenisProgramStrategis = (props) => {
           title: 'Gagal Memuat Regional',
           text: 'Terjadi permasalahan saat mengambil data regional. Silakan coba lagi nanti.'
         });
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchProgramStrategisOptions();
   }, [axiosJWT, token]);
-
-  return (
+  
+  return isLoading ? (
+    <div>
+      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>  
+      Loading...
+    </div>
+  ) : (
     <>
       <select
         value={props.value}
         onChange={(e) => props.onChange(e.target.value)}
-        className="form-select form-select-sm text-select  "
+        className="form-select form-select-sm text-select"
         aria-label=".form-select-sm"
+        disabled={isLoading}
       >
         {data.map((row, index) => (
           <option key={index} value={row.value}>
@@ -64,7 +74,7 @@ const JenisProgramStrategis = (props) => {
         ))}
       </select>
     </>
-  );
+  )
 };
 
 export default JenisProgramStrategis;

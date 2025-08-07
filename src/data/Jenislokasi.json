@@ -1,10 +1,10 @@
 [
     {
-        "jenis_lokasi": "1",
+        "jenis_lokasi": "Supplier",
         "nm_jenis_lokasi": "Supplier"
     },
     {
-        "jenis_lokasi": "2",
+        "jenis_lokasi": "Kegiatan",
         "nm_jenis_lokasi": "Kegiatan"
     }
 ]

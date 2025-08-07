@@ -58,6 +58,8 @@ const HasilQueryBelwil = (props) => {
                 }
             );
 
+            // console.log(response)
+
             setData(response.data.result.filter((item) => item.kddept !== "000"));
             setPages(response.data.totalPages);
             setRows(response.data.totalRows);
@@ -69,6 +71,8 @@ const HasilQueryBelwil = (props) => {
                 (data && data.error) ||
                 "Terjadi Permasalahan Koneksi atau Server Backend"
             );
+
+            console.error("Error fetching data:", error);
 
             setLoading(false);
             setErr(true);
@@ -214,7 +218,7 @@ const HasilQueryBelwil = (props) => {
                                         <tr>
                                             <td
                                                 className="text-end  baris-total"
-                                                colSpan={jumlahKolom - 1}
+                                                colSpan={jumlahKolom}
                                             >
                                                 TOTAL
                                             </td>
