@@ -17,7 +17,8 @@ export default function PenerimaMBGBenchmark() {
   useEffect(() => {
     const fetchRegionalOptions = async () => {
       try {
-        const query = `SELECT DISTINCT rp.regional FROM data_bgn.by_kelompok_detail bkd LEFT JOIN data_bgn.ref_provinsi rp ON bkd.provinsi = rp.wilnama WHERE rp.regional IS NOT NULL ORDER BY rp.regional`;
+        // const query = `SELECT DISTINCT rp.regional FROM data_bgn.by_kelompok_detail bkd LEFT JOIN data_bgn.ref_provinsi rp ON bkd.provinsi = rp.wilnama WHERE rp.regional IS NOT NULL ORDER BY rp.regional`;
+        const query = `SELECT DISTINCT REGIONAL FROM data_bgn.t_yayasan_spasial WHERE REGIONAL IS NOT NULL ORDER BY regional`;
         const encryptedQuery = Encrypt(query);
           const response = await axiosJWT.get(import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
             ? `${import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP}${encodeURIComponent(encryptedQuery)}`
@@ -33,8 +34,8 @@ export default function PenerimaMBGBenchmark() {
           const options = [
             { value: "all", label: "Semua Regional" },
             ...response.data.result.map(item => ({
-              value: item.regional,
-              label: item.regional
+              value: item.REGIONAL,
+              label: item.REGIONAL
             }))
           ];
           setRegionalOptions(options);
@@ -58,9 +59,11 @@ export default function PenerimaMBGBenchmark() {
       try {
         setLoading(true);        let query;
         if (selectedRegional === "all") {
-          query = `SELECT provinsi, SUM(CASE WHEN name = 'Balita' THEN 1 ELSE 0 END) as balita, SUM(CASE WHEN name = 'PAUD' THEN 1 ELSE 0 END) as paud, SUM(CASE WHEN name = 'TK' THEN 1 ELSE 0 END) as tk, SUM(CASE WHEN name = 'SD 1-3' THEN 1 ELSE 0 END) as sd1_3, SUM(CASE WHEN name = 'SD 4-6' THEN 1 ELSE 0 END) as sd4_6, SUM(CASE WHEN name = 'SMP' THEN 1 ELSE 0 END) as smp, SUM(CASE WHEN name = 'SMA' THEN 1 ELSE 0 END) as sma, COUNT(*) as total_kelompok FROM data_bgn.by_kelompok_detail WHERE provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
+          // query = `SELECT provinsi, SUM(CASE WHEN name = 'Balita' THEN 1 ELSE 0 END) as balita, SUM(CASE WHEN name = 'PAUD' THEN 1 ELSE 0 END) as paud, SUM(CASE WHEN name = 'TK' THEN 1 ELSE 0 END) as tk, SUM(CASE WHEN name = 'SD 1-3' THEN 1 ELSE 0 END) as sd1_3, SUM(CASE WHEN name = 'SD 4-6' THEN 1 ELSE 0 END) as sd4_6, SUM(CASE WHEN name = 'SMP' THEN 1 ELSE 0 END) as smp, SUM(CASE WHEN name = 'SMA' THEN 1 ELSE 0 END) as sma, COUNT(*) as total_kelompok FROM data_bgn.by_kelompok_detail WHERE provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
+          query=`SELECT provinsi, SUM(CASE WHEN jenisKelompok = 'Bayi Dibawah Lima Tahun' THEN 1 ELSE 0 END) AS balita, SUM(CASE WHEN jenisKelompok = 'Pendidikan Anak Usia Dini' OR jenisKelompok='Raudhatul Athfal' THEN 1 ELSE 0 END) AS paud, SUM(CASE WHEN jenisKelompok = 'Taman Kanak-Kanak' THEN 1 ELSE 0 END) AS tk, SUM(CASE WHEN jenisKelompok = 'Sekolah Dasar (Kelas 1-3)' OR jenisKelompok='Madrasah Ibtidaiyah (Kelas 1-3)' THEN 1 ELSE 0 END) AS sd1_3, SUM(CASE WHEN jenisKelompok = 'Sekolah Dasar (Kelas 4-6)' OR jenisKelompok='Madrasah Ibtidaiyah (Kelas 4-6)' THEN 1 ELSE 0 END) AS sd4_6, SUM(CASE WHEN jenisKelompok = 'Sekolah Menengah Pertama' OR jenisKelompok = 'Madrasah Tsanawiyah' THEN 1 ELSE 0 END) AS smp, SUM(CASE WHEN jenisKelompok = 'Sekolah Menengah Atas' OR jenisKelompok='Sekolah Menengah Kejuruan' OR jenisKelompok='Madrasah Aliyah' THEN 1 ELSE 0 END) AS sma, COUNT(*) AS total_kelompok FROM data_bgn.by_kelompok_detail WHERE provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
         } else {
-          query = `SELECT provinsi, SUM(CASE WHEN name = 'Balita' THEN 1 ELSE 0 END) as balita, SUM(CASE WHEN name = 'PAUD' THEN 1 ELSE 0 END) as paud, SUM(CASE WHEN name = 'TK' THEN 1 ELSE 0 END) as tk, SUM(CASE WHEN name = 'SD 1-3' THEN 1 ELSE 0 END) as sd1_3, SUM(CASE WHEN name = 'SD 4-6' THEN 1 ELSE 0 END) as sd4_6, SUM(CASE WHEN name = 'SMP' THEN 1 ELSE 0 END) as smp, SUM(CASE WHEN name = 'SMA' THEN 1 ELSE 0 END) as sma, COUNT(*) as total_kelompok FROM data_bgn.by_kelompok_detail WHERE regional = '${selectedRegional}' AND provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
+          // query = `SELECT provinsi, SUM(CASE WHEN name = 'Balita' THEN 1 ELSE 0 END) as balita, SUM(CASE WHEN name = 'PAUD' THEN 1 ELSE 0 END) as paud, SUM(CASE WHEN name = 'TK' THEN 1 ELSE 0 END) as tk, SUM(CASE WHEN name = 'SD 1-3' THEN 1 ELSE 0 END) as sd1_3, SUM(CASE WHEN name = 'SD 4-6' THEN 1 ELSE 0 END) as sd4_6, SUM(CASE WHEN name = 'SMP' THEN 1 ELSE 0 END) as smp, SUM(CASE WHEN name = 'SMA' THEN 1 ELSE 0 END) as sma, COUNT(*) as total_kelompok FROM data_bgn.by_kelompok_detail WHERE regional = '${selectedRegional}' AND provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
+          query = `SELECT bkd.provinsi, SUM(CASE WHEN bkd.jenisKelompok = 'Bayi Dibawah Lima Tahun' THEN 1 ELSE 0 END) AS balita, SUM(CASE WHEN bkd.jenisKelompok = 'Pendidikan Anak Usia Dini' OR bkd.jenisKelompok='Raudhatul Athfal' THEN 1 ELSE 0 END) AS paud, SUM(CASE WHEN bkd.jenisKelompok = 'Taman Kanak-Kanak' THEN 1 ELSE 0 END) AS tk, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Dasar (Kelas 1-3)' OR bkd.jenisKelompok='Madrasah Ibtidaiyah (Kelas 1-3)' THEN 1 ELSE 0 END) AS sd1_3, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Dasar (Kelas 4-6)' OR bkd.jenisKelompok='Madrasah Ibtidaiyah (Kelas 4-6)' THEN 1 ELSE 0 END) AS sd4_6, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Menengah Pertama' OR bkd.jenisKelompok = 'Madrasah Tsanawiyah' THEN 1 ELSE 0 END) AS smp, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Menengah Atas' OR bkd.jenisKelompok='Sekolah Menengah Kejuruan' OR bkd.jenisKelompok='Madrasah Aliyah' THEN 1 ELSE 0 END) AS sma, COUNT(*) AS total_kelompok FROM data_bgn.by_kelompok_detail bkd LEFT JOIN data_bgn.t_yayasan_spasial tys ON bkd.provinsi = tys.NMPROVINSI WHERE tys.REGIONAL = '${selectedRegional}' AND bkd.provinsi IS NOT NULL GROUP BY bkd.provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
         }
         
         const encryptedQuery = Encrypt(query);
@@ -73,7 +76,7 @@ export default function PenerimaMBGBenchmark() {
             },
           });
 
-        // console.log("API Response:", response.data);        
+        console.log("API Response:", response.data);        
         if (response.data && response.data.result) {
           // console.log("Results length:", response.data.result.length);
           // console.log("Raw results:", response.data.result);

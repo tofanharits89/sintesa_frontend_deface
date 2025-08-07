@@ -5,8 +5,6 @@ import Encrypt from "../../../auth/Random";
 import { handleHttpError } from "../notifikasi/toastError";
 import Swal from "sweetalert2";
 
-
-
 export default function PenyerapanMBGBenchmark() {
   const { axiosJWT, token, username } = useContext(MyContext);
   const [chartData, setChartData] = useState([]);
@@ -18,7 +16,8 @@ export default function PenyerapanMBGBenchmark() {
   // Fetch regional options untuk dropdown
   useEffect(() => {
     const fetchRegionalOptions = async () => {
-      try {        const query = `SELECT DISTINCT regional FROM data_bgn.data_spasial_mbg WHERE regional IS NOT NULL ORDER BY regional`;
+      try {        
+        const query = `SELECT DISTINCT REGIONAL FROM data_bgn.t_yayasan_spasial WHERE REGIONAL IS NOT NULL ORDER BY regional`;
         const encryptedQuery = Encrypt(query);
         
         const response = await axiosJWT.get(import.meta.env.VITE_REACT_APP_LOCAL_SPASIAL
@@ -29,13 +28,15 @@ export default function PenyerapanMBGBenchmark() {
               Authorization: `Bearer ${token}`,
             },
           });
+
+          // console.log("Regional options response:", response); // Debug log
         
         if (response.data && response.data.result) {
           const options = [
             { value: "all", label: "Semua Regional" },
             ...response.data.result.map(item => ({
-              value: item.regional,
-              label: item.regional
+              value: item.REGIONAL,
+              label: item.REGIONAL
             }))
           ];
           setRegionalOptions(options);
@@ -60,9 +61,9 @@ export default function PenyerapanMBGBenchmark() {
         setLoading(true);
           let query;
         if (selectedRegional === "all") {
-          query = `SELECT kanwil, total FROM data_bgn.data_spasial_mbg WHERE total IS NOT NULL AND total > 0 ORDER BY total DESC`;
+          query = `SELECT SUM(a.JUMLAH) AS total, b.NMPROVINSI FROM data_bgn.data_penerima_sppg a LEFT JOIN data_bgn.t_yayasan_spasial b ON a.NOREKENING = b.NOREKENING GROUP BY b.REGIONAL, b.NMPROVINSI ORDER BY total DESC`
         } else {
-          query = `SELECT kanwil, total FROM data_bgn.data_spasial_mbg WHERE regional = '${selectedRegional}' AND total IS NOT NULL AND total > 0 ORDER BY total DESC`;
+          query = `SELECT SUM(a.JUMLAH) AS total, b.NMPROVINSI FROM data_bgn.data_penerima_sppg a LEFT JOIN data_bgn.t_yayasan_spasial b ON a.NOREKENING = b.NOREKENING  WHERE b.REGIONAL = '${selectedRegional}' GROUP BY b.REGIONAL, b.NMPROVINSI ORDER BY total DESC`;
         }const encryptedQuery = Encrypt(query);
         
         const response = await axiosJWT.get(import.meta.env.VITE_REACT_APP_LOCAL_SPASIAL
@@ -72,11 +73,13 @@ export default function PenyerapanMBGBenchmark() {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          });        if (response.data && response.data.result) {
+          });        
+          // console.log("Chart data response:", response); // Debug log
+          if (response.data && response.data.result) {
           const formattedData = response.data.result
             .map(item => ({
-              provinsi: shortenProvinceName(item.kanwil), // Label pendek untuk chart
-              provinsiLengkap: item.kanwil, // Nama lengkap untuk tooltip
+              provinsi: shortenProvinceName(item.NMPROVINSI), // Label pendek untuk chart
+              provinsiLengkap: item.NMPROVINSI, // Nama lengkap untuk tooltip
               penyerapan: parseInt(item.total) || 0
             }))
             .sort((a, b) => b.penyerapan - a.penyerapan) // Sort by penyerapan descending
@@ -266,7 +269,8 @@ export default function PenyerapanMBGBenchmark() {
               data={chartData}
               margin={{ top: 10, right: 40, left: 10, bottom: 50 }}
             >
-              <CartesianGrid strokeDasharray="2 2" stroke="#f1f5f9" />              <XAxis 
+              <CartesianGrid strokeDasharray="2 2" stroke="#f1f5f9" />              
+              <XAxis 
                 dataKey="provinsi" 
                 tick={{ fontSize: 10, fill: "#334155" }}
                 axisLine={{ stroke: "#cbd5e1", strokeWidth: 1 }}
