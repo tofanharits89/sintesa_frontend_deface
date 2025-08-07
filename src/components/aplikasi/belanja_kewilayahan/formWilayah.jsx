@@ -2920,7 +2920,7 @@ const BelanjaWilayah = () => {
                                         </Col>
                                         <Col xs={4} sm={4} md={4}>
                                             <span>
-                                                <Kdakun onChange={handleAkun} status={opsiakun} />
+                                                <Kdakun onChange={handleAkun} status={opsiakun} jenis='belwil' />
                                             </span>
                                         </Col>
                                         <Col xs={4} sm={4} md={4}>

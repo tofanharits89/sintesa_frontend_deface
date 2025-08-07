@@ -11,13 +11,17 @@ const Kdakun = (props) => {
           aria-label=".form-select-sm"
           disabled={props.status !== "pilihakun"}
         >
-          {/* {props.jenlap === "1" ? (
+          {props.jenlap === "1" ? (
             <option value="JENBEL">Jenis Belanja</option>
           ) : (
             <>
               {props.jenis === "tematik" ? (
                 <option value="BKPK">Kode BKPK</option>
-              ) : (
+              ) : 
+              props.jenis === "belwil" ? (
+                <option value="AKUN">Kode Akun</option>
+              ) : 
+              (
                 <>
                   <option value="AKUN">Kode Akun</option>
                   <option value="BKPK">Kode BKPK</option>
@@ -25,8 +29,7 @@ const Kdakun = (props) => {
                 </>
               )}
             </>
-          )} */}
-          <option value="AKUN">Kode Akun</option>
+          )}
         </select>
       </div>
     </div>
