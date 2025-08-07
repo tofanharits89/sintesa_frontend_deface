@@ -118,6 +118,7 @@ import { ConvertToExcel } from "../PDF/FormatSelector";
 import ConvertToJSON from "../PDF/JSON";
 import { ConvertToText } from "../PDF/TEXT";
 import SaveUserData from "../PDF/simpanTukangAkses";
+import HasilQueryBelwilBulanan from "./hasilQueryBelwilBulanan";
 // import Blokir from "./jenisBlokir";
 // import BlokirRadio from "../inquiry/radio/blokirRadio";
 
@@ -158,7 +159,7 @@ const BelanjaWilayah = () => {
     const [kdsubkomponen, setkdSubkomponen] = useState(false);
     const [kditem, setkdItem] = useState(false);
     // const [kdregister, setkdRegister] = useState(false);
-    const [jenis_lokasi, setJenis_lokasi] = useState("1");
+    const [jenis_lokasi, setJenis_lokasi] = useState("Supplier");
     const [cutoff, setCutoff] = useState("12");
     const [dept, setDept] = useState("000");
     const [kdunit, setKdunit] = useState("XX");
@@ -273,6 +274,7 @@ const BelanjaWilayah = () => {
         const { akumulatif, selectedValue } = jenlap;
         setAkumulatif(akumulatif);
         setJenlap(selectedValue);
+        console.log("Jenlap:", jenlap);
     };
 
     const handleThang = (thang) => {
@@ -1569,6 +1571,7 @@ const BelanjaWilayah = () => {
     //HANDLE JENIS LOKASI
     const handleJnslokasi = (jenis_lokasi) => {
         setJenis_lokasi(jenis_lokasi);
+        console.log(jenis_lokasi);
     };
     // console.log(jenlap);
 
@@ -3507,7 +3510,7 @@ const BelanjaWilayah = () => {
                     </Card>
                 </section>
             </main>
-            {showModal && (
+            {jenlap == '1' && showModal ? (
                 <HasilQueryBelwil
                     query={sql}
                     thang={thang}
@@ -3516,6 +3519,15 @@ const BelanjaWilayah = () => {
                     showModal={showModal}
                     closeModal={closeModal}
                 />
+            ) : (jenlap == '2' && showModal ? (
+                <HasilQueryBelwilBulanan
+                    queryBulanan={sql}
+                    thang={thang}
+                    id="result"
+                    showModalBulanan={showModal}
+                    closeModalBulanan={closeModal}
+                />
+                ) : (null)
             )}
             {export2 && (
                 <GenerateCSV

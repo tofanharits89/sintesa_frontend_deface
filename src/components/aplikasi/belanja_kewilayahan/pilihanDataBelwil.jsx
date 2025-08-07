@@ -119,6 +119,7 @@ export const SwitchKddekon = ({ onChange }) => {
                 label="Kewenangan"
                 checked={switchDekon}
                 onChange={handleSwitchDekon}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -179,7 +180,7 @@ export const SwitchKanwil = ({ onChange }) => {
                 label="Kanwil"
                 checked={switchKanwil}
                 onChange={handleSwitchKanwil}
-                isDisabled={isUnavailable}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -200,7 +201,7 @@ export const SwitchKppn = ({ onChange }) => {
                 label="KPPN"
                 checked={switchKppn}
                 onChange={handleSwitchKppn}
-                isDisabled={isUnavailable}
+                disabled={isUnavailable}
             />
         </>
     );

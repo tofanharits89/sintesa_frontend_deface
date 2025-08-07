@@ -265,7 +265,7 @@ export default function Sidebar({ darkMode }) {
                           <span className="submenu"> Belanja Kewilayahan</span>
                         </Link>
                       </li>
-                      {role !== "3" && (
+                      {/* {role !== "3" && (
                         <>
                           <li>
                             <Link
@@ -280,7 +280,7 @@ export default function Sidebar({ darkMode }) {
                             </Link>
                           </li>
                         </>
-                      )}
+                      )} */}
                     </ul>
                   </li>
                 </>
