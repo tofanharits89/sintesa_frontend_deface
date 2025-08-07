@@ -9,6 +9,15 @@ import EpaChartTrenBulanan from "../chart/chartTrenBulanan";
 
 const TabTrenJenisBelanja = () => {
   const { dataEpa, kdkanwil, kdkppn } = useContext(MyContext);
+
+  // Debug log untuk cek props yang diterima
+  // console.log("[TabTrenJenisBelanja] Props:", {
+  //   kdkanwil,
+  //   kdkppn,
+  //   "dataEpa.kdkanwil": dataEpa?.kdkanwil,
+  //   "dataEpa.kdkppn": dataEpa?.kdkppn,
+  // });
+
   const periodOptions = [
     "Januari",
     "Pebruari",
@@ -89,8 +98,8 @@ const TabTrenJenisBelanja = () => {
                 thang={dataEpa.year}
                 periode={monthNumber}
                 dept={dataEpa.kddept}
-                kdkanwil={kdkanwil}
-                kdkppn={kdkppn}
+                kdkanwil={dataEpa?.kdkanwil || kdkanwil}
+                kdkppn={dataEpa?.kdkppn || kdkppn}
               />
             </div>
           </motion.div>
@@ -112,8 +121,8 @@ const TabTrenJenisBelanja = () => {
                 thang={dataEpa.year}
                 periode={monthNumber}
                 dept={dataEpa.kddept}
-                kdkanwil={kdkanwil}
-                kdkppn={kdkppn}
+                kdkanwil={dataEpa?.kdkanwil || kdkanwil}
+                kdkppn={dataEpa?.kdkppn || kdkppn}
               />
             </div>
           </motion.div>
@@ -131,8 +140,8 @@ const TabTrenJenisBelanja = () => {
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
             <EpaChartBelanja
-              kdkanwil={kdkanwil}
-              kdkppn={kdkppn}
+              kdkanwil={dataEpa?.kdkanwil || kdkanwil}
+              kdkppn={dataEpa?.kdkppn || kdkppn}
             />
           </motion.div>
         </Col>
@@ -154,8 +163,8 @@ const TabTrenJenisBelanja = () => {
               thang={dataEpa.year}
               periode={monthNumber}
               dept={dataEpa.kddept}
-              kdkanwil={kdkanwil}
-              kdkppn={kdkppn}
+              kdkanwil={dataEpa?.kdkanwil || kdkanwil}
+              kdkppn={dataEpa?.kdkppn || kdkppn}
             />
           </motion.div>
         </Col>

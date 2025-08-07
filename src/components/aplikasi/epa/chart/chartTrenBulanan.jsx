@@ -9,14 +9,31 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 import Encrypt from "../../../../auth/Random";
 import { handleHttpError } from "../../../aplikasi/notifikasi/toastError";
 import { Card, CardBody, Button, Container, Row, Col } from "react-bootstrap";
 import { Loading2 } from "../../../layout/LoadingTable";
 
-const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) => {
+const EpaChartTrenBulanan = ({
+  thang,
+  periode,
+  dept,
+  prov,
+  kdkanwil,
+  kdkppn,
+}) => {
+  // Debug log props yang diterima
+  // console.log("[EpaChartTrenBulanan] Props received:", {
+  //   thang,
+  //   periode,
+  //   dept,
+  //   prov,
+  //   kdkanwil,
+  //   kdkppn,
+  // });
+
   const years = useMemo(
     () => [thang - 4, thang - 3, thang - 2, thang - 1, thang],
     [thang]
@@ -28,14 +45,44 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
   const [selectedYears, setSelectedYears] = useState(years.map(String));
 
   useEffect(() => {
+    // console.log(
+    //   "[EpaChartTrenBulanan] useEffect triggered - fetching data with filters:",
+    //   {
+    //     kdkanwil,
+    //     kdkppn,
+    //     thang,
+    //     periode,
+    //     dept,
+    //     prov,
+    //   }
+    // );
     getData();
   }, [thang, periode, dept, prov, kdkanwil, kdkppn]);
 
   const getData = async () => {
     setLoading(true);
+
+    // Debug log filter values
+    // console.log("[EpaChartTrenBulanan] Filter debug:", {
+    //   kdkanwil: kdkanwil,
+    //   kdkanwil_type: typeof kdkanwil,
+    //   kdkanwil_empty: !kdkanwil || kdkanwil === "00",
+    //   kdkppn: kdkppn,
+    //   kdkppn_type: typeof kdkppn,
+    //   kdkppn_empty: !kdkppn || kdkppn === "000",
+    // });
+
     try {
-      let filterKanwil = kdkanwil && kdkanwil !== "00" ? ` AND a.kdkanwil='${kdkanwil}'` : "";
-      let filterKppn = kdkppn && kdkppn !== "000" ? ` AND a.kdkppn='${kdkppn}'` : "";
+      let filterKanwil =
+        kdkanwil && kdkanwil !== "00" ? ` AND a.kdkanwil='${kdkanwil}'` : "";
+      let filterKppn =
+        kdkppn && kdkppn !== "000" ? ` AND a.kdkppn='${kdkppn}'` : "";
+
+      // console.log("[EpaChartTrenBulanan] Applied filters:", {
+      //   filterKanwil,
+      //   filterKppn,
+      // });
+
       const query = `SELECT a.thang, SUM(pagu) AS pagu, 
         SUM(real1) AS jan, SUM(real1 + real2) AS feb, 
         SUM(real1 + real2 + real3) AS mar, SUM(real1 + real2 + real3 + real4) AS apr, 
@@ -48,8 +95,13 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
         SUM(real1 + real2 + real3 + real4 + real5 + real6 + real7 + real8 + real9 + real10 + real11) AS nov, 
         SUM(real1 + real2 + real3 + real4 + real5 + real6 + real7 + real8 + real9 + real10 + real11 + real12) AS des
         FROM digitalisasi_epa.tren_belanja_jenbel a
-        WHERE a.thang IN (${years.join(", ")}) AND a.kddept='${dept}'${filterKanwil}${filterKppn}
+        WHERE a.thang IN (${years.join(
+          ", "
+        )}) AND a.kddept='${dept}'${filterKanwil}${filterKppn}
         GROUP BY a.thang;`;
+
+      // console.log("[EpaChartTrenBulanan] Generated SQL:", query);
+
       const cleanedQuery = decodeURIComponent(query)
         .replace(/\n/g, " ")
         .replace(/\s+/g, " ")
@@ -57,7 +109,9 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
       const encryptedQuery = Encrypt(cleanedQuery);
 
       const response = await axiosJWT.get(
-        `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA || ""}${encryptedQuery}`,
+        `${
+          import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA || ""
+        }${encryptedQuery}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -65,6 +119,7 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
 
       if (response.data && response.data.result) {
         const result = response.data.result;
+        // console.log("[EpaChartTrenBulanan] API Response result:", result);
         setData(result);
         // Transform ke format [{bulan: 'Jan', 2023: val, 2024: val, ...}, ...]
         const bulanKeys = [
@@ -90,8 +145,15 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
           return obj;
         });
         setChartData(dataPerBulan);
+        //   console.log("[EpaChartTrenBulanan] Chart data set:", dataPerBulan);
+        // } else {
+        //   console.warn(
+        //     "[EpaChartTrenBulanan] No data in API response:",
+        //     response.data
+        //   );
       }
     } catch (error) {
+      console.error("[EpaChartTrenBulanan] API Error:", error);
       const { status, data } = error.response || {};
       handleHttpError(status, data?.error || "Terjadi masalah koneksi");
     } finally {
@@ -99,14 +161,11 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
     }
   };
 
-
   const handleRowClick = (year) => {
     setSelectedYears((prev) =>
       prev.length === 1 && prev[0] === year ? years.map(String) : [year]
     );
   };
-
-
 
   return (
     <Container fluid>
@@ -119,11 +178,20 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
           <Card className="shadow-sm border-secondary">
             <CardBody style={{ height: "300px", overflow: "scroll" }}>
               <ResponsiveContainer width="100%" height={250}>
-                <LineChart data={chartData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+                <LineChart
+                  data={chartData}
+                  margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="bulan" />
-                  <YAxis tickFormatter={(value) => numeral(value).format("0,0.00")} />
-                  <Tooltip formatter={(value) => `${numeral(value).format("0,0.00")} T`} />
+                  <YAxis
+                    tickFormatter={(value) => numeral(value).format("0,0.00")}
+                  />
+                  <Tooltip
+                    formatter={(value) =>
+                      `${numeral(value).format("0,0.00")} T`
+                    }
+                  />
                   <Legend />
                   {years.map((year, idx) =>
                     selectedYears.includes(year.toString()) ? (
@@ -131,7 +199,15 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
                         key={year}
                         type="monotone"
                         dataKey={year}
-                        stroke={["#8884d8", "#82ca9d", "#ff7300", "#0088FE", "#FF0080"][idx % 5]}
+                        stroke={
+                          [
+                            "#8884d8",
+                            "#82ca9d",
+                            "#ff7300",
+                            "#0088FE",
+                            "#FF0080",
+                          ][idx % 5]
+                        }
                         strokeWidth={3}
                         dot={{ r: 2 }}
                         activeDot={{ r: 5 }}
@@ -160,7 +236,20 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
                     <thead className="table-dark">
                       <tr>
                         <th>Tahun</th>
-                        {["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agt","Sep","Okt","Nov","Des"].map((month) => (
+                        {[
+                          "Jan",
+                          "Feb",
+                          "Mar",
+                          "Apr",
+                          "Mei",
+                          "Jun",
+                          "Jul",
+                          "Agt",
+                          "Sep",
+                          "Okt",
+                          "Nov",
+                          "Des",
+                        ].map((month) => (
                           <th key={month}>{month}</th>
                         ))}
                       </tr>
@@ -173,7 +262,20 @@ const EpaChartTrenBulanan = ({ thang, periode, dept, prov, kdkanwil, kdkppn }) =
                           style={{ cursor: "pointer" }}
                         >
                           <td>{item.thang}</td>
-                          {["jan","feb","mar","apr","mei","jun","jul","ags","sep","okt","nov","des"].map((key) => (
+                          {[
+                            "jan",
+                            "feb",
+                            "mar",
+                            "apr",
+                            "mei",
+                            "jun",
+                            "jul",
+                            "ags",
+                            "sep",
+                            "okt",
+                            "nov",
+                            "des",
+                          ].map((key) => (
                             <td key={key}>
                               {numeral(item[key] / 1e12).format("0,0.00")}
                             </td>

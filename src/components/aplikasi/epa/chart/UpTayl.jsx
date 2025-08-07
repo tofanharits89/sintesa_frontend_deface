@@ -22,8 +22,10 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
 
   // Function to get previous year data
   const getPreviousYearData = async () => {
-    let filterKanwil = kdkanwil && kdkanwil !== "00" ? ` AND kdkanwil='${kdkanwil}'` : "";
-    let filterKppn = kdkppn && kdkppn !== "000" ? ` AND kdkppn='${kdkppn}'` : "";
+    let filterKanwil =
+      kdkanwil && kdkanwil !== "00" ? ` AND kdkanwil='${kdkanwil}'` : "";
+    let filterKppn =
+      kdkppn && kdkppn !== "000" ? ` AND kdkppn='${kdkppn}'` : "";
 
     const encodedQuery = encodeURIComponent(
       `SELECT
@@ -32,7 +34,9 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
         SUM(CASE WHEN JENIS = 'UP RM' THEN RUPIAH ELSE 0 END) AS UP_RM,
         SUM(CASE WHEN JENIS = 'GUP RM' THEN RUPIAH ELSE 0 END) AS GUP_RM
       FROM digitalisasi_epa.dash_uptup
-      WHERE thang = ${thang - 1} AND kddept = ${dept}${filterKanwil}${filterKppn}
+      WHERE thang = ${
+        thang - 1
+      } AND kddept = ${dept}${filterKanwil}${filterKppn}
       GROUP BY KDDEPT, THANG
 
       UNION ALL
@@ -43,7 +47,9 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
         SUM(CASE WHEN JENIS = 'TUP RM' THEN RUPIAH ELSE 0 END) AS TUP_RM,
         SUM(CASE WHEN JENIS = 'GTUP RM' THEN RUPIAH ELSE 0 END) AS GTUP_RM
       FROM digitalisasi_epa.dash_uptup
-      WHERE thang = ${thang - 1} AND kddept = ${dept}${filterKanwil}${filterKppn}
+      WHERE thang = ${
+        thang - 1
+      } AND kddept = ${dept}${filterKanwil}${filterKppn}
       GROUP BY KDDEPT, THANG
 
       UNION ALL
@@ -54,7 +60,9 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
         SUM(CASE WHEN JENIS = 'UP PNBP' THEN RUPIAH ELSE 0 END) AS UP_PNBP,
         SUM(CASE WHEN JENIS = 'GUP PNBP' THEN RUPIAH ELSE 0 END) AS GUP_PNBP
       FROM digitalisasi_epa.dash_uptup
-      WHERE thang = ${thang - 1} AND kddept = ${dept}${filterKanwil}${filterKppn}
+      WHERE thang = ${
+        thang - 1
+      } AND kddept = ${dept}${filterKanwil}${filterKppn}
       GROUP BY KDDEPT, THANG
 
       UNION ALL
@@ -65,7 +73,9 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
         SUM(CASE WHEN JENIS = 'TUP PNBP' THEN RUPIAH ELSE 0 END) AS TUP_PNBP,
         SUM(CASE WHEN JENIS = 'GTUP PNBP' THEN RUPIAH ELSE 0 END) AS GTUP_PNBP
       FROM digitalisasi_epa.dash_uptup
-      WHERE thang = ${thang - 1} AND kddept = ${dept}${filterKanwil}${filterKppn}
+      WHERE thang = ${
+        thang - 1
+      } AND kddept = ${dept}${filterKanwil}${filterKppn}
       GROUP BY KDDEPT, THANG
 
       UNION ALL
@@ -76,7 +86,9 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
         abs(SUM(CASE WHEN JENIS = 'GUP TAYL' THEN RUPIAH ELSE 0 END)) AS GUP_TAYL,
         abs(SUM(CASE WHEN JENIS = 'PTUP TAYL' THEN RUPIAH ELSE 0 END)) AS PTUP_TAYL
       FROM digitalisasi_epa.dash_uptup
-      WHERE thang = ${thang - 1} AND kddept = ${dept}${filterKanwil}${filterKppn}
+      WHERE thang = ${
+        thang - 1
+      } AND kddept = ${dept}${filterKanwil}${filterKppn}
       GROUP BY KDDEPT, THANG`
     );
 
@@ -132,7 +144,10 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
 
       const previousTotal = previousFormattedData
         .filter((item) => !item.jenis.includes("TAYL"))
-        .reduce((total, item) => total + item.spmPembayaran + item.spmPenihilan, 0);
+        .reduce(
+          (total, item) => total + item.spmPembayaran + item.spmPenihilan,
+          0
+        );
 
       setPreviousYearTotal(previousTotal);
       return previousTotal;
@@ -150,8 +165,10 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
       const previousTotal = await getPreviousYearData();
 
       // Get current year data
-      let filterKanwil = kdkanwil && kdkanwil !== "00" ? ` AND kdkanwil='${kdkanwil}'` : "";
-      let filterKppn = kdkppn && kdkppn !== "000" ? ` AND kdkppn='${kdkppn}'` : "";
+      let filterKanwil =
+        kdkanwil && kdkanwil !== "00" ? ` AND kdkanwil='${kdkanwil}'` : "";
+      let filterKppn =
+        kdkppn && kdkppn !== "000" ? ` AND kdkppn='${kdkppn}'` : "";
 
       const encodedQuery = encodeURIComponent(
         `SELECT
@@ -262,14 +279,16 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
 
       const currentTotal = currentFormattedData
         .filter((item) => !item.jenis.includes("TAYL"))
-        .reduce((total, item) => total + item.spmPembayaran + item.spmPenihilan, 0);
+        .reduce(
+          (total, item) => total + item.spmPembayaran + item.spmPenihilan,
+          0
+        );
 
       setCurrentYearTotal(currentTotal);
 
       // Calculate real growth percentage
       const growth = calculateGrowthPercentage(currentTotal, previousTotal);
       setGrowthPercentage(growth);
-
     } catch (error) {
       const { status, data } = error.response || {};
       handleHttpError(
@@ -283,15 +302,16 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
   };
 
   useEffect(() => {
-    console.log("UpTayl - useEffect triggered with:", {
-      thang,
-      dept,
-      kdkanwil,
-      kdkppn,
-      dataEpaTab: dataEpa?.tab
-    });
+    // console.log("UpTayl - useEffect triggered with:", {
+    //   thang,
+    //   dept,
+    //   kdkanwil,
+    //   kdkppn,
+    //   dataEpaTab: dataEpa?.tab
+    // });
 
-    if (dataEpa?.tab === 3) { // Pastikan hanya fetch data ketika tab UP TAYL aktif
+    if (dataEpa?.tab === 3) {
+      // Pastikan hanya fetch data ketika tab UP TAYL aktif
       getData();
     }
   }, [dataEpa, thang, dept, kdkanwil, kdkppn]);
@@ -331,33 +351,39 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
   // Growth indicator component with detailed comparison
   const GrowthIndicator = ({ percentage, currentTotal, previousTotal }) => {
     const isPositive = percentage >= 0;
-    const color = isPositive ? '#28a745' : '#dc3545';
-    const icon = isPositive ? '↗' : '↘';
+    const color = isPositive ? "#28a745" : "#dc3545";
+    const icon = isPositive ? "↗" : "↘";
 
     return (
-      <div style={{ textAlign: 'right' }}>
+      <div style={{ textAlign: "right" }}>
         <div
           style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            backgroundColor: isPositive ? '#d4edda' : '#f8d7da',
+            display: "inline-flex",
+            alignItems: "center",
+            backgroundColor: isPositive ? "#d4edda" : "#f8d7da",
             color: color,
-            padding: '8px 12px',
-            borderRadius: '20px',
-            fontSize: '14px',
-            fontWeight: 'bold',
-            border: `1px solid ${isPositive ? '#c3e6cb' : '#f5c6cb'}`,
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-            marginBottom: '8px'
+            padding: "8px 12px",
+            borderRadius: "20px",
+            fontSize: "14px",
+            fontWeight: "bold",
+            border: `1px solid ${isPositive ? "#c3e6cb" : "#f5c6cb"}`,
+            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+            marginBottom: "8px",
           }}
         >
-          <span style={{ marginRight: '4px', fontSize: '16px' }}>{icon}</span>
-          {isPositive ? '+' : ''}{percentage}%
+          <span style={{ marginRight: "4px", fontSize: "16px" }}>{icon}</span>
+          {isPositive ? "+" : ""}
+          {percentage}%
         </div>
 
-        <div style={{ fontSize: '12px', color: '#6c757d', lineHeight: '1.3' }}>
-          <div><strong>Total Outstanding:</strong> {currentTotal.toLocaleString('id-ID')}</div>
-          <div><strong>Periode:</strong> Tahun {thang}</div>
+        <div style={{ fontSize: "12px", color: "#6c757d", lineHeight: "1.3" }}>
+          <div>
+            <strong>Total Outstanding:</strong>{" "}
+            {currentTotal.toLocaleString("id-ID")}
+          </div>
+          <div>
+            <strong>Periode:</strong> Tahun {thang}
+          </div>
         </div>
       </div>
     );
@@ -368,7 +394,7 @@ const EpaUpTayl = ({ thang, dept, kdkanwil, kdkppn }) => {
       {/* Header Section with Growth Indicator */}
       <div
         className="d-flex justify-content-between align-items-center my-3"
-        style={{ minHeight: '80px' }}
+        style={{ minHeight: "80px" }}
       >
         <h5 className="mb-0">Outstanding UP TAYL {thang} (dalam rupiah)</h5>
         <GrowthIndicator

@@ -40,15 +40,22 @@ const Deviasi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
             ${sumRealTw} AS jumlah_sd_tw,
             SUM(${proyeksiTw}) AS proyeksi_tw
           FROM digitalisasi_epa.rencana_halaman3_dipa
-          WHERE thang = '${thang}' AND kddept = '${dept}'
-          GROUP BY nmjnsbelanja, jnsbelanja
-        `;
+          WHERE thang = '${thang}' AND kddept = '${dept}'`;
+
+        // Tambahkan filter jika kdkanwil/kdkppn ada dan bukan nilai "semua"
+        if (kdkanwil && kdkanwil !== "00")
+          sqlQuery += ` AND kdkanwil = '${kdkanwil}'`;
+        if (kdkppn && kdkppn !== "000") sqlQuery += ` AND kdkppn = '${kdkppn}'`;
+
+        sqlQuery += ` GROUP BY nmjnsbelanja, jnsbelanja`;
 
         sqlQuery = sqlQuery.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
         setQueryDebug(sqlQuery);
 
         const response = await axiosJWT.get(
-          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(sqlQuery)}`,
+          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(
+            sqlQuery
+          )}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -94,13 +101,13 @@ const Deviasi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
       </div>
 
       <div className="d-flex justify-content-end p-2 mt-2">
-        <Button
+        {/* <Button
           variant="secondary"
           size="sm"
           onClick={() => setShowModal(true)}
         >
           SQL
-        </Button>
+        </Button> */}
       </div>
       {loading ? (
         <div className="d-flex justify-content-center align-items-center h-100">

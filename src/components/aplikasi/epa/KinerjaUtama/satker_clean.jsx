@@ -17,52 +17,13 @@ const TABLE_CONFIG = {
   ANIMATION_DURATION: 0.6,
 };
 
-const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
-  // console.log("Eselon1New received data:", data);
-
-  // Hitung total sum dan persentase
-  const totalPagu2024 = data.reduce(
-    (sum, item) => sum + (Number(item.pagu2024) || 0),
-    0
-  );
-  const totalReal2024 = data.reduce(
-    (sum, item) => sum + (Number(item.real2024) || 0),
-    0
-  );
-  const totalPagu2025 = data.reduce(
-    (sum, item) => sum + (Number(item.pagu2025) || 0),
-    0
-  );
-  const totalReal2025 = data.reduce(
-    (sum, item) => sum + (Number(item.real2025) || 0),
-    0
-  );
-  const totalBlokir = data.reduce(
-    (sum, item) => sum + (Number(item.blokir) || 0),
-    0
-  );
-  const totalGrowth = data.reduce(
-    (sum, item) => sum + (Number(item.growth_yoy) || 0),
-    0
-  );
-  // Persentase
-  const persen2024 =
-    totalPagu2024 > 0
-      ? ((totalReal2024 / totalPagu2024) * 100).toFixed(2)
-      : "0.00";
-  const persen2025 =
-    totalPagu2025 > 0
-      ? ((totalReal2025 / totalPagu2025) * 100).toFixed(2)
-      : "0.00";
-  const avgGrowth =
-    data.length > 0 ? (totalGrowth / data.length).toFixed(2) : "0.00";
-
+const SatkerNew = ({ periode, kdkanwil, kdkppn }) => {
   return (
     <Container fluid>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h4 className="mb-1">Kinerja Eselon I</h4>
-          {/* <p className="text-muted mb-0">10 Satker Pagu Terbesar</p> */}
+          <h4 className="mb-1">Kinerja Satker Utama</h4>
+          <p className="text-muted mb-0">Template Tabel Satker</p>
         </div>
       </div>
 
@@ -89,13 +50,13 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
                     rowSpan="2"
                     style={{ width: "10%", verticalAlign: "middle" }}
                   >
-                    KD_UNIT
+                    KD_SATKER
                   </th>
                   <th
                     rowSpan="2"
                     style={{ width: "20%", verticalAlign: "middle" }}
                   >
-                    NM_UNIT
+                    NM_SATKER
                   </th>
                   <th
                     colSpan="3"
@@ -121,7 +82,7 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
                     rowSpan="2"
                     style={{ width: "10%", verticalAlign: "middle" }}
                   >
-                    Growth (yoy)
+                    GROWTH (yoy)
                   </th>
                   <th
                     rowSpan="2"
@@ -140,70 +101,38 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
                 </tr>
               </thead>
               <tbody>
-                {data && data.length > 0 ? (
-                  data.map((item, index) => (
-                    <tr key={item.KDUNIT || index}>
-                      <td className="text-center">{index + 1}</td>
-                      <td className="text-start">
-                        <div>
-                          <div className="fw-bold">{item.NMUNIT}</div>
-                          <small className="text-muted">
-                            Kode: {item.KDUNIT}
-                          </small>
-                        </div>
-                      </td>
-                      <td className="text-end">{item.pagu2024}</td>
-                      <td className="text-end">{item.real2024}</td>
-                      <td className="text-center">{item.persen2024}%</td>
-                      <td className="text-end">{item.pagu2025}</td>
-                      <td className="text-end">{item.real2025}</td>
-                      <td className="text-center">{item.persen2025}%</td>
-                      <td className="text-end">{item.blokir}</td>
-                      <td className="text-center">{item.growth_yoy}%</td>
-                      <td className="text-center">
-                        <Badge bg="secondary" className="rounded-pill">
-                          {item.keterangan || "-"}
-                        </Badge>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="11" className="text-center py-4">
-                      <div className="text-muted">
-                        <i className="bi bi-inbox fs-1 d-block mb-2"></i>
-                        <p className="mb-0">Tidak ada data atau data error</p>
-                      </div>
-                    </td>
-                  </tr>
-                )}
+                <tr>
+                  <td colSpan="11" className="text-center py-4">
+                    <div className="text-muted">
+                      <i className="bi bi-inbox fs-1 d-block mb-2"></i>
+                      <p className="mb-0">Tidak ada data atau data error</p>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
               <tfoot className="table-secondary">
                 <tr className="fw-bold">
                   <td colSpan="2" className="text-center">
                     <strong>TOTAL</strong>
                   </td>
-                  <td className="text-end">{totalPagu2024.toLocaleString()}</td>
-                  <td className="text-end">{totalReal2024.toLocaleString()}</td>
+                  <td className="text-end">0</td>
+                  <td className="text-end">0</td>
                   <td className="text-center">
                     <Badge bg="secondary" className="fs-6">
-                      {persen2024}%
+                      0.00%
                     </Badge>
                   </td>
-                  <td className="text-end">{totalPagu2025.toLocaleString()}</td>
-                  <td className="text-end">{totalReal2025.toLocaleString()}</td>
+                  <td className="text-end">0</td>
+                  <td className="text-end">0</td>
                   <td className="text-center">
                     <Badge bg="secondary" className="fs-6">
-                      {persen2025}%
+                      0.00%
                     </Badge>
                   </td>
-                  <td className="text-end">{totalBlokir.toLocaleString()}</td>
+                  <td className="text-end">0</td>
                   <td className="text-center">
-                    <Badge
-                      bg={Number(avgGrowth) >= 0 ? "success" : "danger"}
-                      className="fs-6 text-white"
-                    >
-                      {avgGrowth}%
+                    <Badge bg="secondary" className="fs-6">
+                      0.00%
                     </Badge>
                   </td>
                   <td className="text-center">-</td>
@@ -215,7 +144,7 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
       </Card>
 
       {/* Info tambahan */}
-      {/* <Row className="mt-3">
+      <Row className="mt-3">
         <Col md={3}>
           <Card className="text-center border-primary">
             <CardBody>
@@ -248,9 +177,9 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
             </CardBody>
           </Card>
         </Col>
-      </Row> */}
+      </Row>
     </Container>
   );
 };
 
-export default Eselon1New;
+export default SatkerNew;

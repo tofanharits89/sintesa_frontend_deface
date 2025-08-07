@@ -79,8 +79,8 @@ const Developer = () => {
                     <p>
                       Untuk petunjuk akses data API, silahkan hubungi LO Sintesa{" "}
                       <br />
-                      Restu Alam Siagian (+62 852-3074-6829)/ atau dengan
-                      mengajukan surat resmi kedinasan kepada kami
+                      Bayu Yudistira (+62 853-1893-9744)/ atau dengan mengajukan
+                      surat resmi kedinasan kepada kami
                       <br />
                       <br />
                       Salam

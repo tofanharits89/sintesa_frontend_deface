@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Card, Row, Col } from "react-bootstrap";
 
 import MyContext from "../../../../auth/Context";
-import EpaKinerjaUtama from "../chart/KinerjaUtamaTabel";
+// import EpaKinerjaUtama from "../chart/KinerjaUtamaTabel";
+import EpaKinerjaUtama_new from "../chart/KinerjaUtamaTabel_new";
 
 const TabKinerjaUtama = () => {
   const { kdkanwil, kdkppn, dataEpa } = useContext(MyContext);
@@ -26,6 +27,15 @@ const TabKinerjaUtama = () => {
     monthIndex !== -1 ? String(monthIndex + 1).padStart(2, "0") : "00";
   // console.log(dataEpa);
 
+  // Debug: tampilkan props yang dikirim ke EpaKinerjaUtama_new
+  // console.log("TabKinerjaUtama props:", {
+  //   thang: dataEpa.year,
+  //   periode: monthNumber,
+  //   dept: dataEpa.kddept,
+  //   kdkanwil,
+  //   kdkppn,
+  // });
+
   return (
     <div>
       {/* <h2 style={{ fontSize: "20px", marginBottom: "30px" }} className="p-0">
@@ -34,7 +44,7 @@ const TabKinerjaUtama = () => {
 
       <Row>
         <Col xs={12}>
-          <EpaKinerjaUtama
+          <EpaKinerjaUtama_new
             thang={dataEpa.year}
             periode={monthNumber}
             dept={dataEpa.kddept}
