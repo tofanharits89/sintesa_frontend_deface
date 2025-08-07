@@ -232,7 +232,9 @@ export default function App() {
                 <Route
                   element={
                     <HanyaAdmin>
-                      <BelanjaWilayah />
+                      <HanyaPusat>
+                        <BelanjaWilayah />
+                      </HanyaPusat>
                     </HanyaAdmin>
                   }
                   path="v3/belwil/update-data/"
