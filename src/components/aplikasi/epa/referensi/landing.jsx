@@ -22,6 +22,17 @@ import TabTargetCapaian from "../tabcontent/TabTargetCapaian";
 
 function EpaTabs({ toggleMode, darkMode, onChange }) {
   const { dataEpa, role, kdkanwil, kdkppn } = useContext(MyContext) || {};
+  console.log(
+    "EPA TABS - Role:",
+    role,
+    "kdkanwil:",
+    kdkanwil,
+    "kdkppn:",
+    kdkppn,
+    "dataEpa:",
+    dataEpa
+  );
+
   const [activeTab, setActiveTab] = useState(0);
   const {
     year = "",
