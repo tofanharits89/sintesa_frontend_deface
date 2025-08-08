@@ -611,11 +611,9 @@ export default function App() {
                   path="/v3/epa/landing"
                   element={
                     <MbgOnlyRoute>
-                      <HanyaAdmin>
-                        <HanyaPusat>
-                          <EpaTabs darkMode={darkMode} />
-                        </HanyaPusat>
-                      </HanyaAdmin>
+                      <SelainKppn>
+                        <EpaTabs darkMode={darkMode} />
+                      </SelainKppn>
                     </MbgOnlyRoute>
                   }
                 />
