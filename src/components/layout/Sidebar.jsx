@@ -220,7 +220,7 @@ export default function Sidebar({ darkMode }) {
                   ) : null}
                 </ul>
               </li>
-              {role === "X" || role === "0" || role === "1" || role === "2" ? (
+              {role === "X" || role === "0" || role === "1" ? (
                 <>
                   <li className="nav-item">
                     <Link
@@ -333,10 +333,7 @@ export default function Sidebar({ darkMode }) {
                       </li>
                     </>
                   ) : null}
-                  {role === "X" ||
-                  role === "0" ||
-                  role === "1" ||
-                  role === "2" ? (
+                  {role === "X" || role === "0" || role === "1" ? (
                     <>
                       <li className="nav-item">
                         <Link

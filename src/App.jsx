@@ -231,11 +231,13 @@ export default function App() {
                 />
                 <Route
                   element={
-                    <HanyaAdmin>
-                      <HanyaPusat>
-                        <BelanjaWilayah />
-                      </HanyaPusat>
-                    </HanyaAdmin>
+                    <MbgOnlyRoute>
+                      <HanyaAdmin>
+                        <HanyaPusat>
+                          <BelanjaWilayah />
+                        </HanyaPusat>
+                      </HanyaAdmin>
+                    </MbgOnlyRoute>
                   }
                   path="v3/belwil/update-data/"
                 />
@@ -611,9 +613,9 @@ export default function App() {
                   path="/v3/epa/landing"
                   element={
                     <MbgOnlyRoute>
-                      <SelainKppn>
+                      <HanyaPusat>
                         <EpaTabs darkMode={darkMode} />
-                      </SelainKppn>
+                      </HanyaPusat>
                     </MbgOnlyRoute>
                   }
                 />
@@ -621,9 +623,9 @@ export default function App() {
                   path="/v3/epa/detail"
                   element={
                     <MbgOnlyRoute>
-                      <SelainKppn>
+                      <HanyaPusat>
                         <LandingAnalisa darkMode={darkMode} />
-                      </SelainKppn>
+                      </HanyaPusat>
                     </MbgOnlyRoute>
                   }
                 />
