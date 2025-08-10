@@ -67,7 +67,7 @@ const BenchmarkDashboard = () => {
                 )}
                 {/* Switch isi Card berdasarkan id */}{" "}
                 {id === 1 ? (
-                  <PenyerapanMBGBenchmark-Provinsi />
+                  <PenyerapanMBGBenchmark />
                 ) : id === 2 ? (
                   <PenerimaMBGBenchmark />
                 ) : id === 3 ? (
