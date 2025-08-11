@@ -352,13 +352,24 @@
   {
     "kddept": "015",
     "kdunit": "12",
-    "nmunit": "Badan Kebijakan Fiskal"
+    "nmunit": "Direktorat Jenderal Strategi Ekonomi dan Fiskal"
   },
   {
     "kddept": "015",
     "kdunit": "13",
     "nmunit": "Lembaga National Single Window"
   },
+  {
+    "kddept": "015",
+    "kdunit": "14",
+    "nmunit": "Direktorat Jenderal Stabilitas dan Pengembangan Sektor Keuangan"
+  },
+  {
+    "kddept": "015",
+    "kdunit": "15",
+    "nmunit": "Badan Teknologi, Informasi, dan Intelejen Keuangan"
+  },
+
   {
     "kddept": "018",
     "kdunit": "01",
