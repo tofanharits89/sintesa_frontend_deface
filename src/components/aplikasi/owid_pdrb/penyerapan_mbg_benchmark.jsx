@@ -20,6 +20,7 @@ import { FiDownload } from "react-icons/fi";
 export default function PenyerapanMBGBenchmark() {
   const { axiosJWT, token, username } = useContext(MyContext);
   const [chartData, setChartData] = useState([]);
+  const [allChartData, setAllChartData] = useState([]); // Tambahkan state baru
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedRegional, setSelectedRegional] = useState("all");
@@ -97,16 +98,13 @@ export default function PenyerapanMBGBenchmark() {
         );
         // console.log("Chart data response:", response); // Debug log
         if (response.data && response.data.result) {
-          const formattedData = response.data.result
-            .map((item) => ({
-              provinsi: shortenProvinceName(item.NMPROVINSI), // Label pendek untuk chart
-              provinsiLengkap: item.NMPROVINSI, // Nama lengkap untuk tooltip
-              penyerapan: parseInt(item.total) || 0,
-            }))
-            .sort((a, b) => b.penyerapan - a.penyerapan) // Sort by penyerapan descending
-            .slice(0, 10); // Limit to top 10 on frontend
-          // console.log("Chart data:", formattedData); // Debug log
-          setChartData(formattedData);
+          const formattedData = response.data.result.map((item) => ({
+            provinsi: shortenProvinceName(item.NMPROVINSI), // Label pendek untuk chart
+            provinsiLengkap: item.NMPROVINSI, // Nama lengkap untuk tooltip
+            penyerapan: parseInt(item.total) || 0,
+          }));
+          setAllChartData(formattedData); // simpan semua data
+          setChartData(formattedData.slice(0, 10)); // tetap tampilkan top 10
         } else {
           setChartData([]);
         }
@@ -284,7 +282,7 @@ export default function PenyerapanMBGBenchmark() {
         </select>
         <button
           onClick={() => {
-            const exportData = chartData.map((item) => ({
+            const exportData = allChartData.map((item) => ({
               Provinsi: item.provinsiLengkap,
               Penyerapan: item.penyerapan,
             }));
