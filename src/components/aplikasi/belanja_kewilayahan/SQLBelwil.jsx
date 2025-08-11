@@ -139,18 +139,18 @@ export const getSQL = (queryParams) => {
         // FUNGSI DEPT
 
         if (dept !== "XXX") {
-            kolom.push("a.kddept");
-            group.push("a.kddept");
+            kolom.push("a.KDDEPT");
+            group.push("a.KDDEPT");
         }
 
         if (deptradio === "2") {
-            kolom.push("a.nmdept");
-            // query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.kddept=b.kddept`;
+            kolom.push("a.DESC_DEPT");
+            // query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.KDDEPT=b.kddept`;
         }
         if (deptradio === "3") {
-            kolom.pop("a.kddept");
-            kolom.push("a.nmdept");
-            // query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.kddept=b.kddept`;
+            kolom.pop("a.KDDEPT");
+            kolom.push("a.DESC_DEPT");
+            // query += ` LEFT JOIN dbref.t_dept_${thang} b ON a.KDDEPT=b.kddept`;
         }
         if (deptradio === "4") {
             kolom = [];
@@ -165,13 +165,13 @@ export const getSQL = (queryParams) => {
         if (opsidept === "pilihdept") {
             if (dept !== "XXX") {
                 whereConditions.push(
-                    dept && dept !== "000" ? `a.kddept = '${dept}'` : ``
+                    dept && dept !== "000" ? `a.KDDEPT = '${dept}'` : ``
                 );
             }
         } else if (opsidept === "kondisidept") {
             if (deptkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kddept NOT IN (${hasilFormat
+                    `  a.KDDEPT NOT IN (${hasilFormat
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -179,29 +179,29 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    dept !== "XXX" ? ` a.kddept IN (${hasilFormat})` : ""
+                    dept !== "XXX" ? ` a.KDDEPT IN (${hasilFormat})` : ""
                 );
             }
         } else if (opsidept === "katadept") {
             opsikatadept &&
-                whereConditions.push(` a.nmdept like '%${opsikatadept}%'`);
+                whereConditions.push(` a.DESC_DEPT like '%${opsikatadept}%'`);
         }
 
         // FUNGSI KDUNIT
 
         if (kdunit !== "XX") {
-            kolom.push("a.kdunit");
-            group.push("a.kdunit");
+            kolom.push("a.KDUNIT");
+            group.push("a.KDUNIT");
         }
 
         if (unitradio === "2" && kdunit !== "XX") {
-            kolom.push("a.nmunit");
-            // query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.kddept=c.kddept and a.kdunit=c.kdunit`;
+            kolom.push("a.DESC_UNIT");
+            // query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.KDDEPT=c.kddept and a.KDUNIT=c.kdunit`;
         }
         if (unitradio === "3" && kdunit !== "XX") {
-            kolom.pop("a.kdunit");
-            kolom.push("a.nmunit");
-            // query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.kddept=c.kddept and a.kdunit=c.kdunit`;
+            kolom.pop("a.KDUNIT");
+            kolom.push("a.DESC_UNIT");
+            // query += ` LEFT JOIN dbref.t_unit_${thang} c ON a.KDDEPT=c.kddept and a.KDUNIT=c.kdunit`;
         }
 
         const nilaiawalunit = unitkondisi.split(",");
@@ -211,13 +211,13 @@ export const getSQL = (queryParams) => {
         if (opsiunit === "pilihunit") {
             if (kdunit !== "XX") {
                 whereConditions.push(
-                    kdunit && kdunit !== "00" ? `a.kdunit = '${kdunit}'` : ``
+                    kdunit && kdunit !== "00" ? `a.KDUNIT = '${kdunit}'` : ``
                 );
             }
         } else if (opsiunit === "kondisiunit") {
             if (unitkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdunit NOT IN (${hasilFormatunit
+                    `  a.KDUNIT NOT IN (${hasilFormatunit
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -225,12 +225,12 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    kdunit !== "XX" ? ` a.kdunit IN (${hasilFormatunit})` : ""
+                    kdunit !== "XX" ? ` a.KDUNIT IN (${hasilFormatunit})` : ""
                 );
             }
         } else if (opsiunit === "kataunit") {
             opsikataunit &&
-                whereConditions.push(` a.nmunit like '%${opsikataunit}%'`);
+                whereConditions.push(` a.DESC_UNIT like '%${opsikataunit}%'`);
         }
 
         // FUNGSI DEKON
@@ -279,18 +279,18 @@ export const getSQL = (queryParams) => {
         // FUNGSI PROVINSI
 
         if (prov !== "XX") {
-            kolom.push("a.kdlokasi");
-            group.push("a.kdlokasi");
+            kolom.push("a.KODE_LOKUS_PROVINSI");
+            group.push("a.KODE_LOKUS_PROVINSI");
         }
 
         if (provradio === "2" && prov !== "XX") {
-            kolom.push("a.nmlokasi");
-            // query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.kdlokasi=e.kdlokasi`;
+            kolom.push("a.LOKUS_PROVINSI");
+            // query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.KODE_LOKUS_PROVINSI=e.kdlokasi`;
         }
         if (provradio === "3" && prov !== "XX") {
-            kolom.pop("a.kdlokasi");
-            kolom.push("a.nmlokasi");
-            // query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.kdlokasi=e.kdlokasi`;
+            kolom.pop("a.KODE_LOKUS_PROVINSI");
+            kolom.push("a.LOKUS_PROVINSI");
+            // query += ` LEFT JOIN dbref.t_lokasi_${thang} e ON a.KODE_LOKUS_PROVINSI=e.kdlokasi`;
         }
         if (provradio === "4") {
             kolom = [];
@@ -304,13 +304,13 @@ export const getSQL = (queryParams) => {
         if (opsiprov === "pilihprov") {
             if (prov !== "XX") {
                 whereConditions.push(
-                    prov && prov !== "00" ? `a.kdlokasi = '${prov}'` : ``
+                    prov && prov !== "00" ? `a.KODE_LOKUS_PROVINSI = '${prov}'` : ``
                 );
             }
         } else if (opsiprov === "kondisiprov") {
             if (provkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdlokasi NOT IN (${hasilFormatprov
+                    `  a.KODE_LOKUS_PROVINSI NOT IN (${hasilFormatprov
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -318,29 +318,29 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    prov !== "XX" ? ` a.kdlokasi IN (${hasilFormatprov})` : ""
+                    prov !== "XX" ? ` a.KODE_LOKUS_PROVINSI IN (${hasilFormatprov})` : ""
                 );
             }
         } else if (opsiprov === "kataprov") {
             opsikataprov &&
-                whereConditions.push(` a.nmlokasi like '%${opsikataprov}%'`);
+                whereConditions.push(` a.LOKUS_PROVINSI like '%${opsikataprov}%'`);
         }
 
         // FUNGSI KDKABKOTA
 
         if (kabkota !== "XX") {
-            kolom.push("a.kdkabkota");
-            group.push("a.kdkabkota");
+            kolom.push("a.KODE_LOKUS_KABKOTA");
+            group.push("a.KODE_LOKUS_KABKOTA");
         }
 
         if (kabkotaradio === "2" && kabkota !== "XX") {
-            kolom.push("a.nmkabkota");
-            // query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.kdlokasi=f.kdlokasi and a.kdkabkota=f.kdkabkota`;
+            kolom.push("a.LOKUS_KABKOTA");
+            // query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.KODE_LOKUS_PROVINSI=f.kdlokasi and a.KODE_LOKUS_KABKOTA=f.kdkabkota`;
         }
         if (kabkotaradio === "3" && kabkota !== "XX") {
-            kolom.pop("a.kdkabkota");
-            kolom.push("a.nmkabkota");
-            // query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.kdlokasi=f.kdlokasi and a.kdkabkota=f.kdkabkota`;
+            kolom.pop("a.KODE_LOKUS_KABKOTA");
+            kolom.push("a.LOKUS_KABKOTA");
+            // query += ` LEFT JOIN dbref.t_kabkota_${thang} f on a.KODE_LOKUS_PROVINSI=f.kdlokasi and a.KODE_LOKUS_KABKOTA=f.kdkabkota`;
         }
 
         const nilaiawalkdkabkota = kdkabkotakondisi.split(",");
@@ -350,13 +350,13 @@ export const getSQL = (queryParams) => {
         if (opsikdkabkota === "pilihkdkabkota") {
             if (kabkota !== "XX") {
                 whereConditions.push(
-                    kabkota && kabkota !== "ALL" ? `a.kdkabkota = '${kabkota}'` : ``
+                    kabkota && kabkota !== "ALL" ? `a.KODE_LOKUS_KABKOTA = '${kabkota}'` : ``
                 );
             }
         } else if (opsikdkabkota === "kondisikdkabkota") {
             if (kdkabkotakondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdkabkota NOT IN (${hasilFormatkdkabkota
+                    `  a.KODE_LOKUS_KABKOTA NOT IN (${hasilFormatkdkabkota
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -364,7 +364,7 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    kabkota !== "XX" ? ` a.kdkabkota IN (${hasilFormatkdkabkota})` : ""
+                    kabkota !== "XX" ? ` a.KODE_LOKUS_KABKOTA IN (${hasilFormatkdkabkota})` : ""
                 );
             }
         }
@@ -420,7 +420,7 @@ export const getSQL = (queryParams) => {
         }
         // FUNGSI KPPN
 
-        if (kppn !== "XX") {
+        if (kppn !== "000" && kppn !== "XX") {
             kolom.push("a.kdkppn");
             group.push("a.kdkppn");
         }
@@ -471,18 +471,18 @@ export const getSQL = (queryParams) => {
         // FUNGSI KDSATKER
 
         if (satker !== "XX") {
-            kolom.push("a.kdsatker");
-            group.push("a.kdsatker");
+            kolom.push("a.KDSATKER");
+            group.push("a.KDSATKER");
         }
 
         if (satkerradio === "2" && satker !== "XX") {
-            kolom.push("a.nmsatker");
-            // query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.kdsatker=i.kdsatker`;
+            kolom.push("a.DESC_SATKER");
+            // query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.KDSATKER=i.kdsatker`;
         }
         if (satkerradio === "3" && satker !== "XX") {
-            kolom.pop("a.kdsatker");
-            kolom.push("a.nmsatker");
-            // query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.kdsatker=i.kdsatker`;
+            kolom.pop("a.KDSATKER");
+            kolom.push("a.DESC_SATKER");
+            // query += ` LEFT JOIN dbref.t_satker_${thang} i ON a.KDSATKER=i.kdsatker`;
         }
         if (satkerradio === "4") {
             kolom = [];
@@ -496,13 +496,13 @@ export const getSQL = (queryParams) => {
         if (opsisatker === "pilihsatker") {
             if (satker !== "XX") {
                 whereConditions.push(
-                    satker && satker !== "SEMUASATKER" ? `a.kdsatker = '${satker}'` : ``
+                    satker && satker !== "SEMUASATKER" ? `a.KDSATKER = '${satker}'` : ``
                 );
             }
         } else if (opsisatker === "kondisisatker") {
             if (satkerkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdsatker NOT IN (${hasilFormatsatker
+                    `  a.KDSATKER NOT IN (${hasilFormatsatker
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -510,12 +510,12 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    satker !== "XX" ? ` a.kdsatker IN (${hasilFormatsatker})` : ""
+                    satker !== "XX" ? ` a.KDSATKER IN (${hasilFormatsatker})` : ""
                 );
             }
         } else if (opsisatker === "katasatker") {
             opsikatasatker &&
-                whereConditions.push(` a.nmsatker like '%${opsikatasatker}%'`);
+                whereConditions.push(` a.DESC_SATKER like '%${opsikatasatker}%'`);
         }
 
         // FUNGSI KDFUNGSI
@@ -623,18 +623,18 @@ export const getSQL = (queryParams) => {
         // FUNGSI KD PROGRAM
 
         if (program !== "XX") {
-            kolom.push("a.kdprogram");
-            group.push("a.kdprogram");
+            kolom.push("a.KDPROGRAM");
+            group.push("a.KDPROGRAM");
         }
 
         if (programradio === "2" && program !== "XX") {
-            kolom.push("a.nmprogram");
-            // query += ` LEFT JOIN dbref.t_program_${thang} l on a.kddept = l.kddept and a.kdunit = l.kdunit and a.kdprogram =l.kdprogram`;
+            kolom.push("a.DESC_PROGRAM");
+            // query += ` LEFT JOIN dbref.t_program_${thang} l on a.KDDEPT = l.kddept and a.KDUNIT = l.kdunit and a.KDPROGRAM =l.kdprogram`;
         }
         if (programradio === "3" && program !== "XX") {
-            kolom.pop("a.kdprogram");
-            kolom.push("a.nmprogram");
-            // query += ` LEFT JOIN dbref.t_program_${thang} l on a.kddept = l.kddept and a.kdunit = l.kdunit and a.kdprogram =l.kdprogram`;
+            kolom.pop("a.KDPROGRAM");
+            kolom.push("a.DESC_PROGRAM");
+            // query += ` LEFT JOIN dbref.t_program_${thang} l on a.KDDEPT = l.kddept and a.KDUNIT = l.kdunit and a.KDPROGRAM =l.kdprogram`;
         }
         if (programradio === "4") {
             kolom = [];
@@ -648,13 +648,13 @@ export const getSQL = (queryParams) => {
         if (opsiprogram === "pilihprogram") {
             if (program !== "XX") {
                 whereConditions.push(
-                    program && program !== "00" ? `a.kdprogram = '${program}'` : ``
+                    program && program !== "00" ? `a.KDPROGRAM = '${program}'` : ``
                 );
             }
         } else if (opsiprogram === "kondisiprogram") {
             if (programkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdprogram NOT IN (${hasilFormatprogram
+                    `  a.KDPROGRAM NOT IN (${hasilFormatprogram
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -662,29 +662,29 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    program !== "XX" ? ` a.kdprogram IN (${hasilFormatprogram})` : ""
+                    program !== "XX" ? ` a.KDPROGRAM IN (${hasilFormatprogram})` : ""
                 );
             }
         } else if (opsiprogram === "kataprogram") {
             opsikataprogram &&
-                whereConditions.push(` a.nmprogram like '%${opsikataprogram}%'`);
+                whereConditions.push(` a.DESC_PROGRAM like '%${opsikataprogram}%'`);
         }
 
         // FUNGSI KD GIAT
 
         if (giat !== "XX") {
-            kolom.push("a.kdgiat");
-            group.push("a.kdgiat");
+            kolom.push("a.KDGIAT");
+            group.push("a.KDGIAT");
         }
 
         if (kegiatanradio === "2" && giat !== "XX") {
-            kolom.push("a.nmgiat");
-            // query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.kdgiat =m.kdgiat`;
+            kolom.push("a.DESC_KEGIATAN");
+            // query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.KDGIAT =m.kdgiat`;
         }
         if (kegiatanradio === "3" && giat !== "XX") {
-            kolom.pop("a.kdgiat");
-            kolom.push("a.nmgiat");
-            // query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.kdgiat =m.kdgiat`;
+            kolom.pop("a.KDGIAT");
+            kolom.push("a.DESC_KEGIATAN");
+            // query += ` LEFT JOIN dbref.t_giat_${thang} m on  a.KDGIAT =m.kdgiat`;
         }
         if (kegiatanradio === "4") {
             kolom = [];
@@ -698,13 +698,13 @@ export const getSQL = (queryParams) => {
         if (opsigiat === "pilihgiat") {
             if (giat !== "XX") {
                 whereConditions.push(
-                    giat && giat !== "00" ? `a.kdgiat = '${giat}'` : ``
+                    giat && giat !== "00" ? `a.KDGIAT = '${giat}'` : ``
                 );
             }
         } else if (opsigiat === "kondisigiat") {
             if (giatkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdgiat NOT IN (${hasilFormatgiat
+                    `  a.KDGIAT NOT IN (${hasilFormatgiat
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -712,29 +712,29 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    giat !== "XX" ? ` a.kdgiat IN (${hasilFormatgiat})` : ""
+                    giat !== "XX" ? ` a.KDGIAT IN (${hasilFormatgiat})` : ""
                 );
             }
         } else if (opsigiat === "katagiat") {
             opsikatagiat &&
-                whereConditions.push(` a.nmgiat like '%${opsikatagiat}%'`);
+                whereConditions.push(` a.DESC_KEGIATAN like '%${opsikatagiat}%'`);
         }
 
         // FUNGSI KD OUTPUT
 
         if (output !== "XX") {
-            kolom.push("a.kdoutput");
-            group.push("a.kdoutput");
+            kolom.push("a.KDKRO");
+            group.push("a.KDKRO");
         }
 
         if (outputradio === "2" && output !== "XX") {
-            kolom.push("a.nmoutput");
-            // query += ` LEFT JOIN dbref.t_output_${thang} n on  a.kdoutput = n.kdoutput and a.kdgiat=n.kdgiat`;
+            kolom.push("a.DESC_KRO");
+            // query += ` LEFT JOIN dbref.t_output_${thang} n on  a.KDKRO = n.kdoutput and a.KDGIAT=n.kdgiat`;
         }
         if (outputradio === "3" && output !== "XX") {
-            kolom.pop("a.kdoutput");
-            kolom.push("a.nmoutput");
-            // query += ` LEFT JOIN dbref.t_output_${thang} n on  a.kdoutput = n.kdoutput and a.kdgiat=n.kdgiat`;
+            kolom.pop("a.KDKRO");
+            kolom.push("a.DESC_KRO");
+            // query += ` LEFT JOIN dbref.t_output_${thang} n on  a.KDKRO = n.kdoutput and a.KDGIAT=n.kdgiat`;
         }
         if (outputradio === "4") {
             kolom = [];
@@ -748,13 +748,13 @@ export const getSQL = (queryParams) => {
         if (opsioutput === "pilihoutput") {
             if (output !== "XX") {
                 whereConditions.push(
-                    output && output !== "SEMUAOUTPUT" ? `a.kdoutput = '${output}'` : ``
+                    output && output !== "SEMUAOUTPUT" ? `a.KDKRO = '${output}'` : ``
                 );
             }
         } else if (opsioutput === "kondisioutput") {
             if (outputkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdoutput NOT IN (${hasilFormatoutput
+                    `  a.KDKRO NOT IN (${hasilFormatoutput
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -762,30 +762,30 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    output !== "XX" ? ` a.kdoutput IN (${hasilFormatoutput})` : ""
+                    output !== "XX" ? ` a.KDKRO IN (${hasilFormatoutput})` : ""
                 );
             }
         } else if (opsioutput === "kataoutput") {
             opsikataoutput &&
-                whereConditions.push(` a.nmoutput like '%${opsikataoutput}%'`);
+                whereConditions.push(` a.DESC_KRO like '%${opsikataoutput}%'`);
         }
 
         // FUNGSI SUB OUTPUT
 
         let tahunrkakl = thang.toString().slice(-2);
         if (soutput !== "XX") {
-            kolom.push("a.kdsoutput");
-            group.push("a.kdsoutput");
+            kolom.push("a.KDRO");
+            group.push("a.KDRO");
         }
 
         if (soutputradio === "2" && soutput !== "XX") {
-            kolom.push("a.ursoutput");
-            // query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.kdsatker=aa.kdsatker AND a.kddept=aa.kddept AND a.kdunit=aa.kdunit AND a.kdprogram=aa.kdprogram AND a.kdgiat=aa.kdgiat AND a.kdoutput=aa.kdoutput AND a.kdsoutput=aa.kdsoutput`;
+            kolom.push("a.DESC_RO");
+            // query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.KDSATKER=aa.KDSATKER AND a.KDDEPT=aa.KDDEPT AND a.KDUNIT=aa.KDUNIT AND a.KDPROGRAM=aa.KDPROGRAM AND a.KDGIAT=aa.KDGIAT AND a.KDKRO=aa.KDKRO AND a.KDRO=aa.KDRO`;
         }
         if (soutputradio === "3" && soutput !== "XX") {
-            kolom.pop("a.kdsoutput");
-            kolom.push("a.ursoutput");
-            // query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.kdsatker=aa.kdsatker AND a.kddept=aa.kddept AND a.kdunit=aa.kdunit AND a.kdprogram=aa.kdprogram AND a.kdgiat=aa.kdgiat AND a.kdoutput=aa.kdoutput AND a.kdsoutput=aa.kdsoutput`;
+            kolom.pop("a.KDRO");
+            kolom.push("a.DESC_RO");
+            // query += ` LEFT JOIN dbref.dipa_soutput_${tahunrkakl} aa ON a.KDSATKER=aa.KDSATKER AND a.KDDEPT=aa.KDDEPT AND a.KDUNIT=aa.KDUNIT AND a.KDPROGRAM=aa.KDPROGRAM AND a.KDGIAT=aa.KDGIAT AND a.KDKRO=aa.KDKRO AND a.KDRO=aa.KDRO`;
         }
         if (soutputradio === "4") {
             kolom = [];
@@ -800,14 +800,14 @@ export const getSQL = (queryParams) => {
             if (soutput !== "XX") {
                 whereConditions.push(
                     soutput && soutput !== "SEMUASUBOUTPUT"
-                        ? `a.kdsoutput = '${soutput}'`
+                        ? `a.KDRO = '${soutput}'`
                         : ``
                 );
             }
         } else if (opsisuboutput === "kondisisuboutput") {
             if (suboutputkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdsoutput NOT IN (${hasilFormatsoutput
+                    `  a.KDRO NOT IN (${hasilFormatsoutput
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -815,55 +815,61 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    soutput !== "XX" ? ` a.kdsoutput IN (${hasilFormatsoutput})` : ""
+                    soutput !== "XX" ? ` a.KDRO IN (${hasilFormatsoutput})` : ""
                 );
             }
         } else if (opsisuboutput === "katasuboutput") {
             opsikatasuboutput &&
-                whereConditions.push(` a.ursoutput like '%${opsikatasuboutput}%'`);
+                whereConditions.push(` a.DESC_RO like '%${opsikatasuboutput}%'`);
         }
 
         // FUNGSI KDAKUN
 
         if (akun === "AKUN") {
-            kolom.push("a.kdakun");
-            group.push("a.kdakun");
-        } else if (akun === "BKPK") {
-            kolom.push("LEFT(a.kdakun,4) as KDBKPK");
-            group.push("LEFT(a.kdakun,4)");
-        } else if (akun === "JENBEL") {
-            kolom.push("LEFT(a.kdakun,2) as JENBEL");
-            group.push("LEFT(a.kdakun,2) ");
+            kolom.push("a.KODE_AKUN");
+            group.push("a.KODE_AKUN");
         }
+        // else if (akun === "BKPK") {
+        //     kolom.push("LEFT(a.KODE_AKUN,4) as KDBKPK");
+        //     group.push("LEFT(a.KODE_AKUN,4)");
+        // }
+        // else if (akun === "JENBEL") {
+        //     kolom.push("LEFT(a.KODE_AKUN,2) as JENBEL");
+        //     group.push("LEFT(a.KODE_AKUN,2) ");
+        // }
 
         if (akunradio === "2" && akun === "AKUN") {
-            kolom.push(" p.nmakun");
-            query += ` LEFT JOIN dbref.t_akun_${thang} p on a.kdakun=p.kdakun`;
-        } else if (akunradio === "2" && akun === "BKPK") {
-            kolom.push("  o.nmbkpk");
-            query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.kdakun,4)=o.kdbkpk`;
-        } else if (akunradio === "2" && akun === "JENBEL") {
-            kolom.push("  q.nmgbkpk");
-            query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.kdakun,2)=q.kdgbkpk`;
+            kolom.push(" a.DESC_AKUN");
+            // query += ` LEFT JOIN dbref.t_akun_${thang} p on a.KODE_AKUN=p.kdakun`;
         }
+        // else if (akunradio === "2" && akun === "BKPK") {
+        //     kolom.push("  o.nmbkpk");
+        //     query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.KODE_AKUN,4)=o.kdbkpk`;
+        // }
+        // else if (akunradio === "2" && akun === "JENBEL") {
+        //     kolom.push("  q.nmgbkpk");
+        //     query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.KODE_AKUN,2)=q.kdgbkpk`;
+        // }
 
         if (akunradio === "3" && akun === "AKUN") {
-            kolom.pop("a.kdakun");
-            kolom.push(" p.nmakun");
-            query += ` LEFT JOIN dbref.t_akun_${thang} p on a.kdakun=p.kdakun`;
-        } else if (akunradio === "3" && akun === "BKPK") {
-            kolom.pop("LEFT(a.kdakun,4)");
-            kolom.push("  o.nmbkpk");
-            query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.kdakun,4)=o.kdbkpk`;
-        } else if (akunradio === "3" && akun === "JENBEL") {
-            kolom.pop("LEFT(a.kdakun,2)");
-            kolom.push("  q.nmgbkpk");
-            query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.kdakun,2)=q.kdgbkpk`;
+            kolom.pop("a.KODE_AKUN");
+            kolom.push(" a.DESC_AKUN");
+            // query += ` LEFT JOIN dbref.t_akun_${thang} p on a.KODE_AKUN=p.kdakun`;
         }
-        if (akunradio === "4") {
-            kolom = [];
-            query += ` `;
-        }
+        // else if (akunradio === "3" && akun === "BKPK") {
+        //     kolom.pop("LEFT(a.KODE_AKUN,4)");
+        //     kolom.push("  o.nmbkpk");
+        //     query += ` LEFT JOIN dbref.t_bkpk_${thang} o on LEFT(a.KODE_AKUN,4)=o.kdbkpk`;
+        // }
+        // else if (akunradio === "3" && akun === "JENBEL") {
+        //     kolom.pop("LEFT(a.KODE_AKUN,2)");
+        //     kolom.push("  q.nmgbkpk");
+        //     query += ` LEFT JOIN dbref.t_gbkpk_${thang} q on LEFT(a.KODE_AKUN,2)=q.kdgbkpk`;
+        // }
+        // if (akunradio === "4") {
+        //     kolom = [];
+        //     query += ` `;
+        // }
 
         const nilaiawalakun = akunkondisi.split(",");
         const formatakun = nilaiawalakun.map((str) => `'${str}'`);
@@ -881,10 +887,10 @@ export const getSQL = (queryParams) => {
             if (akunkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
                     `${akun === "AKUN"
-                        ? `LEFT(a.kdakun,${panjangAkun})`
+                        ? `LEFT(a.KODE_AKUN,${panjangAkun})`
                         : akun === "BKPK"
-                            ? `LEFT(a.kdakun,${panjangAkun})`
-                            : `LEFT(a.kdakun,${panjangAkun})`
+                            ? `LEFT(a.KODE_AKUN,${panjangAkun})`
+                            : `LEFT(a.KODE_AKUN,${panjangAkun})`
                     } not in (${hasilFormatakun
                         .replace(/[!'']/g, "")
                         .split(",")
@@ -894,10 +900,10 @@ export const getSQL = (queryParams) => {
             } else {
                 whereConditions.push(
                     `${akun === "AKUN"
-                        ? `LEFT(a.kdakun,${panjangAkun})`
+                        ? `LEFT(a.KODE_AKUN,${panjangAkun})`
                         : akun === "BKPK"
-                            ? `LEFT(a.kdakun,${panjangAkun})`
-                            : `LEFT(a.kdakun,${panjangAkun})`
+                            ? `LEFT(a.KODE_AKUN,${panjangAkun})`
+                            : `LEFT(a.KODE_AKUN,${panjangAkun})`
                     }  in (${hasilFormatakun
                         .replace(/[!'']/g, "")
                         .split(",")
@@ -908,7 +914,7 @@ export const getSQL = (queryParams) => {
         } else if (opsiakun === "kataakun") {
             if (akun === "AKUN") {
                 opsikataakun &&
-                    whereConditions.push(` p.nmakun like '%${opsikataakun}%'`);
+                    whereConditions.push(` a.DESC_AKUN like '%${opsikataakun}%'`);
             } else if (akun === "BKPK") {
                 opsikataakun &&
                     whereConditions.push(` o.nmbkpk like '%${opsikataakun}%'`);
@@ -970,18 +976,18 @@ export const getSQL = (queryParams) => {
 
         // FUNGSI KOMPONEN
         if (komponen !== "XX") {
-            kolom.push("a.kdkmpnen");
-            group.push("a.kdkmpnen");
+            kolom.push("a.KDKOMP");
+            group.push("a.KDKOMP");
         }
 
         if (komponenradio === "2" && komponen !== "XX") {
-            kolom.push("a.urkmpnen");
-            // query += ` LEFT JOIN dbref.dipa_kmpnen_${tahunrkakl} ab on a.kdsatker=ab.kdsatker and a.kddept=ab.kddept and a.kdunit=ab.kdunit and a.kdprogram=ab.kdprogram and a.kdgiat = ab.kdgiat and a.kdoutput = ab.kdoutput and a.kdsoutput = ab.kdsoutput and a.kdkmpnen=ab.kdkmpnen`;
+            kolom.push("a.DESC_KOMP");
+            // query += ` LEFT JOIN dbref.dipa_kmpnen_${tahunrkakl} ab on a.KDSATKER=ab.kdsatker and a.KDDEPT=ab.kddept and a.KDUNIT=ab.kdunit and a.KDPROGRAM=ab.kdprogram and a.KDGIAT = ab.kdgiat and a.KDKRO = ab.kdoutput and a.KDRO = ab.kdsoutput and a.KDKOMP=ab.kdkmpnen`;
         }
         if (komponenradio === "3" && komponen !== "XX") {
-            kolom.pop("a.kdkmpnen");
-            kolom.push("a.urkmpnen");
-            // query += ` LEFT JOIN dbref.dipa_kmpnen_${tahunrkakl} ab on a.kdsatker=ab.kdsatker and a.kddept=ab.kddept and a.kdunit=ab.kdunit and a.kdprogram=ab.kdprogram and a.kdgiat = ab.kdgiat and a.kdoutput = ab.kdoutput and a.kdsoutput = ab.kdsoutput and a.kdkmpnen=ab.kdkmpnen`;
+            kolom.pop("a.KDKOMP");
+            kolom.push("a.DESC_KOMP");
+            // query += ` LEFT JOIN dbref.dipa_kmpnen_${tahunrkakl} ab on a.KDSATKER=ab.kdsatker and a.KDDEPT=ab.kddept and a.KDUNIT=ab.kdunit and a.KDPROGRAM=ab.kdprogram and a.KDGIAT = ab.kdgiat and a.KDKRO = ab.kdoutput and a.KDRO = ab.kdsoutput and a.KDKOMP=ab.kdkmpnen`;
         }
         if (komponenradio === "4") {
             kolom = [];
@@ -996,14 +1002,14 @@ export const getSQL = (queryParams) => {
             if (komponen !== "XX") {
                 whereConditions.push(
                     komponen && komponen !== "SEMUAKOMPONEN"
-                        ? `a.kdkmpnen = '${komponen}'`
+                        ? `a.KDKOMP = '${komponen}'`
                         : ``
                 );
             }
         } else if (opsikomponen === "kondisikomponen") {
             if (komponenkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdkmpnen NOT IN (${hasilFormatkomponen
+                    `  a.KDKOMP NOT IN (${hasilFormatkomponen
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -1011,28 +1017,28 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    komponen !== "XX" ? ` a.kdkmpnen IN (${hasilFormatkomponen})` : ""
+                    komponen !== "XX" ? ` a.KDKOMP IN (${hasilFormatkomponen})` : ""
                 );
             }
         } else if (opsikomponen === "katakomponen") {
             opsikatakomponen &&
-                whereConditions.push(` a.urkmpnen like '%${opsikatakomponen}%'`);
+                whereConditions.push(` a.DESC_KOMP like '%${opsikatakomponen}%'`);
         }
 
         // FUNGSI SUB KOMPONEN
         if (subkomponen !== "XX") {
-            kolom.push("a.kdskmpnen");
-            group.push("a.kdskmpnen");
+            kolom.push("a.KDSUBKOMP");
+            group.push("a.KDSUBKOMP");
         }
 
         if (subkomponenradio === "2" && subkomponen !== "XX") {
-            kolom.push("a.urskmpnen");
-            // query += ` LEFT JOIN dbref.dipa_skmpnen_${tahunrkakl} ac on a.kdsatker=ac.kdsatker and a.kddept=ac.kddept and a.kdunit=ac.kdunit and a.kdprogram=ac.kdprogram and a.kdgiat = ac.kdgiat and a.kdoutput = ac.kdoutput and a.kdsoutput = ac.kdsoutput and a.kdkmpnen=ac.kdkmpnen and a.kdskmpnen=ac.kdskmpnen`;
+            kolom.push("a.DESC_SUBKOMPONEN");
+            // query += ` LEFT JOIN dbref.dipa_skmpnen_${tahunrkakl} ac on a.KDSATKER=ac.kdsatker and a.KDDEPT=ac.kddept and a.KDUNIT=ac.kdunit and a.KDPROGRAM=ac.kdprogram and a.KDGIAT = ac.kdgiat and a.KDKRO = ac.kdoutput and a.KDRO = ac.kdsoutput and a.KDKOMP=ac.kdkmpnen and a.KDSUBKOMP=ac.kdskmpnen`;
         }
         if (subkomponenradio === "3" && subkomponen !== "XX") {
-            kolom.pop("a.kdskmpnen");
-            kolom.push("a.urskmpnen");
-            // query += ` LEFT JOIN dbref.dipa_skmpnen_${tahunrkakl} ac on a.kdsatker=ac.kdsatker and a.kddept=ac.kddept and a.kdunit=ac.kdunit and a.kdprogram=ac.kdprogram and a.kdgiat = ac.kdgiat and a.kdoutput = ac.kdoutput and a.kdsoutput = ac.kdsoutput and a.kdkmpnen=ac.kdkmpnen and a.kdskmpnen=ac.kdskmpnen`;
+            kolom.pop("a.KDSUBKOMP");
+            kolom.push("a.DESC_SUBKOMPONEN");
+            // query += ` LEFT JOIN dbref.dipa_skmpnen_${tahunrkakl} ac on a.KDSATKER=ac.kdsatker and a.KDDEPT=ac.kddept and a.KDUNIT=ac.kdunit and a.KDPROGRAM=ac.kdprogram and a.KDGIAT = ac.kdgiat and a.KDKRO = ac.kdoutput and a.KDRO = ac.kdsoutput and a.KDKOMP=ac.kdkmpnen and a.KDSUBKOMP=ac.kdskmpnen`;
         }
         if (subkomponenradio === "4") {
             kolom = [];
@@ -1047,14 +1053,14 @@ export const getSQL = (queryParams) => {
             if (subkomponen !== "XX") {
                 whereConditions.push(
                     subkomponen && subkomponen !== "SEMUASUBKOMPONEN"
-                        ? `a.kdskmpnen = '${subkomponen}'`
+                        ? `a.KDSUBKOMP = '${subkomponen}'`
                         : ``
                 );
             }
         } else if (opsisubkomponen === "kondisisubkomponen") {
             if (subkomponenkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `  a.kdskmpnen NOT IN (${hasilFormatsubkomponen
+                    `  a.KDSUBKOMP NOT IN (${hasilFormatsubkomponen
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -1063,44 +1069,27 @@ export const getSQL = (queryParams) => {
             } else {
                 whereConditions.push(
                     subkomponen !== "XX"
-                        ? ` a.kdskmpnen IN (${hasilFormatsubkomponen})`
+                        ? ` a.KDSUBKOMP IN (${hasilFormatsubkomponen})`
                         : ""
                 );
             }
         } else if (opsisubkomponen === "katasubkomponen") {
             opsikatasubkomponen &&
-                whereConditions.push(`a.urskmpnen like '%${opsikatasubkomponen}%'`);
+                whereConditions.push(`a.DESC_SUBKOMPONEN like '%${opsikatasubkomponen}%'`);
         }
 
         // FUNGSI ITEM
         if (item !== "XX") {
-            kolom.push(" a.noitem");
-            group.push(" a.noitem");
+            kolom.push(" a.KDITEM");
+            group.push(" a.KDITEM");
         }
 
         if (itemradio === "2" && item !== "XX") {
-            kolom.push(` CONCAT(
-      CONVERT(a.nmitem USING utf8),
-      ' ( VOL : ',
-      a.volkeg,
-      ' ',
-      CONVERT(a.satkeg USING utf8),
-      ' x ',
-      FORMAT(a.hargasat, 0),
-      ')'
-  ) AS nmitem`);
+            kolom.push(` a.DESC_ITEM`);
         }
         if (itemradio === "3" && item !== "XX") {
-            kolom.push(` CONCAT(
-      CONVERT(a.nmitem USING utf8),
-      ' ( VOL : ',
-      a.volkeg,
-      ' ',
-      CONVERT(a.satkeg USING utf8),
-      ' x ',
-      FORMAT(a.hargasat, 0),
-      ')'
-  ) AS nmitem`);
+            kolom.push(` a.DESC_ITEM`);
+            kolom.pop(" a.KDITEM");
         }
         if (itemradio === "4") {
             kolom = [];
@@ -1114,13 +1103,13 @@ export const getSQL = (queryParams) => {
         if (opsiitem === "pilihitem") {
             if (item !== "XX") {
                 whereConditions.push(
-                    item && item !== "SEMUAITEM" ? ` a.noitem = '${item}'` : ``
+                    item && item !== "SEMUAITEM" ? ` a.KDITEM = '${item}'` : ``
                 );
             }
         } else if (opsiitem === "kondisiitem") {
             if (itemkondisi.substring(0, 1) === "!") {
                 whereConditions.push(
-                    `   a.noitem NOT IN (${hasilFormatitem
+                    `   a.KDITEM NOT IN (${hasilFormatitem
                         .replace(/[!'']/g, "")
                         .split(",")
                         .map((str) => `'${str}'`)
@@ -1128,117 +1117,20 @@ export const getSQL = (queryParams) => {
                 );
             } else {
                 whereConditions.push(
-                    item !== "XX" ? ` a.noitem IN (${hasilFormatitem})` : ""
+                    item !== "XX" ? ` a.KDITEM IN (${hasilFormatitem})` : ""
                 );
             }
         } else if (opsiitem === "kataitem") {
             if (item === "SEMUAITEM") {
                 opsikataitem &&
-                    whereConditions.push(`a.nmitem LIKE '%${opsikataitem}%'`);
+                    whereConditions.push(`a.DESC_ITEM LIKE '%${opsikataitem}%'`);
             }
         }
 
-        // FUNGSI REGISTER
-        // if (register !== "XX") {
-        //     kolom.push("a.register");
-        //     group.push("a.register");
-        // }
-
-        // if (registerradio === "2" && register !== "XX") {
-        //     kolom.push(
-        //         "reg.nonpln,reg.kdvalas,reg.tglnpln,reg.kddonor,reg.kdkreditor,reg.nmdonor,reg.jmlpnrk,reg.closingdate"
-        //     );
-        //     query += ` LEFT JOIN dbref.t_register_${thang} reg ON a.register=reg.register`;
-        // }
-        // if (registerradio === "3" && register !== "XX") {
-        //     kolom.pop("a.register");
-        //     kolom.push(
-        //         "reg.nonpln,reg.kdvalas,reg.tglnpln,reg.kddonor,reg.kdkreditor,reg.nmdonor,reg.jmlpnrk,reg.closingdate"
-        //     );
-        //     query += ` left join dbref.t_register_${thang} reg on a.register=reg.register`;
-        // }
-        // if (registerradio === "4") {
-        //     kolom = [];
-        //     query += ` `;
-        // }
-
-        // const nilaiawalregister = registerkondisi.split(",");
-        // const formatregister = nilaiawalregister.map((str) => `'${str}'`);
-        // const hasilFormatregister = formatregister.join(",");
-
-        // if (opsiregister === "pilihregister") {
-        //     if (register !== "XX") {
-        //         whereConditions.push(
-        //             register && register !== "SEMUAREGISTER"
-        //                 ? `a.register = '${register}'`
-        //                 : ``
-        //         );
-        //     }
-        // } else if (opsiregister === "kondisiregister") {
-        //     if (registerkondisi.substring(0, 1) === "!") {
-        //         whereConditions.push(
-        //             `  a.register NOT IN (${hasilFormatregister
-        //                 .replace(/[!'']/g, "")
-        //                 .split(",")
-        //                 .map((str) => `'${str}'`)
-        //                 .join(",")})`
-        //         );
-        //     } else {
-        //         whereConditions.push(
-        //             register !== "XX" ? ` a.register IN (${hasilFormatregister})` : ""
-        //         );
-        //     }
-        // } else if (opsiregister === "kataregister") {
-        //     opsikataregister &&
-        //         whereConditions.push(` a.register like '%${opsikataregister}%'`);
-        // }
-
-        // FUNGSI KODE BLOKIR
-
-        // if (blokir !== "XX") {
-        //     kolom.push("a.kdblokir,bl.nmblokir");
-        //     group.push("a.kdblokir");
-        //     query += ` LEFT JOIN dbref.t_blokir_${thang} bl on a.kdblokir=bl.kdblokir`;
-        // }
-
-        // if (blokirradio === "2") {
-        //     kolom.push("bl.nmblokir");
-        //     query += ` LEFT JOIN dbref.t_blokir_${thang} bl on a.kdblokir=bl.kdblokir`;
-        // }
-        // if (blokirradio === "3") {
-        //     kolom.pop("a.kdblokir");
-        //     kolom.push("bl.nmblokir");
-        //     query += ` LEFT JOIN dbref.t_blokir_${thang} bl on a.kdblokir=bl.kdblokir`;
-        // }
-        // if (blokirradio === "4") {
-        //     kolom = [];
-        //     query += ` `;
-        // }
-
-        // if (blokir !== "XX") {
-        //     whereConditions.push(
-        //         blokir && blokir !== "00" ? `a.kdblokir = '${blokir}'` : ``
-        //     );
-        // }
-
-        // MULAI generate QUERY SQL
-        // if (kolom.length > 0) {
-        //     defaultSelect = "," + defaultSelect;
-        // }
-
-        // if (jenis_lokasi !== "XX") {
-        //     kolom.push(" A.STUN_INTERVENSI");
-        //     group.push(" A.STUN_INTERVENSI");
-        //     whereConditions.push(stun && `A.STUN_INTERVENSI IS NOT NULL`);
-        // }
-        if (jenlap === "1") {
-            // STUNTING
-            if (jenis_lokasi !== "XX") {
-                whereConditions.push(
-                    jenis_lokasi && jenis_lokasi !== "00" ? `A.jenis_lokasi = '${jenis_lokasi}'` : ` `
-                );
-            }
-            // console.log(jenis_lokasi);
+        if (jenis_lokasi !== "XX") {
+            whereConditions.push(
+                jenis_lokasi && jenis_lokasi !== "00" ? `a.JENIS_DATA_LOKASI = '${jenis_lokasi}'` : ` `
+            );
         }
 
         if (group.length > 0) {
@@ -1252,8 +1144,13 @@ export const getSQL = (queryParams) => {
                 })
                 .filter(Boolean);
 
-            groupByClause = ` GROUP BY a.jenis_lokasi, ${cleanKolom.join(",")}`;
+            groupByClause = ` GROUP BY a.JENIS_DATA_LOKASI, ${cleanKolom.join(",")}`;
         }
+
+        kolom.push("a.KODE_LOKUS_ANGGARAN");
+        group.push("a.KODE_LOKUS_ANGGARAN");
+        kolom.push("a.LOKUS_ANGGARAN");
+        group.push("a.LOKUS_ANGGARAN");
 
         whereConditions = whereConditions.filter(
             (condition) => condition.trim() !== ""
@@ -1284,8 +1181,7 @@ export const getSQL = (queryParams) => {
                 ? ` WHERE ${whereConditions[0]} ${limitakses} `
                 : whereClause;
 
-        return `SELECT (CASE WHEN a.jenis_lokasi = 1 THEN 'Supplier'
-    ELSE 'Kegiatan' END) AS jenis_lokasi, ${kolom.join(
+        return `SELECT a.JENIS_DATA_LOKASI, ${kolom.join(
             ","
         )}${select} FROM ${tabel} ${query} ${finalWhereClause}  ${groupByClause}`;
     }

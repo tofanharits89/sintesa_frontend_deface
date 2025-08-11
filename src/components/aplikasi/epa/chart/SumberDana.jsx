@@ -6,7 +6,7 @@ import Encrypt from "../../../../auth/Random";
 import { handleHttpError } from "../../notifikasi/toastError";
 import { Card, Container, Spinner, Table } from "react-bootstrap";
 
-const EpaSdana = ({ thang, periode, dept, datasdana, kdkanwil, kdkppn }) => {
+const EpaSdana = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
   const years = [thang - 2, thang - 1, thang];
   const navigate = useNavigate();
   const { axiosJWT, token } = useContext(MyContext);
@@ -15,6 +15,13 @@ const EpaSdana = ({ thang, periode, dept, datasdana, kdkanwil, kdkppn }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // console.log("[SumberDana] Props received:", {
+      //   thang,
+      //   periode,
+      //   dept,
+      //   kdkanwil,
+      //   kdkppn,
+      // });
       setLoading(true);
       try {
         let filterKanwil = "";
@@ -59,24 +66,32 @@ const EpaSdana = ({ thang, periode, dept, datasdana, kdkanwil, kdkppn }) => {
           )
           .join(", ")}
         FROM digitalisasi_epa.pagu_real_sdana a 
-        WHERE a.thang IN (${years.join(",")}) AND a.kddept='${dept}' AND a.katsdana IS NOT NULL${filterKanwil}${filterKppn}
+        WHERE a.thang IN (${years.join(
+          ","
+        )}) AND a.kddept='${dept}' AND a.katsdana IS NOT NULL${filterKanwil}${filterKppn}
         GROUP BY a.kddept, a.katsdana
-        HAVING ${years.map((year) => `pagu_${year} > 0 OR realisasi_${year} > 0`).join(" OR ")}`;
+        HAVING ${years
+          .map((year) => `pagu_${year} > 0 OR realisasi_${year} > 0`)
+          .join(" OR ")}`;
 
         // console.log('[SumberDana] SQL Query:', sqlQuery);
+        // console.log("[SumberDana] Final SQL Query:", sqlQuery);
 
         sqlQuery = sqlQuery.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
 
         const response = await axiosJWT.get(
-          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(sqlQuery)}`,
+          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(
+            sqlQuery
+          )}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
 
-        // console.log('[SumberDana] API Response:', response.data);
+        // console.log("[SumberDana] API Response:", response.data);
         setData(response.data.result || []); // Pastikan data tidak undefined
       } catch (error) {
+        console.error("[SumberDana] Error fetching data:", error);
         handleHttpError(
           error.response?.status,
           error.response?.data?.error || "Terjadi kesalahan koneksi"
@@ -215,7 +230,7 @@ const EpaSdana = ({ thang, periode, dept, datasdana, kdkanwil, kdkppn }) => {
               </tbody>
             </Table>
           )}
-          <div className="header-kinerja-baris mt-3">{datasdana}</div>
+          {/* <div className="header-kinerja-baris mt-3">{datasdana}</div> */}
         </Card.Body>
       </Card>
     </Container>

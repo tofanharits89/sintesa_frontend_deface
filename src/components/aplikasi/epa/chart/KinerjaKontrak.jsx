@@ -25,15 +25,22 @@ const KinerjaKontrak = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
             SUM(jml_52_tw${triwulan}) AS jml_barang, SUM(nilai_52_tw${triwulan}) AS nilai_barang, SUM(real_52_tw${triwulan}) AS real_barang,
             SUM(jml_53_tw${triwulan}) AS jml_modal, SUM(nilai_53_tw${triwulan}) AS nilai_modal, SUM(real_53_tw${triwulan}) AS real_modal
           FROM digitalisasi_epa.outs_kontrak_epa
-          WHERE thang = '${thang}' AND kddept = '${dept}'
-          GROUP BY nmsatker limit 10
-        `;
+          WHERE thang = '${thang}' AND kddept = '${dept}'`;
+
+        // Tambahkan filter jika kdkanwil/kdkppn ada dan bukan nilai "semua"
+        if (kdkanwil && kdkanwil !== "00")
+          sqlQuery += ` AND kdkanwil = '${kdkanwil}'`;
+        if (kdkppn && kdkppn !== "000") sqlQuery += ` AND kdkppn = '${kdkppn}'`;
+
+        sqlQuery += ` GROUP BY nmsatker limit 10`;
 
         sqlQuery = sqlQuery.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
         setQueryDebug(sqlQuery);
 
         const response = await axiosJWT.get(
-          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(sqlQuery)}`,
+          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(
+            sqlQuery
+          )}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -56,13 +63,13 @@ const KinerjaKontrak = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
         Kinerja Kontrak Triwulan {triwulanRomawi} <br /> TA {thang}
       </div>
       <div className="d-flex justify-content-end p-2 mt-2">
-        <Button
+        {/* <Button
           variant="secondary"
           size="sm"
           onClick={() => setShowModal(true)}
         >
           SQL
-        </Button>
+        </Button> */}
       </div>
 
       {loading ? (

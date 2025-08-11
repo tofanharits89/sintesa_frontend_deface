@@ -93,14 +93,11 @@ const Team = () => {
               <Col md={3}>
                 <Card className="profileteam">
                   <Card.Img
-                    src={
-                      import.meta.env.VITE_PUBLIC_URL +
-                      "/foto/a9ab71af5552cb98bd83d6dc0ed2f149.jpg"
-                    }
+                    src={import.meta.env.VITE_PUBLIC_URL + "/foto/aln_pujo.png"}
                     alt="Profile 1"
                   />
                   <Card.Body>
-                    <Card.Title>Restu Alam Siagian</Card.Title>
+                    <Card.Title>Aln Pujo Priambodo</Card.Title>
                     <Card.Text>DBA & Fullstack Developer</Card.Text>
                   </Card.Body>
                 </Card>
@@ -112,7 +109,7 @@ const Team = () => {
                     alt="Profile 1"
                   />
                   <Card.Body>
-                    <Card.Title>Taufan Maulana Harits</Card.Title>
+                    <Card.Title>Taufan Maulana</Card.Title>
                     <Card.Text>Fullstack Developer</Card.Text>
                   </Card.Body>
                 </Card>
@@ -120,14 +117,11 @@ const Team = () => {
               <Col md={3}>
                 <Card className="profileteam">
                   <Card.Img
-                    src={
-                      import.meta.env.VITE_PUBLIC_URL +
-                      "/foto/368215460_1396692604213485_5347192732567637734_n.jpg"
-                    }
+                    src={import.meta.env.VITE_PUBLIC_URL + "/foto/vivi.png"}
                     alt="Profile 1"
                   />
                   <Card.Body>
-                    <Card.Title>Yacob Yulis</Card.Title>
+                    <Card.Title>Nugraheni Vivi</Card.Title>
                     <Card.Text>Fullstack Developer</Card.Text>
                   </Card.Body>
                 </Card>

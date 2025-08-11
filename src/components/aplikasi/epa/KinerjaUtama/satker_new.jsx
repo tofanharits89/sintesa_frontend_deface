@@ -17,8 +17,8 @@ const TABLE_CONFIG = {
   ANIMATION_DURATION: 0.6,
 };
 
-const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
-  // console.log("Eselon1New received data:", data);
+const SatkerNew = ({ data = [], periode, kdkanwil, kdkppn }) => {
+  // console.log("SatkerNew received data:", data);
 
   // Hitung total sum dan persentase
   const totalPagu2024 = data.reduce(
@@ -61,8 +61,8 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
     <Container fluid>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h4 className="mb-1">Kinerja Eselon I</h4>
-          {/* <p className="text-muted mb-0">10 Satker Pagu Terbesar</p> */}
+          <h4 className="mb-1">Kinerja Satker</h4>
+          <p className="text-muted mb-0">10 Satker Terbesar</p>
         </div>
       </div>
 
@@ -89,13 +89,13 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
                     rowSpan="2"
                     style={{ width: "10%", verticalAlign: "middle" }}
                   >
-                    KD_UNIT
+                    KD_SATKER
                   </th>
                   <th
                     rowSpan="2"
                     style={{ width: "20%", verticalAlign: "middle" }}
                   >
-                    NM_UNIT
+                    NM_SATKER
                   </th>
                   <th
                     colSpan="3"
@@ -142,13 +142,13 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
               <tbody>
                 {data && data.length > 0 ? (
                   data.map((item, index) => (
-                    <tr key={item.KDUNIT || index}>
+                    <tr key={item.KDSATKER || index}>
                       <td className="text-center">{index + 1}</td>
                       <td className="text-start">
                         <div>
-                          <div className="fw-bold">{item.NMUNIT}</div>
+                          <div className="fw-bold">{item.NMSATKER}</div>
                           <small className="text-muted">
-                            Kode: {item.KDUNIT}
+                            Kode: {item.KDSATKER}
                           </small>
                         </div>
                       </td>
@@ -253,4 +253,4 @@ const Eselon1New = ({ data = [], periode, kdkanwil, kdkppn }) => {
   );
 };
 
-export default Eselon1New;
+export default SatkerNew;

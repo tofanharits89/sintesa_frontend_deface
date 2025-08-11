@@ -22,10 +22,10 @@ const Kdkppn = (props) => {
         const rawKode = String(props.kdkanwil.kodeKanwil).trim();
         // Pastikan 2 digit dengan leading zero jika perlu
         if (rawKode.length === 1) {
-          kodeKanwil = '0' + rawKode;
+          kodeKanwil = "0" + rawKode;
         } else if (rawKode.length === 2) {
           kodeKanwil = rawKode;
-        } else if (rawKode.length === 3 && rawKode.startsWith('0')) {
+        } else if (rawKode.length === 3 && rawKode.startsWith("0")) {
           // Handle '025' -> '25'
           kodeKanwil = rawKode.substring(1);
         } else {
@@ -33,9 +33,9 @@ const Kdkppn = (props) => {
         }
       }
       // console.log('[Kdkppn] Query akan dijalankan dengan kodeKanwil:', kodeKanwil);
-      
+
       if (!kodeKanwil) {
-        console.log('[Kdkppn] kodeKanwil kosong, tidak fetch data');
+        // console.log("[Kdkppn] kodeKanwil kosong, tidak fetch data");
         setLoading(false);
         return;
       }
@@ -65,7 +65,7 @@ const Kdkppn = (props) => {
       );
       // console.log('[Kdkppn] Response data:', response.data);
       setData(response.data.result || []); // Default ke array kosong jika data kosong
-      
+
       // Untuk role 3, setelah data berhasil di-fetch, update parent dengan kdkppn yang diperoleh
       if (
         role === "3" &&
@@ -84,7 +84,7 @@ const Kdkppn = (props) => {
       }
     } catch (error) {
       const { status, data } = error.response || {};
-      console.error('Error fetching KPPN:', error);
+      console.error("Error fetching KPPN:", error);
       handleHttpError(
         status,
         (data && data.error) ||
@@ -102,7 +102,7 @@ const Kdkppn = (props) => {
     // console.log('- username:', username);
     // console.log('- props.kdkanwil:', props.kdkanwil);
     // console.log('- props.kdkanwil?.kodeKanwil:', props.kdkanwil?.kodeKanwil);
-    
+
     if (role === "3" && username) {
       // Untuk user KPPN, langsung fetch berdasarkan username
       // console.log('[Kdkppn] Fetching KPPN data for role 3 user:', username);
@@ -147,8 +147,8 @@ const Kdkppn = (props) => {
           {role === "0" || role === "1" || role === "X" ? (
             <>
               <option value="000">Semua KPPN</option>
-              {data.map((item) => (
-                <option key={item.kdkppn} value={item.kdkppn}>
+              {data.map((item, idx) => (
+                <option key={item.kdkppn + "-" + idx} value={item.kdkppn}>
                   {item.kdkppn} - {item.nmkppn}
                 </option>
               ))}
@@ -157,11 +157,11 @@ const Kdkppn = (props) => {
             // Untuk user KPPN, pastikan selalu tampilkan label nama KPPN
             (() => {
               // console.log('[Kdkppn] Rendering role 3, props.kdkppn:', props.kdkppn, 'props.value:', props.value, 'data:', data);
-              
+
               if (data.length > 0) {
                 // Jika ada data, tampilkan semua data KPPN (seharusnya hanya 1 untuk user KPPN)
-                return data.map((item) => (
-                  <option key={item.kdkppn} value={item.kdkppn}>
+                return data.map((item, idx) => (
+                  <option key={item.kdkppn + "-" + idx} value={item.kdkppn}>
                     {item.kdkppn} - {item.nmkppn}
                   </option>
                 ));
@@ -181,13 +181,15 @@ const Kdkppn = (props) => {
               {/* Debug log untuk role 2 */}
               {/* {console.log('[Kdkppn] Rendering role 2, data length:', data.length, 'data:', data)} */}
               {data.length > 0 ? (
-                data.map((item) => (
-                  <option key={item.kdkppn} value={item.kdkppn}>
+                data.map((item, idx) => (
+                  <option key={item.kdkppn + "-" + idx} value={item.kdkppn}>
                     {item.kdkppn} - {item.nmkppn}
                   </option>
                 ))
               ) : (
-                <option value="" disabled>Tidak ada KPPN untuk Kanwil ini (data kosong)</option>
+                <option value="" disabled>
+                  Tidak ada KPPN untuk Kanwil ini (data kosong)
+                </option>
               )}
             </>
           ) : (

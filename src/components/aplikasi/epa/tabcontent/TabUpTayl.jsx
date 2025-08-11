@@ -31,14 +31,14 @@ const TabUpTayl = () => {
   const currentKdkanwil = dataEpa?.kdkanwil || kdkanwil;
   const currentKdkppn = dataEpa?.kdkppn || kdkppn;
 
-  console.log("TabUpTayl - Filter values:", {
-    dataEpaKdkanwil: dataEpa?.kdkanwil,
-    dataEpaKdkppn: dataEpa?.kdkppn,
-    contextKdkanwil: kdkanwil,
-    contextKdkppn: kdkppn,
-    finalKdkanwil: currentKdkanwil,
-    finalKdkppn: currentKdkppn
-  });
+  // console.log("TabUpTayl - Filter values:", {
+  //   dataEpaKdkanwil: dataEpa?.kdkanwil,
+  //   dataEpaKdkppn: dataEpa?.kdkppn,
+  //   contextKdkanwil: kdkanwil,
+  //   contextKdkppn: kdkppn,
+  //   finalKdkanwil: currentKdkanwil,
+  //   finalKdkppn: currentKdkppn
+  // });
 
   return (
     <div>

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import MyContext from "../../../../auth/Context";
 
-const API_URL = import.meta.env.VITE_REACT_APP_LOCAL_INQUIRY_GETDATA_DB?.replace(
-  "/getData/referensi/db",
-  "/referensi/kddept"
-);
+const API_URL =
+  import.meta.env.VITE_REACT_APP_LOCAL_INQUIRY_GETDATA_DB?.replace(
+    "/getData/referensi/db",
+    "/referensi/kddept"
+  );
 
 const Kddept = ({ onChange, kddept, kdkanwil, kdkppn }) => {
   const { role } = useContext(MyContext);
@@ -21,12 +22,12 @@ const Kddept = ({ onChange, kddept, kdkanwil, kdkppn }) => {
     }
     // Mapping kode role ke string backend
     const roleMap = {
-      "X": "superadmin",
-      "0": "pusat",
-      "1": "kantor_pusat",
-      "2": "kanwil",
-      "3": "kppn",
-      "4": "lainnya"
+      X: "superadmin",
+      0: "pusat",
+      1: "kantor_pusat",
+      2: "kanwil",
+      3: "kppn",
+      4: "lainnya",
     };
     const backendRole = roleMap[role];
     if (!backendRole) {
@@ -83,9 +84,7 @@ const Kddept = ({ onChange, kddept, kdkanwil, kdkppn }) => {
         className="dropdown_epa-select dropdown-animated"
         disabled={loading}
       >
-        <option value="">
-          {loading ? "Memuat..." : "Pilih Kementerian"}
-        </option>
+        <option value="">{loading ? "Memuat..." : "Pilih Kementerian"}</option>
         {Array.isArray(data) &&
           data.map((item) => (
             <option key={item.kddept} value={item.kddept}>

@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     server: {
-      port: 3000,
+      port: 80,
       host: env.VITE_HOST,
       // https: {
       //   key: sslKey,

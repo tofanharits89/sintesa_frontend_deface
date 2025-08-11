@@ -22,6 +22,17 @@ import TabTargetCapaian from "../tabcontent/TabTargetCapaian";
 
 function EpaTabs({ toggleMode, darkMode, onChange }) {
   const { dataEpa, role, kdkanwil, kdkppn } = useContext(MyContext) || {};
+  // console.log(
+  //   "EPA TABS - Role:",
+  //   role,
+  //   "kdkanwil:",
+  //   kdkanwil,
+  //   "kdkppn:",
+  //   kdkppn,
+  //   "dataEpa:",
+  //   dataEpa
+  // );
+
   const [activeTab, setActiveTab] = useState(0);
   const {
     year = "",
@@ -83,47 +94,56 @@ function EpaTabs({ toggleMode, darkMode, onChange }) {
 
       <div className="tab-container">
         {/* Tab Buttons */}
-        <div className="tab-buttons">
+        <div
+          className="tab-buttons"
+          style={{
+            display: "flex",
+            gap: "2px",
+            backgroundColor: "#f8f9fa",
+            padding: "4px",
+            borderRadius: "8px",
+            border: "1px solid #e9ecef",
+          }}
+        >
           {tabTitles.map((tab, index) => {
             const IconComponent = tab.icon;
-            const iconColor = activeTab === index ? "white" : tab.defaultColor;
+            const isActive = activeTab === index;
 
             return (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.1, backgroundColor: "#f1f1f1" }} // 🔥 Efek hover
-                transition={{ duration: 0.2 }}
-                className={`tab-button-wrapper ${activeTab === index ? "active" : ""}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.15 }}
+                style={{ flex: 1 }}
               >
                 <Button
-                  className={`tab-button ${activeTab === index ? "active" : ""}`}
                   onClick={() => handleTabClick(index)}
                   style={{
+                    width: "100%",
                     display: "flex",
-                    flexDirection: "column",
+                    flexDirection: "row",
                     alignItems: "center",
-                    gap: "5px",
-                    backgroundColor:
-                      activeTab === index ? tab.defaultColor : "transparent",
-                    color: activeTab === index ? "white" : "black",
+                    justifyContent: "center",
+                    gap: "8px",
+                    padding: "12px 16px",
+                    backgroundColor: isActive ? "#ffffff" : "transparent",
+                    color: isActive ? "#2c3e50" : "#6c757d",
+                    border: isActive
+                      ? "1px solid #dee2e6"
+                      : "1px solid transparent",
+                    borderRadius: "6px",
+                    fontWeight: isActive ? "600" : "500",
+                    fontSize: "16px",
+                    transition: "all 0.2s ease",
+                    boxShadow: isActive ? "0 2px 4px rgba(0,0,0,0.08)" : "none",
                   }}
                 >
-                  <motion.div
-                    whileHover={{ scale: 1.3, rotate: 10 }} // 🔥 Efek hover ikon lebih besar dan sedikit miring
-                    transition={{ duration: 0.2 }}
-                    className="tab-icon"
-                  >
-                    <IconComponent size={24} color={iconColor} />
-                  </motion.div>
-                  <span
-                    style={{
-                      textAlign: "center",
-                      fontSize: "14px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {tab.name}
-                  </span>
+                  <IconComponent
+                    size={16}
+                    color={isActive ? tab.defaultColor : "#6c757d"}
+                  />
+                  <span>{tab.name}</span>
                 </Button>
               </motion.div>
             );

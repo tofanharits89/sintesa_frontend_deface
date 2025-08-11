@@ -16,19 +16,27 @@ const Revisi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const sqlQuery = `
+        let sqlQuery = `
           SELECT 
             nmdept, kddept, jnsrevisi, sub_jnsrevisi, kew_revisi, 
             SUM(jml_revisi) AS jumlah
           FROM digitalisasi_epa.revisi_epa
-          WHERE thang = '${thang}' AND kddept = '${dept}'
-          GROUP BY nmdept, kddept, jnsrevisi, sub_jnsrevisi, kew_revisi limit 10
-        `;
-        const sql = sqlQuery.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
-        setQueryDebug(sql);
+          WHERE thang = '${thang}' AND kddept = '${dept}'`;
+
+        // Tambahkan filter jika kdkanwil/kdkppn ada dan bukan nilai "semua"
+        if (kdkanwil && kdkanwil !== "00")
+          sqlQuery += ` AND kdkanwil = '${kdkanwil}'`;
+        if (kdkppn && kdkppn !== "000") sqlQuery += ` AND kdkppn = '${kdkppn}'`;
+
+        sqlQuery += ` GROUP BY nmdept, kddept, jnsrevisi, sub_jnsrevisi, kew_revisi limit 10`;
+
+        sqlQuery = sqlQuery.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
+        setQueryDebug(sqlQuery);
 
         const response = await axiosJWT.get(
-          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(sql)}`,
+          `${import.meta.env.VITE_REACT_APP_LOCAL_CHARTKINERJA}${Encrypt(
+            sqlQuery
+          )}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -58,13 +66,13 @@ const Revisi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
       </div>
 
       <div className="d-flex justify-content-end p-2 mt-2">
-        <Button
+        {/* <Button
           variant="secondary"
           size="sm"
           onClick={() => setShowModal(true)}
         >
           SQL
-        </Button>
+        </Button> */}
       </div>
 
       {loading ? (

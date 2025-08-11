@@ -9,6 +9,14 @@ import Revisi from "../chart/Revisi";
 
 const TabTargetCapaian = () => {
   const { dataEpa, kdkanwil, kdkppn } = useContext(MyContext);
+
+  // Debug props filter
+  // console.log("[TabTargetCapaian] filter props:", {
+  //   kdkanwil,
+  //   kdkppn,
+  //   dataEpa,
+  // });
+
   const periodOptions = [
     "Januari",
     "Pebruari",

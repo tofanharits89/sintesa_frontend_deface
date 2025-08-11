@@ -235,7 +235,7 @@ export const SwitchSatker = ({ onChange }) => {
       <Form.Check
         type="switch"
         id="custom-switch"
-        label="SKPD/Satker"
+        label="Satker"
         checked={switchSatker}
         onChange={handleSwitchSatker}
       />

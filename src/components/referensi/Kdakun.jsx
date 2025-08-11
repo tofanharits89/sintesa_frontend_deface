@@ -17,7 +17,11 @@ const Kdakun = (props) => {
             <>
               {props.jenis === "tematik" ? (
                 <option value="BKPK">Kode BKPK</option>
-              ) : (
+              ) : 
+              props.jenis === "belwil" ? (
+                <option value="AKUN">Kode Akun</option>
+              ) : 
+              (
                 <>
                   <option value="AKUN">Kode Akun</option>
                   <option value="BKPK">Kode BKPK</option>

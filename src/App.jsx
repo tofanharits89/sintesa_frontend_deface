@@ -115,7 +115,7 @@ export default function App() {
               <Route path="/v3/landing-logout" element={<LandingLogout />} />
               <Route path="/landing-logout" element={<LandingLogout />} />
             </Routes>
-            
+
             <PrivateRoute>
               <CekUserAktif />
               <Header toggleMode={toggleMode} darkMode={darkMode} />
@@ -123,16 +123,48 @@ export default function App() {
             </PrivateRoute>
             <PrivateRoute>
               <Routes>
-                <Route index element={<MbgOnlyRoute><Dashboard /></MbgOnlyRoute>} />
-                <Route element={<MbgOnlyRoute><Notifikasi /></MbgOnlyRoute>} path="/v3/notifikasi" />{" "}
+                <Route
+                  index
+                  element={
+                    <MbgOnlyRoute>
+                      <Dashboard />
+                    </MbgOnlyRoute>
+                  }
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Notifikasi />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/notifikasi"
+                />{" "}
                 <Route
                   element={<TabDashboard darkMode={darkMode} />}
                   path="v3/landing/mbg"
                 />
-                <Route element={<MbgOnlyRoute><Inquiry /></MbgOnlyRoute>} path="/v3/data/form/belanja" />
-                <Route element={<MbgOnlyRoute><Rkakl /></MbgOnlyRoute>} path="/v3/data/form/rkakl" />
                 <Route
-                  element={<MbgOnlyRoute><InquiryKontrak /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <Inquiry />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/data/form/belanja"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Rkakl />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/data/form/rkakl"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <InquiryKontrak />
+                    </MbgOnlyRoute>
+                  }
                   path="/v3/data/form/kontrak"
                 />
                 <Route
@@ -145,13 +177,38 @@ export default function App() {
                   }
                   path="/v3/data/form/bansos"
                 />
-                <Route element={<MbgOnlyRoute><InquiryUptup /></MbgOnlyRoute>} path="/v3/data/form/uptup" />
                 <Route
-                  element={<MbgOnlyRoute><InquiryDeviasi /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <InquiryUptup />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/data/form/uptup"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <InquiryDeviasi />
+                    </MbgOnlyRoute>
+                  }
                   path="/v3/data/form/deviasi"
                 />
-                <Route element={<MbgOnlyRoute><Dashboard /></MbgOnlyRoute>} path="/v3/landing/dashboard" />
-                <Route element={<MbgOnlyRoute><Landing /></MbgOnlyRoute>} path="/v3/landing/profile" />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Dashboard />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/landing/dashboard"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Landing />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/landing/profile"
+                />
                 <Route
                   element={
                     <MbgOnlyRoute>
@@ -174,9 +231,13 @@ export default function App() {
                 />
                 <Route
                   element={
-                    <HanyaAdmin>
-                      <BelanjaWilayah />
-                    </HanyaAdmin>
+                    <MbgOnlyRoute>
+                      <HanyaAdmin>
+                        <HanyaPusat>
+                          <BelanjaWilayah />
+                        </HanyaPusat>
+                      </HanyaAdmin>
+                    </MbgOnlyRoute>
                   }
                   path="v3/belwil/update-data/"
                 />
@@ -199,11 +260,19 @@ export default function App() {
                   path="v3/data/form/cluster"
                 />
                 <Route
-                  element={<MbgOnlyRoute><ExportPDF /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <ExportPDF />
+                    </MbgOnlyRoute>
+                  }
                   path="/v3/data/form/kinerja/export"
                 />
                 <Route
-                  element={<MbgOnlyRoute><DetailSatker /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <DetailSatker />
+                    </MbgOnlyRoute>
+                  }
                   path="/v3/Satker/Detail/:kdsatker"
                 />
                 <Route
@@ -216,8 +285,22 @@ export default function App() {
                   }
                   path="/v3/rowset/form/sp2d"
                 />
-                <Route element={<MbgOnlyRoute><Subsidi /></MbgOnlyRoute>} path="/v3/rowset/" />
-                <Route element={<MbgOnlyRoute><SftpMenu /></MbgOnlyRoute>} path="/v3/connect-ftp" />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Subsidi />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/rowset/"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <SftpMenu />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/connect-ftp"
+                />
                 <Route
                   element={
                     <MbgOnlyRoute>
@@ -238,17 +321,70 @@ export default function App() {
                   }
                   path="/v3/rowset/form/referensi"
                 />
-                <Route element={<MbgOnlyRoute><ProfileUser /></MbgOnlyRoute>} path="/v3/profile/user" />
-                <Route element={<MbgOnlyRoute><AddUser /></MbgOnlyRoute>} path="/v3/admin/register/user" />
-                <Route element={<MbgOnlyRoute><Chat /></MbgOnlyRoute>} path="/v3/ai/chat/" />
-                <Route element={<MbgOnlyRoute><Team /></MbgOnlyRoute>} path="/v3/about/team/" />
-                <Route element={<MbgOnlyRoute><Log /></MbgOnlyRoute>} path="/v3/about/changelog/" />
-                <Route element={<MbgOnlyRoute><Engine /></MbgOnlyRoute>} path="/v3/about/engine/" />
                 <Route
-                  element={<MbgOnlyRoute><Developer /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <ProfileUser />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/profile/user"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <AddUser />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/admin/register/user"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Chat />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/ai/chat/"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Team />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/about/team/"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Log />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/about/changelog/"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Engine />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/about/engine/"
+                />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Developer />
+                    </MbgOnlyRoute>
+                  }
                   path="/v3/about/developer/beta"
                 />
-                <Route element={<MbgOnlyRoute><Feedback /></MbgOnlyRoute>} path="/v3/about/feedback" />
+                <Route
+                  element={
+                    <MbgOnlyRoute>
+                      <Feedback />
+                    </MbgOnlyRoute>
+                  }
+                  path="/v3/about/feedback"
+                />
                 <Route
                   path="/v3/admin/users"
                   element={
@@ -354,7 +490,11 @@ export default function App() {
                   }
                 />
                 <Route
-                  element={<MbgOnlyRoute><InquiryPenerimaan /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <InquiryPenerimaan />
+                    </MbgOnlyRoute>
+                  }
                   path="/v3/data/form/penerimaan"
                 />
                 <Route
@@ -435,8 +575,22 @@ export default function App() {
                     </MbgOnlyRoute>
                   }
                 />
-                <Route path="/v3/tkd/kppn/upload" element={<MbgOnlyRoute><DataKppn /></MbgOnlyRoute>} />
-                <Route path="/v3/tkd/iku/penilaian" element={<MbgOnlyRoute><LandingIku /></MbgOnlyRoute>} />
+                <Route
+                  path="/v3/tkd/kppn/upload"
+                  element={
+                    <MbgOnlyRoute>
+                      <DataKppn />
+                    </MbgOnlyRoute>
+                  }
+                />
+                <Route
+                  path="/v3/tkd/iku/penilaian"
+                  element={
+                    <MbgOnlyRoute>
+                      <LandingIku />
+                    </MbgOnlyRoute>
+                  }
+                />
                 <Route
                   path="/v3/tkd/kppn/proyeksi"
                   element={
@@ -449,15 +603,19 @@ export default function App() {
                 />
                 <Route
                   path="/v3/data/form/dispensasi/kppn"
-                  element={<MbgOnlyRoute><DataDispensasiKPPN /></MbgOnlyRoute>}
+                  element={
+                    <MbgOnlyRoute>
+                      <DataDispensasiKPPN />
+                    </MbgOnlyRoute>
+                  }
                 />
                 <Route
                   path="/v3/epa/landing"
                   element={
                     <MbgOnlyRoute>
-                      <HanyaAdmin>
+                      <HanyaPusat>
                         <EpaTabs darkMode={darkMode} />
-                      </HanyaAdmin>
+                      </HanyaPusat>
                     </MbgOnlyRoute>
                   }
                 />
@@ -465,9 +623,9 @@ export default function App() {
                   path="/v3/epa/detail"
                   element={
                     <MbgOnlyRoute>
-                      <HanyaAdmin>
+                      <HanyaPusat>
                         <LandingAnalisa darkMode={darkMode} />
-                      </HanyaAdmin>
+                      </HanyaPusat>
                     </MbgOnlyRoute>
                   }
                 />

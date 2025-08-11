@@ -14,6 +14,14 @@ import {
 } from "react-bootstrap";
 
 const TargetRealisasi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
+  // Debug log untuk props filter
+  // console.log("[TargetRealisasi] filter props:", {
+  //   thang,
+  //   periode,
+  //   dept,
+  //   kdkanwil,
+  //   kdkppn,
+  // });
   const { axiosJWT, token } = useContext(MyContext);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -32,14 +40,22 @@ const TargetRealisasi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
       try {
         let query = `SELECT nmjenbel, kdjenbel, SUM(pagu) pagu, SUM(blokir) blokir, SUM(netpagu) netpagu,
         SUM(traject${triwulan}) traject, SUM(target${triwulan}) target, SUM(real_sd_tw${triwulan}) real_berjalan,
-        SUM(gap${triwulan}) AS gap FROM digitalisasi_epa.tren_belanja_jenbel WHERE thang = '${thang}' AND kddept = '${dept}'
-        GROUP BY nmjenbel, kdjenbel`;
+        SUM(gap${triwulan}) AS gap FROM digitalisasi_epa.tren_belanja_jenbel WHERE thang = '${thang}' AND kddept = '${dept}'`;
+
+        // Tambahkan filter jika kdkanwil/kdkppn ada dan bukan nilai "semua"
+        if (kdkanwil && kdkanwil !== "00")
+          query += ` AND kdkanwil = '${kdkanwil}'`;
+        if (kdkppn && kdkppn !== "000") query += ` AND kdkppn = '${kdkppn}'`;
+
+        query += ` GROUP BY nmjenbel, kdjenbel`;
 
         query = query.replace(/\n/g, " ").replace(/\s+/g, " ").trim();
         setSqlQuery(query);
 
         const response = await axiosJWT.get(
-          `${import.meta.env.VITE_REACT_APP_LOCAL_TARGETREALISASI}${Encrypt(query)}`,
+          `${import.meta.env.VITE_REACT_APP_LOCAL_TARGETREALISASI}${Encrypt(
+            query
+          )}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -68,13 +84,13 @@ const TargetRealisasi = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
         s.d. Triwulan {triwulanRomawi} TA {thang}
       </div>
       <div className="d-flex justify-content-end p-2 mt-2">
-        <Button
+        {/* <Button
           variant="secondary"
           size="sm"
           onClick={() => setShowModal(true)}
         >
           SQL
-        </Button>
+        </Button> */}
       </div>
 
       {loading ? (

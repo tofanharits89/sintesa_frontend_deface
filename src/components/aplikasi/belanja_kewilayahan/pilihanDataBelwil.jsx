@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 
+const isUnavailable = true;
+
 export const PilihSemua = ({ onChange }) => {
     const [pilihSemua, setPilihSemua] = useState(true);
 
@@ -117,6 +119,7 @@ export const SwitchKddekon = ({ onChange }) => {
                 label="Kewenangan"
                 checked={switchDekon}
                 onChange={handleSwitchDekon}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -177,6 +180,7 @@ export const SwitchKanwil = ({ onChange }) => {
                 label="Kanwil"
                 checked={switchKanwil}
                 onChange={handleSwitchKanwil}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -197,6 +201,7 @@ export const SwitchKppn = ({ onChange }) => {
                 label="KPPN"
                 checked={switchKppn}
                 onChange={handleSwitchKppn}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -243,7 +248,7 @@ export const SwitchFungsi = ({ jenlap, onChange }) => {
                 label="Fungsi"
                 checked={switchFungsi}
                 onChange={handleSwitchFungsi}
-                disabled={jenlap === "6"}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -269,7 +274,7 @@ export const SwitchSubfungsi = ({ jenlap, onChange }) => {
                 label="Sub Fungsi"
                 checked={switchSubfungsi}
                 onChange={handleSwitchSubfungsi}
-                disabled={jenlap === "6"}
+                disabled={isUnavailable}
             />
         </>
     );
@@ -486,7 +491,7 @@ export const SwitchSdana = ({ jenlap, onChange }) => {
                 label="Sumber Dana"
                 checked={switchSdana}
                 onChange={handleSwitchSdana}
-                disabled={jenlap === "6"}
+                disabled={isUnavailable}
             />
         </>
     );

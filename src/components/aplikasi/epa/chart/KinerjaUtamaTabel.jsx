@@ -509,11 +509,24 @@ const EpaKinerjaUtama = ({ thang, periode, dept, kdkanwil, kdkppn }) => {
     <Container fluid>
       {/* Tabel Kinerja Satker Utama */}
       {renderKinerjaSatkerTable(
-        "Kinerja Satker Utama (10 Satker Pagu terbesar)",
+        "Kinerja Satker Utama",
         satkerData,
         satkerColumns,
         "satker"
       )}
+      {renderKinerjaSatkerTable(
+        "Kinerja Program Utama",
+        programData,
+        programColumns,
+        "program"
+      )}
+      {renderKinerjaSatkerTable("Kinerja RO Utama", roData, roColumns, "ro")}
+      <Eselon1New
+        thang={thang}
+        periode={periode}
+        kdkanwil={kdkanwil}
+        kdkppn={kdkppn}
+      />
     </Container>
   );
 };
