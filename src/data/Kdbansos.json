@@ -9,5 +9,7 @@
   { "kdbansos": "08", "nmbansos": "BSTSEMBAKO1" },
   { "kdbansos": "09", "nmbansos": "BSTSEMBAKO2" },
   { "kdbansos": "10", "nmbansos": "BSTSEMBAKO3" },
-  { "kdbansos": "11", "nmbansos": "UKT" }
+  { "kdbansos": "11", "nmbansos": "UKT" },
+  { "kdbansos": "12", "nmbansos": "YAPI" },
+  { "kdbansos": "13", "nmbansos": "KIP" }
 ]
