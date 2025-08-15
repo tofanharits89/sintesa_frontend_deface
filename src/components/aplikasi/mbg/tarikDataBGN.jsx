@@ -10,6 +10,8 @@ import {
   Table,
   InputGroup,
 } from "react-bootstrap";
+import * as XLSX from "xlsx"; // Tambahkan ini
+import { saveAs } from "file-saver"; // Tambahkan ini
 
 const DatePickerStyled = ({
   label,
@@ -90,6 +92,22 @@ const TarikDataBGN = () => {
     }
   };
 
+  // Fungsi untuk download Excel
+  const handleDownloadExcel = () => {
+    if (!data || !Array.isArray(data) || data.length === 0) return;
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "DataBGN");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const blob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+    saveAs(blob, "data_realisasi_bgn.xlsx");
+  };
+
   return (
     <div className="container-fluid">
       <Card className="shadow-sm">
@@ -160,11 +178,21 @@ const TarikDataBGN = () => {
 
           {data && (
             <Card className="mt-3">
-              <Card.Header className="bg-light">
+              <Card.Header className="bg-light d-flex justify-content-between align-items-center">
                 <h6 className="mb-0">
                   <i className="bi bi-table me-2"></i>
                   Hasil Data ({Array.isArray(data) ? data.length : 0} record)
                 </h6>
+                <Button
+                  variant="outline-success"
+                  size="sm"
+                  onClick={handleDownloadExcel}
+                  disabled={!data || data.length === 0}
+                  title="Download Excel"
+                >
+                  <i className="bi bi-file-earmark-excel me-1"></i>
+                  Excel
+                </Button>
               </Card.Header>
               <Card.Body className="p-0">
                 <div
