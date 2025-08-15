@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 import { UpdateMbg } from "./overview/tgUpdate";
-import DownloadData2 from "./modal/DownloadData2";
+import DownloadData from "./modal/DownloadData";
 import UpdateModal from "./modal/updateData";
 
 const UpdateDataMbg = () => {
@@ -69,7 +69,7 @@ const UpdateDataMbg = () => {
         </div>
 
         {/* Modal Komponen */}
-        <DownloadData2
+        <DownloadData
           show={showModaldata}
           onClose={handleCloseData}
           onConfirm={handleData}
