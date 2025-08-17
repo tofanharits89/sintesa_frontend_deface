@@ -85,6 +85,8 @@ export default function Rekam({ show, onHide, tahun, triwulan, kdkanwil, ndkanwi
             return;
         }
 
+        console.log("Submitting values:", values);
+
         setLoading(true);
         const formData = new FormData();
         formData.append("kdkanwil", values.kdkanwil);

@@ -174,9 +174,13 @@ export default function App() {
                 />
                 <Route
                   element={
-                    <HanyaAdmin>
-                      <BelanjaWilayah />
-                    </HanyaAdmin>
+                    <MbgOnlyRoute>
+                      <SelainKanwil>
+                        <SelainKppn>
+                          <BelanjaWilayah />
+                        </SelainKppn>
+                      </SelainKanwil>
+                    </MbgOnlyRoute>
                   }
                   path="v3/belwil/update-data/"
                 />

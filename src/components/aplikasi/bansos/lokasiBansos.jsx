@@ -17,6 +17,9 @@ const Kdlokasi = (props) => {
     const encodedQuery = encodeURIComponent(
       "select a.kdprov,b.nmprov,a.kdkabkota,a.nmkabkota,b.kdkanwil from dbref.t_kabkota_bansos a left join dbref.t_provinsi b on a.kdprov=b.kdprov  group by a.kdprov ORDER BY a.kdprov"
     );
+    // const encodedQuery = encodeURIComponent(
+    //   "select a.kdprov,b.nmprov,a.kdkabkota,a.nmkabkota,b.kdkanwil from dbref.t_kabkota_bansos a left join dbref.t_provinsi b on a.kdprov=b.kdprov  group by a.kdprov ORDER BY a.kdprov"
+    // );
     const encryptedQuery = Encrypt(encodedQuery);
     try {
       const response = await axiosJWT.get(
