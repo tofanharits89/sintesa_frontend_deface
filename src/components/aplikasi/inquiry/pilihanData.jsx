@@ -61,22 +61,24 @@ export const SwitchTanggal = ({ onChange, jenlap }) => {
         label="Cut Off "
         checked={switchTanggal}
         onChange={handleSwitchTanggal}
-        className={`${
-          jenlap === "1" ||
-          jenlap === "4" ||
-          jenlap === "5" ||
-          jenlap === "6" ||
-          jenlap === "7"
-            ? "disabled-switch"
-            : ""
-        }`}
-        disabled={
-          jenlap === "1" ||
-          jenlap === "4" ||
-          jenlap === "5" ||
-          jenlap === "6" ||
-          jenlap === "7"
-        }
+        // className={`${
+        //   jenlap === "1" ||
+        //   jenlap === "4" ||
+        //   jenlap === "5" ||
+        //   jenlap === "6" ||
+        //   jenlap === "7"
+        //     ? "disabled-switch"
+        //     : ""
+        // }`}
+        // disabled={
+        //   jenlap === "1" ||
+        //   jenlap === "4" ||
+        //   jenlap === "5" ||
+        //   jenlap === "6" ||
+        //   jenlap === "7"
+        // }
+        className="disabled-switch"
+        disabled={true}
       />
     </>
   );
