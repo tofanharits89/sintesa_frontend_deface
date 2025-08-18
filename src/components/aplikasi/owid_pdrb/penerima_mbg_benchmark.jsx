@@ -1,9 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
 import MyContext from "../../../auth/Context";
 import Encrypt from "../../../auth/Random";
 import { handleHttpError } from "../notifikasi/toastError";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 export default function PenerimaMBGBenchmark() {
   const { axiosJWT, token, username } = useContext(MyContext);
@@ -20,8 +29,11 @@ export default function PenerimaMBGBenchmark() {
         // const query = `SELECT DISTINCT rp.regional FROM data_bgn.by_kelompok_detail bkd LEFT JOIN data_bgn.ref_provinsi rp ON bkd.provinsi = rp.wilnama WHERE rp.regional IS NOT NULL ORDER BY rp.regional`;
         const query = `SELECT DISTINCT REGIONAL FROM data_bgn.t_yayasan_spasial WHERE REGIONAL IS NOT NULL ORDER BY regional`;
         const encryptedQuery = Encrypt(query);
-          const response = await axiosJWT.get(import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
-            ? `${import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP}${encodeURIComponent(encryptedQuery)}`
+        const response = await axiosJWT.get(
+          import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
+            ? `${
+                import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
+              }${encodeURIComponent(encryptedQuery)}`
             : "",
           {
             headers: {
@@ -29,23 +41,23 @@ export default function PenerimaMBGBenchmark() {
             },
           }
         );
-        
+
         if (response.data && response.data.result) {
           const options = [
             { value: "all", label: "Semua Regional" },
-            ...response.data.result.map(item => ({
+            ...response.data.result.map((item) => ({
               value: item.REGIONAL,
-              label: item.REGIONAL
-            }))
+              label: item.REGIONAL,
+            })),
           ];
           setRegionalOptions(options);
         }
       } catch (err) {
         // console.error('Error fetching regional options:', err);
         Swal.fire({
-          icon: 'error',
-          title: 'Gagal Memuat Regional',
-          text: 'Terjadi kesalahan saat mengambil data regional.',
+          icon: "error",
+          title: "Gagal Memuat Regional",
+          text: "Terjadi kesalahan saat mengambil data regional.",
         });
       }
     };
@@ -57,31 +69,36 @@ export default function PenerimaMBGBenchmark() {
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        setLoading(true);        let query;
+        setLoading(true);
+        let query;
         if (selectedRegional === "all") {
           // query = `SELECT provinsi, SUM(CASE WHEN name = 'Balita' THEN 1 ELSE 0 END) as balita, SUM(CASE WHEN name = 'PAUD' THEN 1 ELSE 0 END) as paud, SUM(CASE WHEN name = 'TK' THEN 1 ELSE 0 END) as tk, SUM(CASE WHEN name = 'SD 1-3' THEN 1 ELSE 0 END) as sd1_3, SUM(CASE WHEN name = 'SD 4-6' THEN 1 ELSE 0 END) as sd4_6, SUM(CASE WHEN name = 'SMP' THEN 1 ELSE 0 END) as smp, SUM(CASE WHEN name = 'SMA' THEN 1 ELSE 0 END) as sma, COUNT(*) as total_kelompok FROM data_bgn.by_kelompok_detail WHERE provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
-          query=`SELECT provinsi, SUM(CASE WHEN jenisKelompok = 'Bayi Dibawah Lima Tahun' THEN 1 ELSE 0 END) AS balita, SUM(CASE WHEN jenisKelompok = 'Pendidikan Anak Usia Dini' OR jenisKelompok='Raudhatul Athfal' THEN 1 ELSE 0 END) AS paud, SUM(CASE WHEN jenisKelompok = 'Taman Kanak-Kanak' THEN 1 ELSE 0 END) AS tk, SUM(CASE WHEN jenisKelompok = 'Sekolah Dasar (Kelas 1-3)' OR jenisKelompok='Madrasah Ibtidaiyah (Kelas 1-3)' THEN 1 ELSE 0 END) AS sd1_3, SUM(CASE WHEN jenisKelompok = 'Sekolah Dasar (Kelas 4-6)' OR jenisKelompok='Madrasah Ibtidaiyah (Kelas 4-6)' THEN 1 ELSE 0 END) AS sd4_6, SUM(CASE WHEN jenisKelompok = 'Sekolah Menengah Pertama' OR jenisKelompok = 'Madrasah Tsanawiyah' THEN 1 ELSE 0 END) AS smp, SUM(CASE WHEN jenisKelompok = 'Sekolah Menengah Atas' OR jenisKelompok='Sekolah Menengah Kejuruan' OR jenisKelompok='Madrasah Aliyah' THEN 1 ELSE 0 END) AS sma, COUNT(*) AS total_kelompok FROM data_bgn.by_kelompok_detail WHERE provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
+          query = `SELECT provinsi, SUM(CASE WHEN jenisKelompok = 'Bayi Dibawah Lima Tahun' THEN 1 ELSE 0 END) AS balita, SUM(CASE WHEN jenisKelompok = 'Pendidikan Anak Usia Dini' OR jenisKelompok='Raudhatul Athfal' THEN 1 ELSE 0 END) AS paud, SUM(CASE WHEN jenisKelompok = 'Taman Kanak-Kanak' THEN 1 ELSE 0 END) AS tk, SUM(CASE WHEN jenisKelompok = 'Sekolah Dasar (Kelas 1-3)' OR jenisKelompok='Madrasah Ibtidaiyah (Kelas 1-3)' THEN 1 ELSE 0 END) AS sd1_3, SUM(CASE WHEN jenisKelompok = 'Sekolah Dasar (Kelas 4-6)' OR jenisKelompok='Madrasah Ibtidaiyah (Kelas 4-6)' THEN 1 ELSE 0 END) AS sd4_6, SUM(CASE WHEN jenisKelompok = 'Sekolah Menengah Pertama' OR jenisKelompok = 'Madrasah Tsanawiyah' THEN 1 ELSE 0 END) AS smp, SUM(CASE WHEN jenisKelompok = 'Sekolah Menengah Atas' OR jenisKelompok='Sekolah Menengah Kejuruan' OR jenisKelompok='Madrasah Aliyah' THEN 1 ELSE 0 END) AS sma, COUNT(*) AS total_kelompok FROM data_bgn.by_kelompok_detail WHERE provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
         } else {
           // query = `SELECT provinsi, SUM(CASE WHEN name = 'Balita' THEN 1 ELSE 0 END) as balita, SUM(CASE WHEN name = 'PAUD' THEN 1 ELSE 0 END) as paud, SUM(CASE WHEN name = 'TK' THEN 1 ELSE 0 END) as tk, SUM(CASE WHEN name = 'SD 1-3' THEN 1 ELSE 0 END) as sd1_3, SUM(CASE WHEN name = 'SD 4-6' THEN 1 ELSE 0 END) as sd4_6, SUM(CASE WHEN name = 'SMP' THEN 1 ELSE 0 END) as smp, SUM(CASE WHEN name = 'SMA' THEN 1 ELSE 0 END) as sma, COUNT(*) as total_kelompok FROM data_bgn.by_kelompok_detail WHERE regional = '${selectedRegional}' AND provinsi IS NOT NULL GROUP BY provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
           query = `SELECT bkd.provinsi, SUM(CASE WHEN bkd.jenisKelompok = 'Bayi Dibawah Lima Tahun' THEN 1 ELSE 0 END) AS balita, SUM(CASE WHEN bkd.jenisKelompok = 'Pendidikan Anak Usia Dini' OR bkd.jenisKelompok='Raudhatul Athfal' THEN 1 ELSE 0 END) AS paud, SUM(CASE WHEN bkd.jenisKelompok = 'Taman Kanak-Kanak' THEN 1 ELSE 0 END) AS tk, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Dasar (Kelas 1-3)' OR bkd.jenisKelompok='Madrasah Ibtidaiyah (Kelas 1-3)' THEN 1 ELSE 0 END) AS sd1_3, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Dasar (Kelas 4-6)' OR bkd.jenisKelompok='Madrasah Ibtidaiyah (Kelas 4-6)' THEN 1 ELSE 0 END) AS sd4_6, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Menengah Pertama' OR bkd.jenisKelompok = 'Madrasah Tsanawiyah' THEN 1 ELSE 0 END) AS smp, SUM(CASE WHEN bkd.jenisKelompok = 'Sekolah Menengah Atas' OR bkd.jenisKelompok='Sekolah Menengah Kejuruan' OR bkd.jenisKelompok='Madrasah Aliyah' THEN 1 ELSE 0 END) AS sma, COUNT(*) AS total_kelompok FROM data_bgn.by_kelompok_detail bkd LEFT JOIN data_bgn.t_yayasan_spasial tys ON bkd.provinsi = tys.NMPROVINSI WHERE tys.REGIONAL = '${selectedRegional}' AND bkd.provinsi IS NOT NULL GROUP BY bkd.provinsi HAVING total_kelompok > 0 ORDER BY total_kelompok DESC`;
         }
-        
+
         const encryptedQuery = Encrypt(query);
-          const response = await axiosJWT.get(import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
-            ? `${import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP}${encodeURIComponent(encryptedQuery)}`
+        const response = await axiosJWT.get(
+          import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
+            ? `${
+                import.meta.env.VITE_REACT_APP_LOCAL_PENERIMA_MAP
+              }${encodeURIComponent(encryptedQuery)}`
             : "",
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          });
+          }
+        );
 
-        console.log("API Response:", response.data);        
+        // console.log("API Response:", response.data);
         if (response.data && response.data.result) {
           // console.log("Results length:", response.data.result.length);
           // console.log("Raw results:", response.data.result);
           const formattedData = response.data.result
-            .map(item => {
+            .map((item) => {
               const data = {
                 provinsi: shortenProvinceName(item.provinsi),
                 provinsiLengkap: item.provinsi,
@@ -92,16 +109,24 @@ export default function PenerimaMBGBenchmark() {
                 sd4_6: parseInt(item.sd4_6) || 0,
                 smp: parseInt(item.smp) || 0,
                 sma: parseInt(item.sma) || 0,
-                total: parseInt(item.total_kelompok) || 0
+                total: parseInt(item.total_kelompok) || 0,
               };
-              
+
               // Jika semua nilai 0, berikan minimal 1 untuk balita agar chart ter-render
-              if (data.total === 0 && data.balita === 0 && data.paud === 0 && data.tk === 0 && 
-                  data.sd1_3 === 0 && data.sd4_6 === 0 && data.smp === 0 && data.sma === 0) {
+              if (
+                data.total === 0 &&
+                data.balita === 0 &&
+                data.paud === 0 &&
+                data.tk === 0 &&
+                data.sd1_3 === 0 &&
+                data.sd4_6 === 0 &&
+                data.smp === 0 &&
+                data.sma === 0
+              ) {
                 data.balita = 1;
                 data.total = 1;
               }
-              
+
               return data;
             })
             .sort((a, b) => b.total - a.total) // Sort by total descending
@@ -116,15 +141,16 @@ export default function PenerimaMBGBenchmark() {
       } catch (err) {
         // console.error('Error fetching chart data:', err);
         const { status, data } = err.response || {};
-        const errorMessage = (data && data.error) || 
+        const errorMessage =
+          (data && data.error) ||
           "Terjadi Permasalahan Koneksi atau Server Backend untuk data penerima MBG";
-        
+
         handleHttpError(status, errorMessage);
         setError(errorMessage);
         setChartData([]);
         Swal.fire({
-          icon: 'error',
-          title: 'Gagal Memuat Data',
+          icon: "error",
+          title: "Gagal Memuat Data",
           text: errorMessage,
         });
       } finally {
@@ -138,44 +164,44 @@ export default function PenerimaMBGBenchmark() {
   // Function untuk mempersingkat nama provinsi
   const shortenProvinceName = (name) => {
     const mapping = {
-      'SUMATERA SELATAN': 'Sumsel',
-      'SUMATERA UTARA': 'Sumut',
-      'SUMATERA BARAT': 'Sumbar',
-      'JAWA TENGAH': 'Jateng',
-      'JAWA TIMUR': 'Jatim',
-      'JAWA BARAT': 'Jabar',
-      'DKI JAKARTA': 'Jakarta',
-      'KALIMANTAN TIMUR': 'Kaltim',
-      'KALIMANTAN SELATAN': 'Kalsel',
-      'KALIMANTAN BARAT': 'Kalbar',
-      'KALIMANTAN TENGAH': 'Kalteng',
-      'KALIMANTAN UTARA': 'Kalut',
-      'SULAWESI SELATAN': 'Sulsel',
-      'SULAWESI UTARA': 'Sulut',
-      'SULAWESI TENGAH': 'Sulteng',
-      'SULAWESI TENGGARA': 'Sultra',
-      'SULAWESI BARAT': 'Sulbar',
-      'NUSA TENGGARA TIMUR': 'NTT',
-      'NUSA TENGGARA BARAT': 'NTB',
-      'PAPUA BARAT': 'Papbar',
-      'KEPULAUAN RIAU': 'Kepri',
-      'BANGKA BELITUNG': 'Babel',
-      'KEP. BANGKA BELITUNG': 'Babel',
-      'DAERAH ISTIMEWA YOGYAKARTA': 'Yogya',
-      'DI YOGYAKARTA': 'Yogya',
-      'YOGYAKARTA': 'Yogya',
-      'LAMPUNG': 'Lampung',
-      'RIAU': 'Riau',
-      'JAMBI': 'Jambi',
-      'BANTEN': 'Banten',
-      'BENGKULU': 'Bengkulu',
-      'ACEH': 'Aceh',
-      'MALUKU': 'Maluku',
-      'MALUKU UTARA': 'Malut',
-      'PAPUA': 'Papua',
-      'GORONTALO': 'Gorontalo'
+      "SUMATERA SELATAN": "Sumsel",
+      "SUMATERA UTARA": "Sumut",
+      "SUMATERA BARAT": "Sumbar",
+      "JAWA TENGAH": "Jateng",
+      "JAWA TIMUR": "Jatim",
+      "JAWA BARAT": "Jabar",
+      "DKI JAKARTA": "Jakarta",
+      "KALIMANTAN TIMUR": "Kaltim",
+      "KALIMANTAN SELATAN": "Kalsel",
+      "KALIMANTAN BARAT": "Kalbar",
+      "KALIMANTAN TENGAH": "Kalteng",
+      "KALIMANTAN UTARA": "Kalut",
+      "SULAWESI SELATAN": "Sulsel",
+      "SULAWESI UTARA": "Sulut",
+      "SULAWESI TENGAH": "Sulteng",
+      "SULAWESI TENGGARA": "Sultra",
+      "SULAWESI BARAT": "Sulbar",
+      "NUSA TENGGARA TIMUR": "NTT",
+      "NUSA TENGGARA BARAT": "NTB",
+      "PAPUA BARAT": "Papbar",
+      "KEPULAUAN RIAU": "Kepri",
+      "BANGKA BELITUNG": "Babel",
+      "KEP. BANGKA BELITUNG": "Babel",
+      "DAERAH ISTIMEWA YOGYAKARTA": "Yogya",
+      "DI YOGYAKARTA": "Yogya",
+      YOGYAKARTA: "Yogya",
+      LAMPUNG: "Lampung",
+      RIAU: "Riau",
+      JAMBI: "Jambi",
+      BANTEN: "Banten",
+      BENGKULU: "Bengkulu",
+      ACEH: "Aceh",
+      MALUKU: "Maluku",
+      "MALUKU UTARA": "Malut",
+      PAPUA: "Papua",
+      GORONTALO: "Gorontalo",
     };
-    
+
     return mapping[name?.toUpperCase()] || name;
   };
   // Custom tooltip dengan format yang lebih clean dan icons
@@ -185,57 +211,67 @@ export default function PenerimaMBGBenchmark() {
       const total = payload.reduce((sum, entry) => sum + entry.value, 0);
       const iconMap = {
         balita: "🍼",
-        paud: "🎈", 
+        paud: "🎈",
         tk: "🎪",
         sd1_3: "📚",
         sd4_6: "📖",
         smp: "🎒",
-        sma: "🎓"
+        sma: "🎓",
       };
-      
+
       return (
-        <div style={{
-          backgroundColor: "white",
-          border: "1px solid #e5e7eb",
-          borderRadius: "6px",
-          padding: "8px 10px",
-          fontSize: "11px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
-          fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-        }}>
-          <p style={{ 
-            margin: "0 0 6px 0", 
-            fontWeight: "600", 
-            color: "#1f2937",
-            fontSize: "12px",
-            letterSpacing: "0.3px"
-          }}>
+        <div
+          style={{
+            backgroundColor: "white",
+            border: "1px solid #e5e7eb",
+            borderRadius: "6px",
+            padding: "8px 10px",
+            fontSize: "11px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          }}
+        >
+          <p
+            style={{
+              margin: "0 0 6px 0",
+              fontWeight: "600",
+              color: "#1f2937",
+              fontSize: "12px",
+              letterSpacing: "0.3px",
+            }}
+          >
             {data.provinsiLengkap}
           </p>
           {payload.map((entry, index) => (
-            <p key={index} style={{ 
-              margin: "3px 0", 
-              color: entry.color,
-              fontWeight: "500",
-              fontSize: "11px",
-              display: "flex",
-              alignItems: "center",
-              gap: "4px"
-            }}>
+            <p
+              key={index}
+              style={{
+                margin: "3px 0",
+                color: entry.color,
+                fontWeight: "500",
+                fontSize: "11px",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
               <span>{iconMap[entry.dataKey] || "📊"}</span>
               <span style={{ textTransform: "lowercase" }}>{entry.name}:</span>
               <span style={{ fontWeight: "600" }}>{entry.value}</span>
             </p>
           ))}
-          <div style={{ 
-            borderTop: "1px solid #f3f4f6", 
-            paddingTop: "4px", 
-            marginTop: "6px",
-            fontWeight: "600",
-            color: "#374151",
-            fontSize: "11px",
-            letterSpacing: "0.2px"
-          }}>
+          <div
+            style={{
+              borderTop: "1px solid #f3f4f6",
+              paddingTop: "4px",
+              marginTop: "6px",
+              fontWeight: "600",
+              color: "#374151",
+              fontSize: "11px",
+              letterSpacing: "0.2px",
+            }}
+          >
             Total: {total}
           </div>
         </div>
@@ -245,29 +281,36 @@ export default function PenerimaMBGBenchmark() {
   };
   if (loading) {
     return (
-      <div style={{ 
-        width: "100%", 
-        minHeight: "320px",
-        backgroundColor: "white",
-        borderRadius: "12px",
-        border: "1px solid #e5e7eb",
-        padding: "20px",
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-        display: "flex", 
-        justifyContent: "center", 
-        alignItems: "center"
-      }}>
+      <div
+        style={{
+          width: "100%",
+          minHeight: "320px",
+          backgroundColor: "white",
+          borderRadius: "12px",
+          border: "1px solid #e5e7eb",
+          padding: "20px",
+          boxShadow:
+            "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <div style={{ textAlign: "center" }}>
-          <div style={{ 
-            width: "32px", 
-            height: "32px", 
-            border: "3px solid #f3f4f6", 
-            borderTop: "3px solid #3b82f6", 
-            borderRadius: "50%", 
-            animation: "spin 1s linear infinite",
-            margin: "0 auto 12px"
-          }}></div>
-          <div style={{ color: "#64748b", fontSize: "14px", fontWeight: "500" }}>
+          <div
+            style={{
+              width: "32px",
+              height: "32px",
+              border: "3px solid #f3f4f6",
+              borderTop: "3px solid #3b82f6",
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+              margin: "0 auto 12px",
+            }}
+          ></div>
+          <div
+            style={{ color: "#64748b", fontSize: "14px", fontWeight: "500" }}
+          >
             Memuat data penerima MBG...
           </div>
         </div>
@@ -277,62 +320,77 @@ export default function PenerimaMBGBenchmark() {
 
   if (error) {
     return (
-      <div style={{ 
-        width: "100%", 
-        minHeight: "320px",
-        backgroundColor: "white",
-        borderRadius: "12px",
-        border: "1px solid #e5e7eb",
-        padding: "20px",
-        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-        display: "flex", 
-        justifyContent: "center", 
-        alignItems: "center"
-      }}>
+      <div
+        style={{
+          width: "100%",
+          minHeight: "320px",
+          backgroundColor: "white",
+          borderRadius: "12px",
+          border: "1px solid #e5e7eb",
+          padding: "20px",
+          boxShadow:
+            "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <div style={{ textAlign: "center" }}>
-          <div style={{ 
-            fontSize: "16px", 
-            fontWeight: "600", 
-            marginBottom: "8px",
-            color: "#ef4444"
-          }}>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "600",
+              marginBottom: "8px",
+              color: "#ef4444",
+            }}
+          >
             Error
           </div>
-          <div style={{ color: "#64748b", fontSize: "14px" }}>
-            {error}
-          </div>
+          <div style={{ color: "#64748b", fontSize: "14px" }}>{error}</div>
         </div>
       </div>
     );
-  }  return (
-    <div style={{ 
-      width: "100%", 
-      height: "auto",
-      minHeight: "420px",
-      backgroundColor: "white",
-      borderRadius: "8px",
-      border: "1px solid #e5e7eb",
-      padding: "16px",
-      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-      overflow: "hidden"
-    }}>      {/* Header - Compact Design */}
-      <div style={{
-        background: "linear-gradient(135deg, #1e40af, #3b82f6)",
-        color: "white",
-        padding: "6px 12px",
-        borderRadius: "4px",
-        textAlign: "center",
-        marginBottom: "12px",
-        boxShadow: "0 1px 4px rgba(30, 64, 175, 0.2)"
-      }}>        <h3 style={{ 
-          margin: "0", 
-          fontSize: "13px", 
-          fontWeight: "600",
-          letterSpacing: "0.2px"
-        }}>
+  }
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "auto",
+        minHeight: "420px",
+        backgroundColor: "white",
+        borderRadius: "8px",
+        border: "1px solid #e5e7eb",
+        padding: "16px",
+        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+        overflow: "hidden",
+      }}
+    >
+      {" "}
+      {/* Header - Compact Design */}
+      <div
+        style={{
+          background: "linear-gradient(135deg, #1e40af, #3b82f6)",
+          color: "white",
+          padding: "6px 12px",
+          borderRadius: "4px",
+          textAlign: "center",
+          marginBottom: "12px",
+          boxShadow: "0 1px 4px rgba(30, 64, 175, 0.2)",
+        }}
+      >
+        {" "}
+        <h3
+          style={{
+            margin: "0",
+            fontSize: "13px",
+            fontWeight: "600",
+            letterSpacing: "0.2px",
+          }}
+        >
           📊 Jumlah Kelompok Penerima Manfaat MBG
         </h3>
-      </div>      {/* Dropdown Regional - Compact */}
+      </div>{" "}
+      {/* Dropdown Regional - Compact */}
       <div style={{ marginBottom: "12px" }}>
         <select
           value={selectedRegional}
@@ -347,32 +405,37 @@ export default function PenerimaMBGBenchmark() {
             fontWeight: "500",
             cursor: "pointer",
             outline: "none",
-            minWidth: "140px"
+            minWidth: "140px",
           }}
-        >{regionalOptions.map(option => (
-            <option 
-              key={option.value} 
+        >
+          {regionalOptions.map((option) => (
+            <option
+              key={option.value}
               value={option.value}
-              style={{ 
-                background: "#1e40af", 
-                color: "white" 
+              style={{
+                background: "#1e40af",
+                color: "white",
               }}
             >
               {option.label}
             </option>
           ))}
         </select>
-      </div>      {/* Legend */}
-      <div style={{ 
-        display: "flex", 
-        flexWrap: "wrap", 
-        gap: "8px", 
-        marginBottom: "12px",
-        fontSize: "11px",
-        justifyContent: "center",
-        padding: "0",
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
-      }}>
+      </div>{" "}
+      {/* Legend */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "8px",
+          marginBottom: "12px",
+          fontSize: "11px",
+          justifyContent: "center",
+          padding: "0",
+          fontFamily:
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        }}
+      >
         {[
           { key: "balita", color: "#1e40af", label: "balita", icon: "🍼" },
           { key: "paud", color: "#ea580c", label: "paud", icon: "🎈" },
@@ -380,35 +443,43 @@ export default function PenerimaMBGBenchmark() {
           { key: "sd1_3", color: "#16a34a", label: "sd1-3", icon: "📚" },
           { key: "sd4_6", color: "#0891b2", label: "sd4-6", icon: "📖" },
           { key: "smp", color: "#7c3aed", label: "smp", icon: "🎒" },
-          { key: "sma", color: "#1f2937", label: "sma", icon: "🎓" }
-        ].map(item => (
-          <div key={item.key} style={{ 
-            display: "flex", 
-            alignItems: "center", 
-            gap: "4px",
-            backgroundColor: "#f8fafc",
-            padding: "3px 6px",
-            borderRadius: "4px",
-            border: "1px solid #e2e8f0"
-          }}>
+          { key: "sma", color: "#1f2937", label: "sma", icon: "🎓" },
+        ].map((item) => (
+          <div
+            key={item.key}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+              backgroundColor: "#f8fafc",
+              padding: "3px 6px",
+              borderRadius: "4px",
+              border: "1px solid #e2e8f0",
+            }}
+          >
             <span style={{ fontSize: "10px" }}>{item.icon}</span>
-            <div style={{ 
-              width: "8px", 
-              height: "8px", 
-              backgroundColor: item.color, 
-              borderRadius: "2px" 
-            }}></div>
-            <span style={{ 
-              color: "#64748b", 
-              fontWeight: "500",
-              fontSize: "9px",
-              letterSpacing: "0.2px"
-            }}>
+            <div
+              style={{
+                width: "8px",
+                height: "8px",
+                backgroundColor: item.color,
+                borderRadius: "2px",
+              }}
+            ></div>
+            <span
+              style={{
+                color: "#64748b",
+                fontWeight: "500",
+                fontSize: "9px",
+                letterSpacing: "0.2px",
+              }}
+            >
               {item.label}
             </span>
           </div>
         ))}
-      </div>{/* Chart */}
+      </div>
+      {/* Chart */}
       {/* {console.log("Chart rendering with data:", chartData)}         */}
       <div style={{ padding: "0" }}>
         {chartData.length > 0 ? (
@@ -418,19 +489,19 @@ export default function PenerimaMBGBenchmark() {
               margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
               barCategoryGap="25%"
             >
-              <CartesianGrid 
-                strokeDasharray="3 3" 
+              <CartesianGrid
+                strokeDasharray="3 3"
                 stroke="#f1f5f9"
                 horizontal={true}
                 vertical={false}
               />
-              <XAxis 
+              <XAxis
                 dataKey="provinsi"
                 axisLine={false}
                 tickLine={false}
                 tick={{ fontSize: 11, fill: "#64748b", fontWeight: "500" }}
               />
-              <YAxis 
+              <YAxis
                 axisLine={false}
                 tickLine={false}
                 tick={{ fontSize: 10, fill: "#64748b" }}
@@ -445,16 +516,19 @@ export default function PenerimaMBGBenchmark() {
               <Bar dataKey="smp" stackId="a" fill="#7c3aed" />
               <Bar dataKey="sma" stackId="a" fill="#1f2937" />
             </BarChart>
-          </ResponsiveContainer>        ) : (
-          <div style={{ 
-            height: "240px", 
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center",
-            color: "#64748b",
-            fontSize: "13px",
-            fontWeight: "500"
-          }}>
+          </ResponsiveContainer>
+        ) : (
+          <div
+            style={{
+              height: "240px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#64748b",
+              fontSize: "13px",
+              fontWeight: "500",
+            }}
+          >
             Tidak ada data untuk ditampilkan
           </div>
         )}

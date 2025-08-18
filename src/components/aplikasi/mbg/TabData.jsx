@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import UpdateDataMbg from "./updateMBG";
+import TarikDataBGN from "./tarikDataBGN";
 import { FaDatabase, FaSearch, FaChartBar } from "react-icons/fa"; // Ikon yang relevan
 
 const TabDataMbg = () => {
@@ -35,6 +36,17 @@ const TabDataMbg = () => {
             }
           >
             <UpdateDataMbg />
+          </Tab>
+          <Tab
+            eventKey="tarikDataBGN"
+            title={
+              <>
+                <FaSearch className="me-2" />
+                Tarik Data BGN
+              </>
+            }
+          >
+            <TarikDataBGN />
           </Tab>
 
           {/* <Tab
