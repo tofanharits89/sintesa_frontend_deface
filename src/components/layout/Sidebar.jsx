@@ -216,7 +216,7 @@ export default function Sidebar({ darkMode }) {
                   ) : null}
                 </ul>
               </li>
-              {role === "X" ? (
+              {['X', '0', '1'].includes(role) ? (
                 <>
                   <li className="nav-item">
                     <Link
