@@ -55,8 +55,9 @@ export const MyContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(!window.location.pathname.startsWith("/v3/oauth/callback"));
     // Jangan refresh token jika berada di halaman logout
-    if (window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout") {
+    if (window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout" && !window.location.pathname.startsWith("/v3/oauth/callback")) {
       localStorage.getItem("status") && refreshToken();
     }
   }, []);
@@ -150,7 +151,7 @@ export const MyContextProvider = ({ children }) => {
       setTelp(decoded.telp);
       // setOffline(true);
     } catch (error) {
-      if (error.response && window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout") {
+      if (error.response && window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout" && !window.location.pathname.startsWith("/v3/oauth/callback")) {
         localStorage.removeItem("status");
         navigate("/v3/auth/login");
         // return <ToastError message="error mendapatkan token" />;
@@ -193,7 +194,7 @@ export const MyContextProvider = ({ children }) => {
           setVerified(decoded.verified);
         } catch (error) {
           // Jangan navigate ke login jika di halaman logout
-          if (window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout") {
+          if (window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout" && !window.location.pathname.startsWith("/v3/oauth/callback")) {
             localStorage.removeItem("status");
             navigate("/v3/auth/login");
           }
@@ -231,7 +232,7 @@ export const MyContextProvider = ({ children }) => {
       setTampil(false);
       setTampilverify(false);
       // Jangan navigate ke login jika di halaman logout
-      if (window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout") {
+      if (window.location.pathname !== "/v3/landing-logout" && window.location.pathname !== "/landing-logout" && !window.location.pathname.startsWith("/v3/oauth/callback")) {
         navigate("/v3/auth/login");
       }
     }

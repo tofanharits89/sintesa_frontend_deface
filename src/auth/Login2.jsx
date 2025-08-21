@@ -22,6 +22,11 @@ import Offline from "../components/layout/Offline";
 import PopupnotifLogin from "../components/layout/Login/Components/Pages/Auth/Popup_notif";
 
 const LoginNew = () => {
+  const SSO_DIGIT_CLIENT_ID = import.meta.env.VITE_SSO_DIGIT_CLIENT_ID;
+  const SSO_DIGIT_CLIENT_SECRET = import.meta.env.VITE_SSO_DIGIT_CLIENT_SECRET;
+  const SSO_DIGIT_URL = import.meta.env.VITE_SSO_DIGIT_URL;
+  const SSO_DIGIT_REDIRECT_URI = import.meta.env.VITE_SSO_DIGIT_REDIRECT_URI;
+  const SSO_DIGIT_CLIENT_STATE = import.meta.env.VITE_SSO_DIGIT_CLIENT_STATE;
   const {
     setVerified,
     setNmrole,
@@ -476,6 +481,20 @@ const LoginNew = () => {
                               <i className="bi bi-key-fill me-2"></i>LOGIN
                               DENGAN PIN
                             </Button>
+                            <Button
+                              variant="danger"
+                              size="lg"
+                              href={`${SSO_DIGIT_URL}?response_type=code&client_id=${SSO_DIGIT_CLIENT_ID}&redirect_uri=${SSO_DIGIT_REDIRECT_URI}&state=${SSO_DIGIT_CLIENT_STATE}`}
+                              className="mt-2 w-100 modern-btn-pin"
+                              style={{
+                                fontWeight: 600,
+                                fontSize: "1.1rem",
+                                letterSpacing: 2,
+                              }}
+                            >
+                              <i className="bi bi-key-fill me-2"></i>Login SSO-DIGIT
+                            </Button>
+                            
                             <div
                               className="text-center mt-4"
                               style={{
