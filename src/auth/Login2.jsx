@@ -19,14 +19,14 @@ import { jwtDecode } from "jwt-decode";
 import PinLogin from "./pinLogin";
 import sintesaLogo from "../assets/sintesa_logotype_sapphire_blue.svg";
 import Offline from "../components/layout/Offline";
-import PopupnotifLogin from "../components/layout/Login/Components/Pages/Auth/Popup_notif";
+// import PopupnotifLogin from "../components/layout/Login/Components/Pages/Auth/Popup_notif";
 
 const LoginNew = () => {
-  const SSO_DIGIT_CLIENT_ID = import.meta.env.VITE_SSO_DIGIT_CLIENT_ID;
-  const SSO_DIGIT_CLIENT_SECRET = import.meta.env.VITE_SSO_DIGIT_CLIENT_SECRET;
-  const SSO_DIGIT_URL = import.meta.env.VITE_SSO_DIGIT_URL;
-  const SSO_DIGIT_REDIRECT_URI = import.meta.env.VITE_SSO_DIGIT_REDIRECT_URI;
-  const SSO_DIGIT_CLIENT_STATE = import.meta.env.VITE_SSO_DIGIT_CLIENT_STATE;
+  // const SSO_DIGIT_CLIENT_ID = import.meta.env.VITE_SSO_DIGIT_CLIENT_ID;
+  // const SSO_DIGIT_CLIENT_SECRET = import.meta.env.VITE_SSO_DIGIT_CLIENT_SECRET;
+  // const SSO_DIGIT_URL = import.meta.env.VITE_SSO_DIGIT_URL;
+  // const SSO_DIGIT_REDIRECT_URI = import.meta.env.VITE_SSO_DIGIT_REDIRECT_URI;
+  // const SSO_DIGIT_CLIENT_STATE = import.meta.env.VITE_SSO_DIGIT_CLIENT_STATE;
   const {
     setVerified,
     setNmrole,
@@ -68,16 +68,16 @@ const LoginNew = () => {
   const [captcha, setCaptcha] = useState("");
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [showEmptyFormAlert, setShowEmptyFormAlert] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
 
   // Show popup when component mounts
-  useEffect(() => {
-    setShowPopup(true);
-  }, []);
+  // useEffect(() => {
+  //   setShowPopup(true);
+  // }, []);
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
+  // const handleClosePopup = () => {
+  //   setShowPopup(false);
+  // };
 
   const handleOpenModal = () => setShowOtpModal(true);
   const handleCloseModal = () => setShowOtpModal(false);
@@ -481,7 +481,7 @@ const LoginNew = () => {
                               <i className="bi bi-key-fill me-2"></i>LOGIN
                               DENGAN PIN
                             </Button>
-                            <Button
+                            {/* <Button
                               variant="danger"
                               size="lg"
                               href={`${SSO_DIGIT_URL}?response_type=code&client_id=${SSO_DIGIT_CLIENT_ID}&redirect_uri=${SSO_DIGIT_REDIRECT_URI}&state=${SSO_DIGIT_CLIENT_STATE}`}
@@ -492,9 +492,10 @@ const LoginNew = () => {
                                 letterSpacing: 2,
                               }}
                             >
-                              <i className="bi bi-key-fill me-2"></i>Login SSO-DIGIT
-                            </Button>
-                            
+                              <i className="bi bi-key-fill me-2"></i>Login
+                              SSO-DIGIT
+                            </Button> */}
+
                             <div
                               className="text-center mt-4"
                               style={{
@@ -521,7 +522,7 @@ const LoginNew = () => {
               </Col>
             </Row>
             <PinLogin show={showOtpModal} handleClose={handleCloseModal} />
-            <PopupnotifLogin show={showPopup} onClose={handleClosePopup} />
+            {/* <PopupnotifLogin show={showPopup} onClose={handleClosePopup} /> */}
           </Container>
         </div>
       )}

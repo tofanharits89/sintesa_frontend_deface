@@ -65,11 +65,7 @@ const HasilQueryBansos = (props) => {
     setLoading(true);
     const encodedQuery = encodeURIComponent(sql.replace(/%/g, "%%"));
     const encryptedQuery = Encrypt(encodedQuery);
-<<<<<<< HEAD
-    // console.log("Encrypted Query:", sql);
-=======
     // console.log(encodedQuery);
->>>>>>> origin/blnjwil
     try {
       const response = await axiosJWT.get(
         import.meta.env.VITE_REACT_APP_LOCAL_INQUIRY_GETDATA_BANSOS
