@@ -233,19 +233,11 @@ export default function App() {
                 <Route
                   element={
                     <MbgOnlyRoute>
-<<<<<<< HEAD
-                      <HanyaAdmin>
-                        <HanyaPusat>
-                          <BelanjaWilayah />
-                        </HanyaPusat>
-                      </HanyaAdmin>
-=======
                       <SelainKanwil>
                         <SelainKppn>
                           <BelanjaWilayah />
                         </SelainKppn>
                       </SelainKanwil>
->>>>>>> origin/blnjwil
                     </MbgOnlyRoute>
                   }
                   path="v3/belwil/update-data/"
@@ -649,7 +641,7 @@ export default function App() {
                 />
               </Routes>
             </PrivateRoute>
-            
+
             <Routes>
               <Route path="/v3/auth/login" element={<LoginNew />} />
               {/* <Route path="/v3/auth/login" element={<LoginOne />} /> */}
