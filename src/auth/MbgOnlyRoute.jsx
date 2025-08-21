@@ -8,9 +8,10 @@ const MbgOnlyRoute = ({ children }) => {
   
   // Path yang diizinkan untuk user djsef
   const djsefAllowedPaths = ['/v3/landing/mbg', '/v3/mbg/update-data/'];
+  const allowedUsers = ['djsef', '197005121990121001'];
   
   // Jika user adalah djsef dan path tidak diizinkan, redirect ke MBG landing
-  if (username === 'djsef' && !djsefAllowedPaths.includes(location.pathname)) {
+  if (allowedUsers.includes(username) && !djsefAllowedPaths.includes(location.pathname)) {
     return <Navigate to="/v3/landing/mbg" replace />;
   }
   

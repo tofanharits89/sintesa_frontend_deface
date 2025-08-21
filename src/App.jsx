@@ -84,6 +84,7 @@ import SocketProvider from "./auth/Socket";
 import MyContext from "./auth/Context";
 import LandingLogout from "./components/aplikasi/Landing_logout";
 import BelanjaWilayah from "./components/aplikasi/belanja_kewilayahan/formWilayah";
+import DigitLogin from "./auth/DigitLogin";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -232,11 +233,19 @@ export default function App() {
                 <Route
                   element={
                     <MbgOnlyRoute>
+<<<<<<< HEAD
                       <HanyaAdmin>
                         <HanyaPusat>
                           <BelanjaWilayah />
                         </HanyaPusat>
                       </HanyaAdmin>
+=======
+                      <SelainKanwil>
+                        <SelainKppn>
+                          <BelanjaWilayah />
+                        </SelainKppn>
+                      </SelainKanwil>
+>>>>>>> origin/blnjwil
                     </MbgOnlyRoute>
                   }
                   path="v3/belwil/update-data/"
@@ -640,10 +649,12 @@ export default function App() {
                 />
               </Routes>
             </PrivateRoute>
+            
             <Routes>
               <Route path="/v3/auth/login" element={<LoginNew />} />
               {/* <Route path="/v3/auth/login" element={<LoginOne />} /> */}
               <Route path="/v3/offline" element={<Offline />} />
+              <Route path="/v3/oauth/callback" element={<DigitLogin />} />
             </Routes>
             <Footer />
             <Mode />

@@ -220,7 +220,11 @@ export default function Sidebar({ darkMode }) {
                   ) : null}
                 </ul>
               </li>
+<<<<<<< HEAD
               {role === "X" || role === "0" || role === "1" ? (
+=======
+              {['X', '0', '1'].includes(role) ? (
+>>>>>>> origin/blnjwil
                 <>
                   <li className="nav-item">
                     <Link
