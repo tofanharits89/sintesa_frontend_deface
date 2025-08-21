@@ -8,6 +8,9 @@ export default function Sidebar({ darkMode }) {
   const [activeSubmenu, setActiveSubmenu] = useState("");
   const [isSidebarVisible, setSidebarVisible] = useState(false);
 
+  // User yang dikecualikan dari sidebar normal (special MBG users)
+  const mbgUsers = ["djsef", "197005121990121001"];
+
   useEffect(() => {
     const toggleSidebarBtn = document.querySelector(".toggle-sidebar-btn");
     const bodyElement = document.querySelector("body");
@@ -70,7 +73,7 @@ export default function Sidebar({ darkMode }) {
     }
 
     // Auto-collapse sidebar untuk user djsef
-    if (username === "djsef") {
+    if (mbgUsers.includes(username)) {
       document.body.classList.add("toggle-sidebar");
       setSidebarVisible(false);
     }
@@ -88,7 +91,7 @@ export default function Sidebar({ darkMode }) {
           >
             <ul className="sidebar-nav" id="sidebar-nav">
               {/* Special menu for user djsef */}
-              {username === "djsef" && (
+              {mbgUsers.includes(username) && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/v3/landing/mbg">
                     <i
@@ -99,7 +102,7 @@ export default function Sidebar({ darkMode }) {
                   </Link>
                 </li>
               )}
-              {role !== "3" && username !== "djsef" && (
+              {role !== "3" && !mbgUsers.includes(username) && (
                 <>
                   <li className="nav-item">
                     <Link
@@ -185,10 +188,12 @@ export default function Sidebar({ darkMode }) {
                       <span className="submenu">Dashboard</span>
                     </Link>
                   </li>
-                  {(role !== "3" && role !== "4" && username !== "djsef") ||
-                  username === "djsef" ? (
+                  {(role !== "3" &&
+                    role !== "4" &&
+                    !mbgUsers.includes(username)) ||
+                  mbgUsers.includes(username) ? (
                     <>
-                      {username !== "djsef" && (
+                      {!mbgUsers.includes(username) && (
                         <li>
                           <Link
                             as={Link}
@@ -220,7 +225,8 @@ export default function Sidebar({ darkMode }) {
                   ) : null}
                 </ul>
               </li>
-              {["X", "0", "1"].includes(role) ? (
+              {["X", "0", "1"].includes(role) &&
+              !mbgUsers.includes(username) ? (
                 <>
                   <li className="nav-item">
                     <Link
@@ -285,7 +291,7 @@ export default function Sidebar({ darkMode }) {
                   </li>
                 </>
               ) : null}
-              {username !== "djsef" && (
+              {!mbgUsers.includes(username) && (
                 <>
                   {role === "X" || role === "0" || role === "1" ? (
                     <>
